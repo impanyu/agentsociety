@@ -8,15 +8,26 @@ from society.actions import Action, ActionResult, Message, validate_action
 class Kernel:
     """Deterministic tick-barrier scheduler for AgentSociety.
 
-    Each tick, every *eligible* agent gets exactly one decide -> execute
-    cycle (run concurrently via asyncio.gather). Messages sent during a
-    tick are only delivered into recipient inboxes after all steps of that
-    tick have completed, so they become visible starting the next tick.
+    Deterministic given deterministic brains: each tick, every *eligible*
+    agent's `brain.decide(view)` runs concurrently via asyncio.gather (views
+    are built from pre-decide state, so brain latency cannot affect what
+    any brain observes). Once all decisions are in, validate/execute/
+    fifo-append/event-log effects are applied *sequentially*, in the fixed
+    order of the awake list (sorted by agent id), so event order and
+    message-send order within a tick do not depend on brain latency -- only
+    on agent id. (The `think` action performs an LLM call during execute,
+    so it runs sequentially with the other agents' effects; this is
+    acceptable.) A brain exception is caught and recorded as a failed
+    action for that agent rather than aborting the tick.
+
+    Messages sent during a tick are only delivered into recipient inboxes
+    after all steps of that tick have completed, so they become visible
+    starting the next tick.
     """
 
     def __init__(
         self,
-        agents: dict,
+        agents: dict[str, "Agent"],
         worldmap,
         event_log,
         shared_memory=None,
@@ -79,6 +90,12 @@ class Kernel:
             for rid in msg.recipients:
                 recipient = self.agents.get(rid)
                 if recipient is None:
+                    self.event_log.append(
+                        self.tick,
+                        "system",
+                        "kernel",
+                        {"note": "undeliverable", "recipient": rid, "message_id": msg.id},
+                    )
                     continue
                 recipient.stm.inbox.put_nowait(msg)
                 recipient.waiting_until = None
@@ -98,6 +115,16 @@ class Kernel:
     # ------------------------------------------------------------------
     # Eligibility
     # ------------------------------------------------------------------
+    def _timeout_elapsed(self, a) -> bool:
+        """Whether `a` is waiting on a real (non-forever) timeout that has
+        elapsed as of the current tick. Shared by is_eligible() and the
+        waiting-clear block in run() so the two never drift apart."""
+        return (
+            a.waiting_until is not None
+            and a.waiting_until != -1
+            and a.waiting_until <= self.tick
+        )
+
     def is_eligible(self, a) -> bool:
         """Whether agent `a` should get a decide/execute cycle this tick."""
         if a.transit is not None:
@@ -108,9 +135,7 @@ class Kernel:
             return not a.stm.goals.empty()
         # a is waiting: only a real (non-forever) timeout that has elapsed
         # makes it eligible.
-        if a.waiting_until != -1 and a.waiting_until <= self.tick:
-            return True
-        return False
+        return self._timeout_elapsed(a)
 
     # ------------------------------------------------------------------
     # Arrivals / transit
@@ -195,8 +220,9 @@ class Kernel:
             return ActionResult(True, data=msg.to_dict())
 
         if name == "peek_inbox":
-            queue = getattr(agent.stm.inbox, "_queue", [])
-            data = [{"sender": m.sender, "kind": m.kind} for m in queue]
+            data = [
+                {"sender": m.sender, "kind": m.kind} for m in agent.stm.inbox_items()
+            ]
             return ActionResult(True, data=data)
 
         if name == "conclude":
@@ -207,6 +233,8 @@ class Kernel:
             return ActionResult(True, data="pushed")
 
         if name == "pop_goal":
+            if agent.stm.goals.empty():
+                return ActionResult(False, error="goal stack empty")
             popped = agent.stm.goals.pop()
             return ActionResult(True, data=popped)
 
@@ -261,17 +289,40 @@ class Kernel:
         return ActionResult(True, data="sent")
 
     # ------------------------------------------------------------------
-    # Per-agent step
+    # Per-agent step (decide concurrently, apply effects sequentially)
     # ------------------------------------------------------------------
-    async def _step(self, agent) -> None:
-        view = agent.build_view(self.tick)
-        action = await agent.brain.decide(view)
+    async def _decide(self, agent) -> tuple:
+        """Build the view and call brain.decide() for one agent.
 
-        error = validate_action(action)
-        if error:
-            result = ActionResult(False, error=error)
+        Returns (action, brain_error): brain_error is None on success, or a
+        string description of the exception the brain raised. A brain
+        exception is caught here (not propagated) so one misbehaving brain
+        can neither abort the tick for its siblings nor leave a dangling
+        background mutation after run() has moved on.
+        """
+        view = agent.build_view(self.tick)
+        try:
+            action = await agent.brain.decide(view)
+        except Exception as exc:  # noqa: BLE001 - isolate brain failures per agent
+            return None, str(exc)
+        return action, None
+
+    async def _apply(self, agent, action, brain_error) -> None:
+        """Validate + execute + fifo-append + event-log for one agent.
+
+        Always called sequentially (never concurrently) across the awake
+        set, in the fixed order the caller iterates, so event order and
+        message-send order within a tick are deterministic.
+        """
+        if brain_error is not None:
+            action = Action("<decide-error>", {})
+            result = ActionResult(False, error=f"brain error: {brain_error}")
         else:
-            result = await self.execute(agent, action)
+            error = validate_action(action)
+            if error:
+                result = ActionResult(False, error=error)
+            else:
+                result = await self.execute(agent, action)
 
         agent.stm.fifo.append(
             {"name": action.name, "params": action.params}, result.to_dict()
@@ -326,19 +377,32 @@ class Kernel:
             awake = []
             for agent in self.agents.values():
                 eligible = self.is_eligible(agent)
-                if (
-                    eligible
-                    and agent.waiting_until is not None
-                    and agent.waiting_until != -1
-                    and agent.waiting_until <= self.tick
-                ):
+                if eligible and self._timeout_elapsed(agent):
                     # Waking from a timeout clears the waiting state.
                     agent.waiting_until = None
                 if eligible:
                     awake.append(agent)
 
             if awake:
-                await asyncio.gather(*(self._step(a) for a in awake))
+                # Phase 1: decide concurrently. Views were built from
+                # pre-decide state, so brain latency cannot change what any
+                # brain observes this tick.
+                results = await asyncio.gather(
+                    *(self._decide(a) for a in awake), return_exceptions=True
+                )
+                decisions = {}
+                for agent, res in zip(awake, results):
+                    if isinstance(res, Exception):
+                        decisions[agent.id] = (None, str(res))
+                    else:
+                        decisions[agent.id] = res
+
+                # Phase 2: apply effects sequentially, in a fixed order
+                # (agent id) so event/message ordering within a tick is
+                # deterministic regardless of decide() completion order.
+                for agent in sorted(awake, key=lambda a: a.id):
+                    action, brain_error = decisions[agent.id]
+                    await self._apply(agent, action, brain_error)
 
             delivered = self.deliver_pending()
 
@@ -358,14 +422,22 @@ class Kernel:
                 stop_reason = "quiescent"
                 break
 
-            if not awake:
+            # Fast-forward only when nothing happened this tick: no agent
+            # was awake AND nothing was delivered (an external kernel.send()
+            # to a sleeping agent still counts as "something happened", so
+            # we must not fast-forward past it -- and there may be no
+            # timers/transit to compute a min() over in that case).
+            if not awake and not delivered:
                 candidates = [
                     a.transit["arrive_at"]
                     for a in self.agents.values()
                     if a.transit is not None
                 ]
                 candidates.extend(waiting_timers)
-                self.tick = min(candidates)
+                if candidates:
+                    self.tick = min(candidates)
+                else:
+                    self.tick += 1
             else:
                 self.tick += 1
 

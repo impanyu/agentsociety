@@ -132,3 +132,13 @@ class STM:
         if goals:
             for goal in goals:
                 self.goals.push(goal)
+
+    def inbox_items(self) -> list:
+        """Return the current inbox contents (front-to-back) without consuming.
+
+        Reads asyncio.Queue's internal `_queue` deque directly; this is a
+        single-process, single-consumer read-only peek used by both
+        Agent.build_view (inbox_head) and Kernel.execute's peek_inbox
+        handler, so there's one place that knows about this internal.
+        """
+        return list(getattr(self.inbox, "_queue", []))
