@@ -109,7 +109,7 @@ class Kernel:
                 if self.metrics is not None and msg.kind in ("say", "gesture"):
                     on_message = getattr(self.metrics, "on_message", None)
                     if on_message is not None:
-                        on_message(msg, rid)
+                        on_message(msg.sender, rid, msg.kind)
         return delivered_any
 
     # ------------------------------------------------------------------
