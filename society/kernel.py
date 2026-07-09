@@ -250,43 +250,230 @@ class Kernel:
             agent.stm.status.remove(params["key"])
             return ActionResult(True, data="removed")
 
-        if name in ("say", "gesture", "act_on"):
-            return await self._execute_async_action(agent, action)
+        if name in ("say", "gesture"):
+            return self._execute_say_or_gesture(agent, action)
 
-        # think, remember, recall, forget, revise_memory, observe, read,
-        # move: land in Task 8.
-        return ActionResult(False, error="not implemented until Task 8")
+        if name == "act_on":
+            return self._execute_act_on(agent, action)
 
-    async def _execute_async_action(self, agent, action: Action) -> ActionResult:
-        """Minimal say/gesture/act_on: build a Message and queue it via send().
+        if name == "observe":
+            return self._execute_observe(agent, action)
 
-        Full validation (co-location checks, etc.) arrives in Task 8; this
-        keeps the handler factored so it can be extended without touching
-        the dispatch table.
-        """
-        name = action.name
+        if name == "read":
+            return self._execute_read(agent, action)
+
+        if name == "move":
+            return self._execute_move(agent, action)
+
+        if name in ("remember", "recall", "forget", "revise_memory"):
+            return await self._execute_memory_action(agent, action)
+
+        if name == "think":
+            return await self._execute_think(agent, action)
+
+        return ActionResult(False, error=f"not implemented: {name}")
+
+    def _execute_say_or_gesture(self, agent, action: Action) -> ActionResult:
+        """say/gesture: every target must exist and share sender's location,
+        else no message is sent and the offenders are named in the error."""
         params = action.params
+        targets = params["targets"]
+        content = params["content"] if action.name == "say" else params["description"]
 
-        if name == "say":
-            targets = params["targets"]
-            content = params["content"]
-        elif name == "gesture":
-            targets = params["targets"]
-            content = params["description"]
-        else:  # act_on
-            targets = [params["target"]]
-            content = params["description"]
+        sender_loc = agent.location()
+        offenders = []
+        for tid in targets:
+            target = self.agents.get(tid)
+            if target is None or target.location() != sender_loc:
+                offenders.append(tid)
+
+        if offenders:
+            return ActionResult(
+                False, error=f"targets not present at {sender_loc}: {', '.join(offenders)}"
+            )
 
         msg = Message(
             id=str(uuid.uuid4()),
             sender=agent.id,
             recipients=targets,
-            kind=name,
+            kind=action.name,
             content=content,
             tick_sent=self.tick,
         )
         self.send(msg)
         return ActionResult(True, data="sent")
+
+    def _execute_act_on(self, agent, action: Action) -> ActionResult:
+        """act_on(target, description): target must be an environment agent
+        the actor is currently at. RuleBrain envs answer synchronously
+        (wrapped as an env_result Message queued to the actor); LLM-brain
+        envs instead receive an act_on Message in their own inbox."""
+        params = action.params
+        target_id = params["target"]
+        description = params["description"]
+
+        target = self.agents.get(target_id)
+        if target is None or target.kind != "environment":
+            return ActionResult(False, error=f"not an environment: {target_id}")
+        if agent.location() != target_id:
+            return ActionResult(False, error=f"not at {target_id}")
+
+        handle_act_on = getattr(target.brain, "handle_act_on", None)
+        if handle_act_on is not None:
+            view = target.build_view(self.tick)
+            reply = handle_act_on(agent.id, description, view)
+            msg = Message(
+                id=str(uuid.uuid4()),
+                sender=target_id,
+                recipients=[agent.id],
+                kind="env_result",
+                content=reply,
+                tick_sent=self.tick,
+            )
+            self.send(msg)
+        else:
+            msg = Message(
+                id=str(uuid.uuid4()),
+                sender=agent.id,
+                recipients=[target_id],
+                kind="act_on",
+                content=description,
+                tick_sent=self.tick,
+            )
+            self.send(msg)
+        return ActionResult(True, data="acted")
+
+    def _is_readable(self, agent, target) -> bool:
+        """An info_carrier is readable if it shares the reader's location,
+        or is portable and currently held by the reader."""
+        if target.location() is not None and target.location() == agent.location():
+            return True
+        if target.portable and target.holder == agent.id:
+            return True
+        return False
+
+    def _execute_observe(self, agent, action: Action) -> ActionResult:
+        target_id = action.params["target"]
+        target = self.agents.get(target_id)
+        if target is None:
+            return ActionResult(False, error=f"no such target: {target_id}")
+
+        if target.kind == "environment":
+            occupants = []
+            for oid in sorted(self.presence.get(target_id, set())):
+                if oid == agent.id:
+                    continue
+                occ = self.agents.get(oid)
+                if occ is None:
+                    continue
+                occupants.append(
+                    {"id": occ.id, "kind": occ.kind, "status": occ.stm.status.public_view()}
+                )
+            return ActionResult(
+                True,
+                data={"status": target.stm.status.public_view(), "occupants": occupants},
+            )
+
+        if target.kind == "character":
+            if target.location() != agent.location():
+                return ActionResult(False, error=f"{target_id} not co-located")
+            return ActionResult(True, data=target.stm.status.public_view())
+
+        if target.kind == "info_carrier":
+            if not self._is_readable(agent, target):
+                return ActionResult(False, error=f"{target_id} not observable here")
+            return ActionResult(
+                True,
+                data={
+                    "meta": {"kind": target.kind, "portable": target.portable},
+                    "status": target.stm.status.public_view(),
+                },
+            )
+
+        return ActionResult(False, error=f"cannot observe kind {target.kind}")
+
+    def _execute_read(self, agent, action: Action) -> ActionResult:
+        params = action.params
+        target_id = params["target"]
+        query = params["query"]
+
+        target = self.agents.get(target_id)
+        if target is None or target.kind != "info_carrier":
+            return ActionResult(False, error=f"not an info_carrier: {target_id}")
+        if not self._is_readable(agent, target):
+            return ActionResult(False, error=f"{target_id} not readable here")
+
+        retrieve = getattr(target.brain, "retrieve", None)
+        if retrieve is None:
+            return ActionResult(False, error=f"{target_id} brain cannot retrieve")
+        data = retrieve(query)
+        return ActionResult(True, data=data)
+
+    def _execute_move(self, agent, action: Action) -> ActionResult:
+        destination = action.params["destination"]
+        current = agent.location()
+
+        dest_agent = self.agents.get(destination)
+        if dest_agent is None or dest_agent.kind != "environment":
+            return ActionResult(False, error=f"not an environment: {destination}")
+        if destination == current:
+            return ActionResult(False, error="already there")
+        if not self.worldmap.connected(current, destination):
+            return ActionResult(False, error=f"{destination} not connected from {current}")
+
+        d = self.worldmap.distance(current, destination)
+
+        self._presence_move(agent.id, current, None)
+        if current is not None and current in self.agents:
+            self.send(
+                Message(
+                    id=str(uuid.uuid4()),
+                    sender="kernel",
+                    recipients=[current],
+                    kind="system",
+                    content=f"{agent.id} departing to {destination}",
+                    tick_sent=self.tick,
+                )
+            )
+
+        agent.transit = {"dest": destination, "arrive_at": self.tick + d}
+        return ActionResult(True, data={"eta": self.tick + d})
+
+    async def _execute_memory_action(self, agent, action: Action) -> ActionResult:
+        if self.shared_memory is None:
+            return ActionResult(False, error="no shared memory")
+
+        name = action.name
+        params = action.params
+
+        if name == "remember":
+            data = await self.shared_memory.remember(agent.id, params["text"], self.tick)
+            return ActionResult(True, data=data)
+
+        if name == "recall":
+            top_k = params.get("top_k", 5)
+            data = await self.shared_memory.recall(agent.id, params["query"], top_k)
+            return ActionResult(True, data=data)
+
+        if name == "forget":
+            data = self.shared_memory.forget(agent.id, params["memory_id"])
+            return ActionResult(True, data=data)
+
+        # revise_memory
+        data = await self.shared_memory.revise(
+            agent.id, params["memory_id"], params["new_text"], tick=self.tick
+        )
+        return ActionResult(True, data=data)
+
+    async def _execute_think(self, agent, action: Action) -> ActionResult:
+        if self.llm is None:
+            return ActionResult(False, error="no llm configured")
+
+        question = action.params["question"]
+        view = agent.build_view(self.tick)
+        prompt = f"Current view: {view}\n\nQuestion: {question}"
+        reply = await self.llm.chat(prompt, bucket="think")
+        return ActionResult(True, data=reply)
 
     # ------------------------------------------------------------------
     # Per-agent step (decide concurrently, apply effects sequentially)
