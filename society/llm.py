@@ -43,6 +43,7 @@ class LLMClient:
         self.chat_model = chat_model
         self.max_calls = max_calls
         self.max_tokens = max_tokens
+        self.max_concurrency = max_concurrency
         self.retries = retries
         self.backoff_base = backoff_base
         self._transport = transport or self._default_transport

@@ -3,6 +3,7 @@ import time
 import uuid
 
 from society.actions import Action, ActionResult, Message, validate_action
+from society.llm import BudgetExceeded
 
 
 class Kernel:
@@ -45,6 +46,7 @@ class Kernel:
 
         self.tick = 0
         self._pending: list[Message] = []
+        self._budget_hit = False
 
         self.presence: dict[str, set] = {}
         self._build_presence()
@@ -491,6 +493,8 @@ class Kernel:
         try:
             action = await agent.brain.decide(view)
         except Exception as exc:  # noqa: BLE001 - isolate brain failures per agent
+            if isinstance(exc, BudgetExceeded):
+                self._budget_hit = True
             return None, str(exc)
         return action, None
 
@@ -509,7 +513,11 @@ class Kernel:
             if error:
                 result = ActionResult(False, error=error)
             else:
-                result = await self.execute(agent, action)
+                try:
+                    result = await self.execute(agent, action)
+                except BudgetExceeded:
+                    self._budget_hit = True
+                    result = ActionResult(False, error="budget exceeded")
 
         agent.stm.fifo.append(
             {"name": action.name, "params": action.params}, result.to_dict()
@@ -526,9 +534,21 @@ class Kernel:
         )
 
     # ------------------------------------------------------------------
-    # Budget hook (optional, metrics-driven; inert unless metrics provides it)
+    # Budget circuit-breaker
     # ------------------------------------------------------------------
     def _budget_exceeded(self) -> bool:
+        """Whether the run should stop with stop_reason="budget".
+
+        The real signal is `self._budget_hit`, set whenever a
+        `society.llm.BudgetExceeded` exception surfaces from a brain's
+        `decide()` (Phase 1) or from an action handler during `_apply()`
+        (Phase 2, e.g. think/remember/recall/revise_memory). A duck-typed
+        `metrics.budget_exceeded()` is also honored if present, so a
+        Metrics subclass can opt into its own budget signal, but it is not
+        required (Metrics does not implement it).
+        """
+        if self._budget_hit:
+            return True
         if self.metrics is None:
             return False
         check = getattr(self.metrics, "budget_exceeded", None)
@@ -580,6 +600,8 @@ class Kernel:
                 decisions = {}
                 for agent, res in zip(awake, results):
                     if isinstance(res, Exception):
+                        if isinstance(res, BudgetExceeded):
+                            self._budget_hit = True
                         decisions[agent.id] = (None, str(res))
                     else:
                         decisions[agent.id] = res

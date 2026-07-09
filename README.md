@@ -28,7 +28,14 @@ cp config.json.example config.json
 ```
 
 `api_key` 也可以用环境变量 `OPENAI_API_KEY` 代替;`config.json` 未找到时会
-回退读该环境变量。
+回退读该环境变量。`max_concurrency`(默认 16)传给 `LLMClient` 限制并发在
+飞请求数;`max_calls` / `max_tokens`(默认均为 `null`,即不设上限)是跨所有
+bucket 累计的调用次数 / token 数上限,一旦下一次调用会超出就抛出
+`BudgetExceeded`,`kernel.run()` 据此在跑完当前 tick 后以
+`stop_reason="budget"` 停止并落盘全部输出(细节见 `docs/actions.md`)。
+
+设计文档中提到的可选 `--checkpoint`(运行中断点续跑)不在本阶段
+(phase 1)范围内,当前 `society.run` 未实现该参数。
 
 ### 2. 运行内置的红楼梦 demo 场景
 

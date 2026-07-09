@@ -53,13 +53,42 @@ def write_transcripts(events: list[dict], agents: dict, out_dir: str) -> None:
                 f.write("\n")
 
 
-def write_outputs(kernel, out_dir: str, scenario_cfg: dict, summary: dict) -> None:
+def _llm_config_snapshot(llm, embed_fn) -> dict:
+    """Effective runtime LLM config for config_snapshot.yaml's "llm_config" key.
+
+    NEVER includes api_key. Duck-types both arguments so this never crashes
+    on the fakes injected by tests: a real LLMClient exposes chat_model /
+    max_concurrency / max_calls / max_tokens as plain attributes, and the
+    embed_model is read off the bound EmbeddingClient instance behind
+    `embed_fn` when it is a `.embed` bound method. Any attribute missing
+    (e.g. on a FakeLLM or a bare `afake_embed` function) is simply omitted,
+    so injected fakes yield whatever subset is available, or {} if nothing
+    duck-types.
+    """
+    cfg: dict = {}
+    for key in ("chat_model", "max_concurrency", "max_calls", "max_tokens"):
+        if hasattr(llm, key):
+            cfg[key] = getattr(llm, key)
+
+    embed_client = getattr(embed_fn, "__self__", None)
+    embed_model = getattr(embed_client, "embed_model", None)
+    if embed_model is not None:
+        cfg["embed_model"] = embed_model
+
+    return cfg
+
+
+def write_outputs(
+    kernel, out_dir: str, scenario_cfg: dict, summary: dict, *, embed_fn=None
+) -> None:
     """Write llm_usage.json, config_snapshot.yaml, and per-agent transcripts.
 
     llm_usage.json: kernel.llm.usage() if kernel.llm duck-types usage(),
     else {}.
     config_snapshot.yaml: the scenario cfg (minus private "_"-prefixed keys
-    such as "_dir") plus a "run_summary" key holding `summary`.
+    such as "_dir") plus a "run_summary" key holding `summary`, plus an
+    "llm_config" key holding the effective runtime LLM config (never
+    api_key) -- see `_llm_config_snapshot`.
     """
     os.makedirs(out_dir, exist_ok=True)
 
@@ -70,6 +99,7 @@ def write_outputs(kernel, out_dir: str, scenario_cfg: dict, summary: dict) -> No
 
     snapshot_cfg = {k: v for k, v in scenario_cfg.items() if not k.startswith("_")}
     snapshot_cfg["run_summary"] = summary
+    snapshot_cfg["llm_config"] = _llm_config_snapshot(kernel.llm, embed_fn)
     with open(os.path.join(out_dir, "config_snapshot.yaml"), "w", encoding="utf-8") as f:
         yaml.safe_dump(snapshot_cfg, f, allow_unicode=True)
 
@@ -99,7 +129,7 @@ async def run_scenario(scenario_path, ticks, out_dir, *, llm, embed_fn) -> dict:
     if kernel.metrics is not None:
         kernel.metrics.snapshot(kernel.tick)
 
-    write_outputs(kernel, out_dir, cfg, summary)
+    write_outputs(kernel, out_dir, cfg, summary, embed_fn=embed_fn)
     return summary
 
 
@@ -115,8 +145,18 @@ def _build_llm_and_embed(config_path: str | None):
     base_url = cfg.get("base_url", "https://api.openai.com/v1")
     chat_model = cfg.get("chat_model", "gpt-4o-mini")
     embed_model = cfg.get("embed_model", "text-embedding-3-small")
+    max_concurrency = cfg.get("max_concurrency", 16)
+    max_calls = cfg.get("max_calls")
+    max_tokens = cfg.get("max_tokens")
 
-    llm = LLMClient(api_key, base_url, chat_model)
+    llm = LLMClient(
+        api_key,
+        base_url,
+        chat_model,
+        max_concurrency=max_concurrency,
+        max_calls=max_calls,
+        max_tokens=max_tokens,
+    )
     embed_client = EmbeddingClient(api_key, base_url, embed_model)
     return llm, embed_client.embed
 

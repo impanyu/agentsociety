@@ -22,6 +22,7 @@ def load_scenario(path: str) -> dict:
       - an agent missing "id" or "kind"
       - duplicate agent ids
       - an unknown "brain" value
+      - a "private_status_keys" field that isn't a list of strings
       - a character/info_carrier whose initial status.location does not
         reference an environment agent defined in the file
       - a map edge endpoint that isn't a defined environment id
@@ -51,6 +52,15 @@ def load_scenario(path: str) -> dict:
         brain = a.get("brain")
         if brain not in _BRAIN_KINDS:
             raise ValueError(f"agent {aid!r}: unknown brain {brain!r}")
+
+        private_keys = a.get("private_status_keys")
+        if private_keys is not None:
+            if not isinstance(private_keys, list) or not all(
+                isinstance(k, str) for k in private_keys
+            ):
+                raise ValueError(
+                    f"agent {aid!r}: private_status_keys must be a list of strings"
+                )
 
         if a["kind"] == "environment":
             env_ids.add(aid)
@@ -128,6 +138,7 @@ async def build_society(
         stm = STM(
             fifo_size=fifo_size,
             status=a.get("status"),
+            private_keys=set(a["private_status_keys"]) if a.get("private_status_keys") else None,
             goals=a.get("goals"),
         )
         agent = Agent(

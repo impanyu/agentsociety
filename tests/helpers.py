@@ -2,11 +2,13 @@ import hashlib
 import random
 from collections import defaultdict
 
+from society.llm import BudgetExceeded
+
 
 class FakeLLM:
     """In-memory stand-in for LLMClient; duck-types chat/usage."""
 
-    def __init__(self, responses=None, fn=None):
+    def __init__(self, responses=None, fn=None, raise_after=None):
         """
         Initialize FakeLLM.
 
@@ -15,9 +17,17 @@ class FakeLLM:
                 (front of the list first) as chat() is called.
             fn: Optional callable(prompt, system) -> str used to compute a
                 response when responses is exhausted or not provided.
+            raise_after: Optional int. Once more than this many chat() calls
+                have been attempted (across all agents/buckets sharing this
+                client), every subsequent call raises
+                `society.llm.BudgetExceeded`, simulating a real LLMClient
+                whose max_calls/max_tokens budget has been exhausted.
+                None (default) disables this -- chat() never raises.
         """
         self._responses = list(responses) if responses else []
         self._fn = fn
+        self.raise_after = raise_after
+        self._call_count = 0
         self.calls = []
         self._usage = defaultdict(lambda: {"calls": 0, "tokens": 0})
 
@@ -32,7 +42,15 @@ class FakeLLM:
 
         Returns:
             Response string.
+
+        Raises:
+            BudgetExceeded: once more than `raise_after` calls have been
+                attempted, if `raise_after` was set.
         """
+        self._call_count += 1
+        if self.raise_after is not None and self._call_count > self.raise_after:
+            raise BudgetExceeded(f"fake budget exceeded after {self.raise_after} calls")
+
         self.calls.append((bucket, prompt, system))
 
         if self._responses:
