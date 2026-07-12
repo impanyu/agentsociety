@@ -599,9 +599,13 @@ def _write_scenario(cfg: dict, out_yaml: str, carriers: list[dict], corpora_dir:
         yaml.safe_dump(to_dump, f, allow_unicode=True, sort_keys=False)
 
 
-def _build_llm(config_path: str | None):
+def _build_llm(config_path: str | None, *, model_override: str | None = None):
     """Build a real LLMClient from config.json, falling back to the
-    OPENAI_API_KEY env var for the API key (mirrors society.run)."""
+    OPENAI_API_KEY env var for the API key (mirrors society.run).
+
+    `model_override`, when given, replaces config.json's chat_model for
+    this run only (the `--model` CLI flag).
+    """
     cfg = {}
     if config_path and os.path.exists(config_path):
         with open(config_path, "r", encoding="utf-8") as f:
@@ -609,12 +613,32 @@ def _build_llm(config_path: str | None):
 
     api_key = cfg.get("api_key") or os.environ.get("OPENAI_API_KEY", "")
     base_url = cfg.get("base_url", "https://api.openai.com/v1")
-    chat_model = cfg.get("chat_model", "gpt-4o-mini")
+    chat_model = model_override or cfg.get("chat_model", "gpt-4o-mini")
 
     return LLMClient(api_key, base_url, chat_model)
 
 
-def main(argv=None):
+def _build_llm_and_embed(config_path: str | None, *, model_override: str | None = None):
+    """Build a real LLMClient + EmbeddingClient.embed from config.json
+    (mirrors society.run._build_llm_and_embed), honoring `--model`."""
+    from society.embeddings import EmbeddingClient
+
+    cfg = {}
+    if config_path and os.path.exists(config_path):
+        with open(config_path, "r", encoding="utf-8") as f:
+            cfg = json.load(f)
+
+    api_key = cfg.get("api_key") or os.environ.get("OPENAI_API_KEY", "")
+    base_url = cfg.get("base_url", "https://api.openai.com/v1")
+    chat_model = model_override or cfg.get("chat_model", "gpt-4o-mini")
+    embed_model = cfg.get("embed_model", "text-embedding-3-small")
+
+    llm = LLMClient(api_key, base_url, chat_model)
+    embed_client = EmbeddingClient(api_key, base_url, embed_model)
+    return llm, embed_client.embed
+
+
+def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Extract an AgentSociety scenario from a novel")
     parser.add_argument("--input", required=True, help="path to input text file")
     parser.add_argument("--output", required=True, help="path to output scenario yaml")
@@ -624,23 +648,72 @@ def main(argv=None):
     parser.add_argument(
         "--config", default="config.json", help="path to config.json (api_key, base_url, ...)"
     )
+    parser.add_argument(
+        "--mode",
+        choices=["snapshot", "history"],
+        default="snapshot",
+        help="snapshot (existing single-scene pipeline, default) or history "
+        "(whole-book sedimentation pipeline, Task H3)",
+    )
+    parser.add_argument(
+        "--model", default=None, help="override config.json's chat_model for this run"
+    )
+    parser.add_argument(
+        "--registry-only",
+        action="store_true",
+        help="history mode: stop after Pass 1, writing <output>.registry.json for review",
+    )
+    parser.add_argument(
+        "--registry",
+        default=None,
+        help="history mode: path to an existing registry json; skips Pass 1",
+    )
+    return parser
+
+
+def main(argv=None):
+    parser = _build_parser()
     args = parser.parse_args(argv)
 
     with open(args.input, "r", encoding="utf-8") as f:
         text = f.read()
 
-    llm = _build_llm(args.config)
+    if args.mode == "history":
+        from society.history_extract import extract_history
 
-    cfg = asyncio.run(
-        extract_scenario(
-            text,
-            llm,
-            args.output,
-            max_agents=args.max_agents,
-            language=args.language,
-            hints=args.hints,
+        llm, embed_fn = _build_llm_and_embed(args.config, model_override=args.model)
+
+        registry = None
+        if args.registry:
+            with open(args.registry, "r", encoding="utf-8") as f:
+                registry = json.load(f)
+
+        cfg = asyncio.run(
+            extract_history(
+                text,
+                llm,
+                args.output,
+                embed_fn=embed_fn,
+                hints=args.hints,
+                language=args.language,
+                registry=registry,
+                registry_only=args.registry_only,
+                max_agents=args.max_agents,
+            )
         )
-    )
+    else:
+        llm = _build_llm(args.config, model_override=args.model)
+
+        cfg = asyncio.run(
+            extract_scenario(
+                text,
+                llm,
+                args.output,
+                max_agents=args.max_agents,
+                language=args.language,
+                hints=args.hints,
+            )
+        )
 
     print(json.dumps({"_warnings": cfg.get("_warnings", [])}, ensure_ascii=False))
     return cfg
