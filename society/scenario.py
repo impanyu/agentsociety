@@ -1,3 +1,4 @@
+import json
 import os
 import uuid
 
@@ -26,10 +27,12 @@ def load_scenario(path: str) -> dict:
       - a character/info_carrier whose initial status.location does not
         reference an environment agent defined in the file
       - a map edge endpoint that isn't a defined environment id
+      - a top-level "ltm_file" that doesn't exist relative to the
+        scenario file's directory
 
     Stores the scenario file's directory under cfg["_dir"] so that
     build_society can resolve relative paths (e.g. info_carrier corpus
-    files) against the scenario file rather than the process cwd.
+    files, ltm_file) against the scenario file rather than the process cwd.
     """
     with open(path, "r", encoding="utf-8") as f:
         cfg = yaml.safe_load(f) or {}
@@ -87,6 +90,13 @@ def load_scenario(path: str) -> dict:
             )
 
     cfg["_dir"] = os.path.dirname(os.path.abspath(path))
+
+    ltm_file = cfg.get("ltm_file")
+    if ltm_file is not None:
+        full_ltm_path = os.path.join(cfg["_dir"], ltm_file)
+        if not os.path.isfile(full_ltm_path):
+            raise ValueError(f"ltm_file not found: {full_ltm_path!r}")
+
     return cfg
 
 
@@ -177,11 +187,18 @@ async def build_society(
     """Build a fully-wired Kernel from a loaded scenario dict.
 
     Creates all agents (brain selected per agent's "brain" field), a
-    WorldMap from cfg["map"], a SharedMemory seeded with each agent's
-    seed_memories, and a Metrics instance. Kickoff messages are queued
-    with tick_sent=-1 before the kernel is returned so they are already
-    pending on kernel.send() (visible to recipients once the caller calls
-    kernel.run(), per the tick-0 delivery semantics in Kernel.run()).
+    WorldMap from cfg["map"], a SharedMemory, and a Metrics instance.
+    Kickoff messages are queued with tick_sent=-1 before the kernel is
+    returned so they are already pending on kernel.send() (visible to
+    recipients once the caller calls kernel.run(), per the tick-0 delivery
+    semantics in Kernel.run()).
+
+    If cfg has a top-level "ltm_file" (path relative to the scenario
+    file's directory, validated to exist by load_scenario), the
+    SharedMemory is populated via `shared.restore()` from that holographic
+    dump instead -- seed_memories are NOT replayed in that case, since the
+    ltm_file already reflects (a superset of) their effect. Otherwise each
+    agent's seed_memories are seeded as before.
     """
     agents, worldmap, defaults, seed_specs = build_agents_and_map(cfg, llm=llm)
 
@@ -196,9 +213,15 @@ async def build_society(
     kernel = Kernel(agents, worldmap, event_log, shared_memory=shared, llm=llm, metrics=metrics)
     kernel.scenario_cfg = cfg
 
-    for agent_id, texts in seed_specs:
-        for text in texts:
-            await shared.remember(agent_id, text, tick=0, source="scenario_seed")
+    ltm_file = cfg.get("ltm_file")
+    if ltm_file is not None:
+        ltm_path = os.path.join(cfg.get("_dir", "."), ltm_file)
+        with open(ltm_path, "r", encoding="utf-8") as f:
+            await shared.restore(json.load(f))
+    else:
+        for agent_id, texts in seed_specs:
+            for text in texts:
+                await shared.remember(agent_id, text, tick=0, source="scenario_seed")
 
     for kick in cfg.get("kickoff", []):
         msg = Message(

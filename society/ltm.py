@@ -104,7 +104,13 @@ class SharedMemory:
     # ------------------------------------------------------------------
 
     async def _consensus_insert(
-        self, agent_id: str, text: str, tick: int, source: str
+        self,
+        agent_id: str,
+        text: str,
+        tick: int,
+        source: str,
+        story_order: int | None = None,
+        story_time: str | None = None,
     ) -> dict:
         embedding = (await self._embed_fn([text]))[0]
 
@@ -150,6 +156,10 @@ class SharedMemory:
                 "source": source,
                 "tick": tick,
             }
+            if story_order is not None:
+                metadata["story_order"] = story_order
+            if story_time is not None:
+                metadata["story_time"] = story_time
             self._collection.add(
                 ids=[new_id],
                 documents=[text],
@@ -172,13 +182,31 @@ class SharedMemory:
             update_kwargs["documents"] = [keep_text]
             update_kwargs["embeddings"] = [embedding]
 
-        update_kwargs["metadatas"] = [
-            {
-                "owners": json.dumps(owners),
-                f"owner_{agent_id}": True,
-                "tick": tick,
-            }
-        ]
+        update_metadata = {
+            "owners": json.dumps(owners),
+            f"owner_{agent_id}": True,
+            "tick": tick,
+        }
+
+        existing_story_order = meta.get("story_order")
+        existing_story_time = meta.get("story_time")
+        eff_existing = (
+            existing_story_order if existing_story_order is not None else float("inf")
+        )
+        eff_new = story_order if story_order is not None else float("inf")
+        if eff_existing != float("inf") or eff_new != float("inf"):
+            if eff_new < eff_existing:
+                kept_story_order, kept_story_time = story_order, story_time
+            else:
+                kept_story_order, kept_story_time = (
+                    existing_story_order,
+                    existing_story_time,
+                )
+            update_metadata["story_order"] = kept_story_order
+            if kept_story_time is not None:
+                update_metadata["story_time"] = kept_story_time
+
+        update_kwargs["metadatas"] = [update_metadata]
         self._collection.update(ids=[cid], **update_kwargs)
 
         return {"id": cid, "text": keep_text, "merged": True, "owners": owners}
@@ -188,14 +216,32 @@ class SharedMemory:
     # ------------------------------------------------------------------
 
     async def remember(
-        self, agent_id: str, text: str, tick: int = 0, source: str = "runtime"
+        self,
+        agent_id: str,
+        text: str,
+        tick: int = 0,
+        source: str = "runtime",
+        story_order: int | None = None,
+        story_time: str | None = None,
     ) -> list[dict]:
-        """Normalize text into atomic entries and consensus-insert each one."""
+        """Normalize text into atomic entries and consensus-insert each one.
+
+        story_order/story_time (when given) are attached to every atomic
+        entry produced from `text` -- they describe when in the story's
+        timeline this memory happened, not when it was recorded (`tick`).
+        """
         entries = await self._normalize(text)
         results = []
         for entry in entries:
             results.append(
-                await self._consensus_insert(agent_id, entry, tick, source)
+                await self._consensus_insert(
+                    agent_id,
+                    entry,
+                    tick,
+                    source,
+                    story_order=story_order,
+                    story_time=story_time,
+                )
             )
         return results
 
@@ -261,7 +307,8 @@ class SharedMemory:
         """Holographic export: every entry with its embedding, for checkpointing.
 
         Returns a list of {"id", "text", "owners", "meta", "embedding"}, where
-        "meta" is {"created_at", "source", "tick"} and "embedding" is the raw
+        "meta" is {"created_at", "source", "tick"} (plus "story_order" /
+        "story_time" when the entry carries them) and "embedding" is the raw
         vector (list[float]) fetched straight from the collection.
         """
         if self._collection.count() == 0:
@@ -278,16 +325,21 @@ class SharedMemory:
                 vec = embeddings[i]
                 if vec is not None:
                     embedding = [float(x) for x in vec]
+            meta_out = {
+                "created_at": meta.get("created_at"),
+                "source": meta.get("source"),
+                "tick": meta.get("tick"),
+            }
+            if meta.get("story_order") is not None:
+                meta_out["story_order"] = meta.get("story_order")
+            if meta.get("story_time") is not None:
+                meta_out["story_time"] = meta.get("story_time")
             entries.append(
                 {
                     "id": eid,
                     "text": doc,
                     "owners": owners,
-                    "meta": {
-                        "created_at": meta.get("created_at"),
-                        "source": meta.get("source"),
-                        "tick": meta.get("tick"),
-                    },
+                    "meta": meta_out,
                     "embedding": embedding,
                 }
             )
@@ -318,7 +370,7 @@ class SharedMemory:
             owners = entry.get("owners", [])
             meta = entry.get("meta", {}) or {}
             metadata = {"owners": json.dumps(list(owners))}
-            for key in ("created_at", "source", "tick"):
+            for key in ("created_at", "source", "tick", "story_order", "story_time"):
                 value = meta.get(key)
                 if value is not None:
                     metadata[key] = value
