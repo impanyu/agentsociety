@@ -1,0 +1,360 @@
+{
+ "characters": [
+  {
+   "id": "liubei",
+   "name": "刘备",
+   "aliases": [
+    "刘玄德",
+    "玄德"
+   ],
+   "profile": "东汉末年的仁义之君，桃园三结义的重要角色。"
+  },
+  {
+   "id": "guanyu",
+   "name": "关羽",
+   "aliases": [
+    "云长",
+    "关云长",
+    "关公"
+   ],
+   "profile": "刘备的义兄，以忠义和武艺闻名。"
+  },
+  {
+   "id": "zhangfei",
+   "name": "张飞",
+   "aliases": [
+    "张翼德",
+    "翼德"
+   ],
+   "profile": "刘备的义弟，勇猛好斗的武将。"
+  },
+  {
+   "id": "zhangjiao",
+   "name": "张角",
+   "aliases": [],
+   "profile": "黄巾贼的领袖，发动起义。"
+  },
+  {
+   "id": "zhangbao",
+   "name": "张宝",
+   "aliases": [],
+   "profile": "张角的弟弟，黄巾贼的重要角色。"
+  },
+  {
+   "id": "zhanglei",
+   "name": "张梁",
+   "aliases": [],
+   "profile": "张角的弟弟，参与黄巾起义。"
+  },
+  {
+   "id": "cao_cao",
+   "name": "曹操",
+   "aliases": [
+    "孟德",
+    "曹孟德",
+    "曹阿瞒",
+    "阿瞒"
+   ],
+   "profile": "权臣，逐步掌握了汉朝的实权。"
+  },
+  {
+   "id": "dongzhuo",
+   "name": "董卓",
+   "aliases": [
+    "董太师",
+    "董贼"
+   ],
+   "profile": "权臣，通过阴谋夺取皇权。"
+  },
+  {
+   "id": "luzhi",
+   "name": "卢植",
+   "aliases": [],
+   "profile": "正直的政治家，反对董卓。"
+  },
+  {
+   "id": "zhujun",
+   "name": "朱俊",
+   "aliases": [],
+   "profile": "参与政治斗争的角色。"
+  },
+  {
+   "id": "lvbu",
+   "name": "吕布",
+   "aliases": [
+    "吕奉先",
+    "奉先"
+   ],
+   "profile": "强大的武将，背叛养父投靠董卓。"
+  },
+  {
+   "id": "dingyuan",
+   "name": "丁原",
+   "aliases": [],
+   "profile": "吕布的养父，被吕布所杀。"
+  },
+  {
+   "id": "li_ru",
+   "name": "李儒",
+   "aliases": [],
+   "profile": "董卓的谋士，参与政治阴谋。"
+  },
+  {
+   "id": "yuanshao",
+   "name": "袁绍",
+   "aliases": [
+    "本初"
+   ],
+   "profile": "重要的诸侯，与各路英雄争斗。"
+  },
+  {
+   "id": "chen_gong",
+   "name": "陈宫",
+   "aliases": [],
+   "profile": "吕布的谋士，参与权力争斗。"
+  },
+  {
+   "id": "huaxiong",
+   "name": "华雄",
+   "aliases": [],
+   "profile": "董卓手下的猛将，曾战胜孙坚。"
+  },
+  {
+   "id": "sunjian",
+   "name": "孙坚",
+   "aliases": [
+    "文台"
+   ],
+   "profile": "东汉末年名将，为复仇而战。"
+  },
+  {
+   "id": "suntze",
+   "name": "孙策",
+   "aliases": [
+    "伯符",
+    "孙伯符"
+   ],
+   "profile": "孙坚之子，誓言为父报仇。"
+  },
+  {
+   "id": "gongsunzan",
+   "name": "公孙瓒",
+   "aliases": [
+    "公孙伯珪"
+   ],
+   "profile": "著名的诸侯，敢于与袁绍对抗。"
+  },
+  {
+   "id": "zhaoyun",
+   "name": "赵云",
+   "aliases": [
+    "子龙",
+    "常山赵云",
+    "赵子龙"
+   ],
+   "profile": "出色的武将，以勇猛著称。"
+  },
+  {
+   "id": "diao_chan",
+   "name": "貂蝉",
+   "aliases": [],
+   "profile": "董卓的宠妾，卷入政治阴谋。"
+  },
+  {
+   "id": "wang_yun",
+   "name": "王允",
+   "aliases": [
+    "王司徒"
+   ],
+   "profile": "政治家，支持吕布反抗董卓。"
+  },
+  {
+   "id": "limo",
+   "name": "李蒙",
+   "aliases": [],
+   "profile": "抵抗西凉兵的将领。"
+  },
+  {
+   "id": "wang_fang",
+   "name": "王方",
+   "aliases": [],
+   "profile": "抵抗西凉兵的将领。"
+  },
+  {
+   "id": "guo_shi",
+   "name": "郭汜",
+   "aliases": [],
+   "profile": "董卓的手下，参与权力斗争。"
+  },
+  {
+   "id": "lijing",
+   "name": "李傕",
+   "aliases": [],
+   "profile": "董卓的手下，与郭汜并肩作战。"
+  },
+  {
+   "id": "hangsu",
+   "name": "韩遂",
+   "aliases": [],
+   "profile": "西凉的将领，参与对抗董卓的斗争。"
+  },
+  {
+   "id": "fan_chou",
+   "name": "樊稠",
+   "aliases": [],
+   "profile": "西凉将领，卷入权力游戏。"
+  },
+  {
+   "id": "caosong",
+   "name": "曹嵩",
+   "aliases": [],
+   "profile": "曹操的父亲，因奸臣被杀。"
+  },
+  {
+   "id": "taoqian",
+   "name": "陶谦",
+   "aliases": [
+    "陶恭祖"
+   ],
+   "profile": "地方实力派，因权谋斗争被杀。"
+  }
+ ],
+ "locations": [
+  {
+   "id": "taoyuan",
+   "name": "桃园",
+   "profile": "刘备、关羽、张飞三人结义的地方。"
+  },
+  {
+   "id": "zhuoxian",
+   "name": "涿县",
+   "profile": "刘备的根基所在地。"
+  },
+  {
+   "id": "youzhou",
+   "name": "幽州",
+   "profile": "东汉末年重要的政治军事区域。"
+  },
+  {
+   "id": "luoyang",
+   "name": "洛阳",
+   "profile": "董卓掌控的汉朝首都。"
+  },
+  {
+   "id": "jianning",
+   "name": "建宁",
+   "profile": "重要的战略地点。"
+  },
+  {
+   "id": "guangzong",
+   "name": "广宗",
+   "profile": "东汉末年的重要地方。"
+  },
+  {
+   "id": "yingchuan",
+   "name": "颍川",
+   "profile": "与刘备有关的重要地区。"
+  },
+  {
+   "id": "yangcheng",
+   "name": "阳城",
+   "profile": "多场战争的发生地点。"
+  },
+  {
+   "id": "dizhou",
+   "name": "定州",
+   "profile": "重要的战略位置。"
+  },
+  {
+   "id": "daizhou",
+   "name": "代州",
+   "profile": "与权臣斗争的地方。"
+  },
+  {
+   "id": "hejian",
+   "name": "河间",
+   "profile": "抗击董卓的地点之一。"
+  },
+  {
+   "id": "jiade_dian",
+   "name": "嘉德殿",
+   "profile": "朝廷权力的中心。"
+  },
+  {
+   "id": "wenmingyuan",
+   "name": "温明园",
+   "profile": "权力斗争的幕后场所。"
+  },
+  {
+   "id": "qingsuomen",
+   "name": "青琐门",
+   "profile": "洛阳的重要地标。"
+  },
+  {
+   "id": "longan",
+   "name": "长安",
+   "profile": "西凉与中央的抗争核心。"
+  },
+  {
+   "id": "baihai",
+   "name": "渤海",
+   "profile": "与战争相关的战略水域。"
+  },
+  {
+   "id": "shuiuan",
+   "name": "汜水关",
+   "profile": "防守的重要关卡。"
+  },
+  {
+   "id": "dongjun",
+   "name": "东郡",
+   "profile": "与曹操抗争的重要地区。"
+  },
+  {
+   "id": "chenliu",
+   "name": "陈留",
+   "profile": "诸侯纷争的焦点。"
+  },
+  {
+   "id": "xugong",
+   "name": "虎牢关",
+   "profile": "多场战争的激烈地点。"
+  },
+  {
+   "id": "xingyang",
+   "name": "荥阳",
+   "profile": "权力斗争的重要战场。"
+  },
+  {
+   "id": "jizhou",
+   "name": "冀州",
+   "profile": "袁绍与公孙瓒争夺的地方。"
+  },
+  {
+   "id": "panhua",
+   "name": "磐河",
+   "profile": "冀州的战略水域。"
+  },
+  {
+   "id": "jingzhou",
+   "name": "荆州",
+   "profile": "重要的战略地区，影响着各路英雄的势力分布。"
+  },
+  {
+   "id": "shouyang",
+   "name": "寿阳",
+   "profile": "西凉前线的战略位置。"
+  },
+  {
+   "id": "yuanzhou",
+   "name": "兖州",
+   "profile": "东汉末年重要的经济区域。"
+  },
+  {
+   "id": "qingzhou",
+   "name": "青州",
+   "profile": "作为中央与西凉对抗的地方。"
+  }
+ ],
+ "carriers": []
+}
