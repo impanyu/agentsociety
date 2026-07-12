@@ -20,6 +20,7 @@ class Agent:
         holder: str | None = None,
         profile: str = "",
         name: str | None = None,
+        archived: bool = False,
     ):
         self.id = agent_id
         self.kind = kind
@@ -32,6 +33,13 @@ class Agent:
         # pinyin-id agent). Used by Kernel to build an alias->id map so
         # brains can refer to agents by display name as well as id.
         self.name = name
+        # History-sedimentation mode (design spec §4.1): a character who is
+        # already dead by the end of the source material still gets an
+        # Agent (so its memories live in shared LTM and can be recalled by
+        # the living), but it never participates in the simulation: it is
+        # never scheduled, never enters the presence index, and cannot be
+        # observed or addressed.
+        self.archived = archived
 
         # Kernel-managed runtime state.
         # waiting_until: None = not waiting; -1 = waiting forever (only a

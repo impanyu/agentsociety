@@ -188,7 +188,7 @@ The view you receive typically contains:
 
 ---
 
-## Five typical pipelines
+## Six typical pipelines
 
 ### 1. Message handling (peek → pop → push a small goal → act → pop)
 1. `peek_inbox` to check queue depth and preview the head message, and
@@ -232,7 +232,24 @@ The view you receive typically contains:
 4. If an existing memory is wrong or outdated, use `revise_memory` in one
    step rather than manually doing `forget` + `remember`.
 
-### 5. Goal management (fundamental goal at the bottom; pop once achieved)
+### 5. Bootstrap reflection (recall → observe → conclude → push_goal fundamental → push_goal current)
+Applies when your goal stack is empty (you'll see a `goal_hint` field in your
+view) — typical of a "history sedimentation" start (in a sequel simulation,
+living characters start with no preset goals and must figure out what to do
+next themselves).
+1. `recall` your own past (e.g. query on your name/notable events) to
+   remember who you are and what you've been through;
+2. `observe` your current environment to learn where you are, who's around,
+   and what's happening;
+3. `conclude` a judgment that synthesizes "who I am + what my situation is
+   right now" and write it to short-term memory;
+4. `push_goal` a fundamental goal (based on step 3's judgment — the most
+   basic thing you want out of this life/phase);
+5. `push_goal` a current small goal (concretely, what to do right now), then
+   keep going with the other pipelines (message handling / socializing /
+   moving / etc.).
+
+### 6. Goal management (fundamental goal at the bottom; pop once achieved)
 1. The fundamental goal sits at the **bottom** of the goal stack, injected
    by the scenario at initialization; you generally should not `pop_goal`
    it yourself;

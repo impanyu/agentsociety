@@ -76,6 +76,8 @@ class Kernel:
         for agent in self.agents.values():
             if agent.kind == "environment":
                 continue
+            if getattr(agent, "archived", False):
+                continue
             loc = agent.location()
             if loc is not None:
                 self.presence.setdefault(loc, set()).add(agent.id)
@@ -180,6 +182,11 @@ class Kernel:
 
     def is_eligible(self, a) -> bool:
         """Whether agent `a` should get a decide/execute cycle this tick."""
+        if getattr(a, "archived", False):
+            # History-sedimentation mode (design spec §4.1): archived
+            # (already-dead) agents never participate in the simulation,
+            # regardless of pending inbox/goals.
+            return False
         if a.transit is not None:
             return False
         if a.stm.inbox.qsize() > 0:
@@ -195,6 +202,11 @@ class Kernel:
     # ------------------------------------------------------------------
     def _process_arrivals(self) -> None:
         for agent in self.agents.values():
+            if getattr(agent, "archived", False):
+                # Defensive: archived agents can never issue `move` (they
+                # are never eligible), so transit should never be set, but
+                # skip explicitly so they can never re-enter presence.
+                continue
             transit = agent.transit
             if transit is None or transit["arrive_at"] > self.tick:
                 continue
@@ -345,7 +357,11 @@ class Kernel:
         offenders = []
         for tid in targets:
             target = self.agents.get(tid)
-            if target is None or target.location() != sender_loc:
+            if (
+                target is None
+                or getattr(target, "archived", False)
+                or target.location() != sender_loc
+            ):
                 offenders.append(tid)
 
         if offenders:
@@ -437,13 +453,42 @@ class Kernel:
         result.sort(key=lambda d: d["id"])
         return result
 
+    # Goal-bootstrap hint (design spec §4.2): shown whenever an agent's goal
+    # stack is empty, so a "history sedimentation" character with no
+    # scripted goals (a living sequel character, or any agent started with
+    # goals=[]) knows how to get itself going: recall its own past, observe
+    # its surroundings, conclude a judgment, then push a fundamental goal
+    # and a current goal.
+    _GOAL_HINT_ZH = (
+        "你的目标栈为空。建议先 recall 回忆自己的过去,observe 观察当前环境,"
+        "conclude 得出处境判断,然后 push_goal 设立一个根本目标,"
+        "再 push_goal 设立当前的小目标。"
+    )
+    _GOAL_HINT_EN = (
+        "Your goal stack is empty. Recommended: recall your own past, "
+        "observe your current surroundings, conclude a judgment about your "
+        "situation, then push_goal a fundamental goal, and push_goal a "
+        "current goal."
+    )
+
     def _build_agent_view(self, agent) -> dict:
         """Build `agent`'s STM view, enriched with `colocated` and
         `known_locations` so brains can discover the exact ids to use as
-        say/observe/act_on/move refs instead of guessing at display names."""
+        say/observe/act_on/move refs instead of guessing at display names.
+
+        When the agent's goal stack is empty, also adds a `goal_hint`
+        string (design spec §4.2) nudging it through the bootstrap
+        pipeline (recall -> observe -> conclude -> push_goal x2), in the
+        scenario's configured language.
+        """
         view = agent.build_view(self.tick)
         view["colocated"] = self._colocated_view(agent)
         view["known_locations"] = self._known_locations_view()
+        if agent.stm.goals.empty():
+            language = self.config.get("language", "zh")
+            view["goal_hint"] = (
+                self._GOAL_HINT_ZH if language == "zh" else self._GOAL_HINT_EN
+            )
         return view
 
     def _is_readable(self, agent, target) -> bool:
@@ -478,6 +523,10 @@ class Kernel:
             )
 
         if target.kind == "character":
+            if getattr(target, "archived", False):
+                return ActionResult(
+                    False, error=f"{target_id} archived (已故): cannot be observed"
+                )
             if target.location() != agent.location():
                 return ActionResult(False, error=f"{target_id} not co-located")
             return ActionResult(True, data=target.stm.status.public_view())

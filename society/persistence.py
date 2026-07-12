@@ -30,6 +30,7 @@ def _agent_state(agent) -> dict:
         "inbox": [m.to_dict() for m in agent.stm.inbox_items()],
         "waiting_until": agent.waiting_until,
         "transit": agent.transit,
+        "archived": agent.archived,
     }
 
 
@@ -102,7 +103,13 @@ async def restore_society(ckpt: dict, *, llm, embed_fn, event_log, out_dir=None)
     metrics = Metrics(agents, shared, out_dir, interval=stats_interval)
 
     kernel = Kernel(
-        agents, worldmap, event_log, shared_memory=shared, llm=llm, metrics=metrics
+        agents,
+        worldmap,
+        event_log,
+        shared_memory=shared,
+        llm=llm,
+        metrics=metrics,
+        config={"language": cfg.get("language", "zh")},
     )
     kernel.scenario_cfg = cfg
     kernel.tick = ckpt["tick"]
@@ -123,6 +130,12 @@ async def restore_society(ckpt: dict, *, llm, embed_fn, event_log, out_dir=None)
 
         agent.stm.status._data = dict(state.get("status") or {})
         agent.stm.status._private_keys = set(state.get("private_keys", []))
+
+        # archived is already set from the scenario config by
+        # build_agents_and_map above; the checkpoint value is authoritative
+        # in case it was ever toggled at runtime, so re-apply it explicitly
+        # (a no-op in the common case).
+        agent.archived = state.get("archived", agent.archived)
 
         for msg_dict in state.get("inbox", []):
             agent.stm.inbox.put_nowait(Message(**msg_dict))

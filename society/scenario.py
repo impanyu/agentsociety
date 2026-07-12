@@ -69,6 +69,10 @@ def load_scenario(path: str) -> dict:
         if name is not None and not isinstance(name, str):
             raise ValueError(f"agent {aid!r}: name must be a string")
 
+        archived = a.get("archived")
+        if archived is not None and not isinstance(archived, bool):
+            raise ValueError(f"agent {aid!r}: archived must be a bool")
+
         if a["kind"] == "environment":
             env_ids.add(aid)
 
@@ -157,6 +161,7 @@ def build_agents_and_map(cfg: dict, *, llm) -> tuple[dict, "WorldMap", dict, lis
             holder=a.get("holder"),
             profile=a.get("profile", ""),
             name=a.get("name"),
+            archived=a.get("archived", False),
         )
         agents[a["id"]] = agent
         if a["kind"] == "environment":
@@ -210,7 +215,15 @@ async def build_society(
     interval = metrics_interval if metrics_interval is not None else stats_interval
     metrics = Metrics(agents, shared, out_dir, interval=interval)
 
-    kernel = Kernel(agents, worldmap, event_log, shared_memory=shared, llm=llm, metrics=metrics)
+    kernel = Kernel(
+        agents,
+        worldmap,
+        event_log,
+        shared_memory=shared,
+        llm=llm,
+        metrics=metrics,
+        config={"language": cfg.get("language", "zh")},
+    )
     kernel.scenario_cfg = cfg
 
     ltm_file = cfg.get("ltm_file")
