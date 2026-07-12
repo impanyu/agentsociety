@@ -53,7 +53,7 @@ class LLMClient:
     async def _default_transport(self, payload: dict) -> dict:
         import httpx
 
-        async with httpx.AsyncClient() as client:
+        async with httpx.AsyncClient(timeout=120.0) as client:
             response = await client.post(
                 f"{self.base_url}/chat/completions",
                 json=payload,
