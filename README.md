@@ -129,6 +129,51 @@ venv/bin/python -m society.extract --help
 抽取产物是一次性离线缓存的 YAML,人可以先审改再用 `society.run --scenario`
 加载;抽取器内部也会调用 `load_scenario` 自检产物的可加载性。
 
+### 4. 历史沉淀模式(整本书初始化)
+
+`society.extract --mode history` 是与上面"单场景抽取"平行的第二条流水线:
+第一遍(注册表)把全书人物/地点/信息载体的别名归并成一份规范 id 清单;第二遍
+(沉淀)按该清单把全书每个人物的经历逐块"沉淀"成带时间前缀的原子记忆写入
+共享长期记忆(同一事实被多个角色共同经历时自动合并为共识条目),再依据书末
+状态组装出一个"后传起点"场景——书末仍在世的角色以空目标栈起步(开局自省,
+见 `docs/actions.md` §3.5),书末已故的角色标记为 `archived: true`(永不参与
+调度,但记忆仍留在共享 LTM 里供在世角色 `recall`)。
+
+```bash
+venv/bin/python -m society.extract --input scenarios/sources/three_kingdoms_ch01-10.txt \
+    --output scenarios/three_kingdoms_history.yaml --mode history --model gpt-4o-mini \
+    --hints "第十回之后:曹操兴兵徐州为父报仇,天下震动" 
+
+venv/bin/python -m society.run --scenario scenarios/three_kingdoms_history.yaml \
+    --ticks 20 --out runs/tk_sequel --checkpoint --screenplay
+```
+
+`--model` 覆盖 `config.json` 的 `chat_model`(两条流水线通用,例如沉淀阶段用
+更便宜的模型);`--hints` 除了像 snapshot 模式一样引导抽取,在 history 模式下
+还会喂给最后一步的 kickoff 生成(设计"起始"事件,若不给则由内核依据书末状态
+自拟)。
+
+注册表(Pass 1)是全书唯一需要人工复核的产物,产物越准确、Pass 2 的"闭世界
+归属"就越可靠,因此把它单独落盘、支持复核后再复用:
+
+```bash
+# 只跑 Pass 1,把 <output>.registry.json 落盘供人工审改别名/id,不跑 Pass 2
+venv/bin/python -m society.extract --input scenarios/sources/three_kingdoms_ch01-10.txt \
+    --output scenarios/three_kingdoms_history.yaml --mode history --registry-only
+
+# 复核/编辑过 registry.json 之后,用 --registry 复用它,跳过 Pass 1
+venv/bin/python -m society.extract --input scenarios/sources/three_kingdoms_ch01-10.txt \
+    --output scenarios/three_kingdoms_history.yaml --mode history \
+    --registry scenarios/three_kingdoms_history.yaml.registry.json
+```
+
+抽取结果里的 `ltm_file: <output>.ltm.json` 是共享长期记忆的"全息"导出(每条
+记忆连同 embedding),`society.run`/`society.extract` 的 `load_scenario` 会
+校验它存在。`build_society` 读到 `ltm_file` 时直接 `shared.restore()` 这份
+导出,**不会**重放种子记忆、也不需要重新计算任何 embedding——也就是说,后传
+可以反复 `--ticks` 递增地跑、调参重跑,昂贵的两遍全书沉淀（Pass 1 + Pass 2
+的全部 LLM/embedding 调用)只需做一次,后续每次 `society.run` 都是零重算。
+
 ## 输出目录结构
 
 `society.run --out <dir>` 跑完之后,`<dir>/` 下会有:
