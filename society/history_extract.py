@@ -67,6 +67,7 @@ but non-character id (a location or carrier) is skipped with a warning,
 exactly like an attribution to a wholly unknown id.
 """
 
+import asyncio
 import json
 import os
 import re
@@ -701,11 +702,31 @@ async def _process_chunk_exhaustive(
 
     char_by_id = {c["id"]: c for c in registry.get("characters", []) or [] if "id" in c}
 
-    per_char_entries: dict[str, list[str]] = {}
-    for cid in appearing_ids:
+    # Per-character 沉淀 calls are independent (each only reads chunk_text +
+    # one character's profile) -- issue them all concurrently. asyncio.gather
+    # preserves input order in its results list regardless of completion
+    # order, so we assemble per_char_entries/warnings by iterating
+    # appearing_ids (NOT completion order) to keep deterministic downstream
+    # deposit order and story_order assignment. return_exceptions=True so a
+    # genuine post-retry exception from one call can't cancel siblings or
+    # abort the chunk -- it degrades to the same skip+warning as an
+    # invalid-JSON response.
+    async def _fetch(cid: str) -> str:
         char_entry = char_by_id.get(cid, {"id": cid})
         prompt = _char_sediment_prompt(chunk_text, chapter_title, char_entry, hints)
-        raw = await llm.chat(prompt, bucket="extract")
+        return await llm.chat(prompt, bucket="extract")
+
+    raw_results = await asyncio.gather(*(_fetch(cid) for cid in appearing_ids), return_exceptions=True)
+
+    per_char_entries: dict[str, list[str]] = {}
+    for cid, raw_or_exc in zip(appearing_ids, raw_results):
+        if isinstance(raw_or_exc, BaseException):
+            warnings.append(
+                f"history per-character sediment (沉淀) failed for {cid!r} in chunk {flat_idx}: "
+                f"{raw_or_exc}; skipped"
+            )
+            continue
+        raw = raw_or_exc
         try:
             mems = _extract_json_block(raw)
         except (ValueError, json.JSONDecodeError) as exc:
