@@ -1,0 +1,329 @@
+% !TEX program = pdflatex
+% Draft v0.1 — venue TBD; using generic article layout, swap class later.
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{CJKutf8} % for Chinese scenario names in examples; swap to xeCJK if compiling with xelatex
+
+% ---- system name placeholder: final name TBD ----
+\newcommand{\sysname}{\textsc{MemoirWorld}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+
+\title{\sysname: Consensus-Compressed Shared Memory for\\ Scalable Story-World Agent Societies}
+\author{Yu Pan\thanks{\todo{author list, affiliation, email}}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Large language model (LLM) agent societies that role-play long-running story worlds
+must remember what happened --- yet the dominant designs either store every
+observation per agent, duplicating shared experiences across the cast, or
+periodically summarize histories in ways that erase the very details that make
+characters believable. We present \sysname, a multi-agent framework whose
+long-term memory is a single shared vector store in which each atomic memory
+entry carries an explicit \emph{owner set}. A normalization gate splits or
+compresses every incoming memory into atomic, length-bounded statements, and a
+\emph{consensus} mechanism merges semantically equivalent entries across agents,
+keeping the shorter surface form, unioning owners, and preserving the earlier
+story-time stamp. Combined with an event-driven tick scheduler in which idle
+agents cost nothing, \sysname{} supports societies of dozens of characters,
+including \emph{archived} agents for deceased characters whose memories remain
+part of the shared record. A two-pass \emph{history sedimentation} pipeline
+initializes a society directly from the first part of a novel (or a real-world
+timeline): a registry pass canonicalizes characters, aliases, and places under
+closed-world constraints, and a per-chapter, per-character exhaustive extraction
+pass deposits time-stamped memories through the same consensus channel, so that
+shared experiences (e.g., an oath sworn by three characters) converge to single
+multi-owner entries. Agents then bootstrap their own goals from recalled
+memories and simulate the \emph{sequel}, which we evaluate against the actual
+continuation of the source. Across five scenarios --- three classical Chinese
+novels, one English classic, and a real-world geopolitical timeline --- we
+compare against Generative Agents, BookWorld, and G-Memory under identical
+brains, budgets, and schedulers, measuring memory footprint, wall-clock and
+token cost, narrative quality, continuation fidelity against ground truth, and
+memory-grounded question answering. \sysname{} reaches comparable or better
+quality at a fraction of the memory footprint and cost, and its memory dynamics
+are directly interpretable: additions, merges, and revisions align with plot
+events and character goals. \todo{fill in headline numbers}
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+LLM-driven agent societies can now sustain multi-character role-play over long
+horizons: characters converse, pursue goals, move through a world, and
+accumulate experience. The bottleneck is memory. A society of $N$ characters
+that each privately logs every turn stores the same shared scene $N$ times;
+retrieval slows, context windows fill with near-duplicates, and cost grows with
+the square of social activity. Conversely, aggressive summarization keeps
+memory small but destroys the specific, character-bound details --- who swore
+what to whom, and when --- that story worlds live on.
+
+We argue that the unit of memory in a \emph{society} should not be the private
+log but the \emph{shared fact}. Most of what characters remember, they remember
+together: the oath in the peach garden is one fact with three owners, not three
+private paraphrases. \sysname{} builds this observation into the storage layer
+itself.
+
+\paragraph{Contributions.}
+\begin{enumerate}
+  \item \textbf{Consensus-compressed shared memory.} A single vector store of
+  atomic, length-bounded entries with explicit owner sets; inserts pass a
+  normalization gate (split/compress into atoms) and a consensus check
+  (embedding pre-filter + LLM equivalence) that merges duplicates across
+  agents, keeps the shorter text, unions owners, and retains the earlier
+  story-time. Deletion and revision are owner-set operations, so one agent
+  forgetting does not erase a fact others still hold. (\S\ref{sec:memory})
+  \item \textbf{History sedimentation.} A two-pass pipeline that turns the
+  first part of a book or a real-world timeline into a society: a closed-world
+  registry of canonical characters/places/aliases, then per-chapter,
+  per-character exhaustive extraction of time-stamped atomic memories deposited
+  through the consensus channel. Dead characters become \emph{archived} agents:
+  never scheduled, but their memories persist in the shared record.
+  Characters start the sequel with \emph{empty goal stacks} and bootstrap
+  their own goals from recall --- goals are outcomes, not inputs.
+  (\S\ref{sec:sedimentation})
+  \item \textbf{An evaluation protocol for sequel simulation.} Beyond
+  LLM-judged narrative quality, we score \emph{continuation fidelity} against
+  the actual later part of the source (event hit rate, trajectory consistency)
+  and \emph{memory-grounded QA} accuracy, and we report full memory/cost
+  curves, enabling quality-per-byte comparisons. (\S\ref{sec:setup})
+  \item \textbf{Evidence.} Across five diverse scenarios and three strong
+  memory baselines under a strictly controlled runtime, \sysname{} attains
+  similar or better quality with \todo{X$\times$} smaller memory and
+  \todo{Y$\times$} lower cost, with interpretable memory dynamics.
+  (\S\ref{sec:results}--\S\ref{sec:case})
+\end{enumerate}
+
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Memory for LLM agents.}
+Generative Agents~\cite{park2023generative} introduced the memory stream:
+append-only observations with recency/importance/relevance retrieval and
+periodic reflection. MemGPT~\cite{packer2023memgpt} pages memory between
+context and external storage. These designs are per-agent: in a society,
+shared experiences are duplicated per participant. \todo{1-2 more recent
+memory works (e.g., HippoRAG, MemoryBank) if venue expects}
+
+\paragraph{Multi-agent societies and story worlds.}
+BookWorld~\cite{chen2025bookworld} constructs role-agent societies from novels
+with a world agent that periodically distills consensus summaries into world
+memory while compressing per-role histories. G-Memory~\cite{gmemory2025}
+maintains hierarchical interaction/insight structures shared across agents.
+Our approach differs in \emph{where} deduplication happens: not as a
+posterior summarization step over private logs, but at insert time in the
+storage layer, preserving atomic facts with provenance (owner sets, story
+time) instead of prose summaries. \todo{verify G-Memory citation details}
+
+\paragraph{Simulation grounded in real timelines.}
+\todo{brief para: social simulacra / world-model sims / wargaming with LLMs;
+position the Russia--Ukraine scenario as continuation-fidelity benchmark
+rather than forecasting claim.}
+
+\section{The \sysname{} Framework}
+\label{sec:framework}
+
+\subsection{Runtime: agents, actions, and the tick barrier}
+\label{sec:runtime}
+An agent is one of three kinds --- \emph{character}, \emph{environment}, or
+\emph{information carrier} --- with a pluggable brain (LLM, rules, or
+retrieval). Each character holds a four-part short-term memory: a FIFO cache of
+the last $K{=}20$ action--result pairs, a goal \emph{stack} (deeper goals more
+fundamental), a status register with public/private keys, and a message inbox.
+A global clock advances in ticks; in each tick every \emph{awake} agent decides
+exactly one action (decisions run concurrently; effects apply in deterministic
+agent order), messages sent at $t$ are delivered at $t{+}1$, and an agent whose
+inbox and goal stack are both empty sleeps at zero cost until messaged.
+Movement between environment nodes takes map-distance ticks. The action space
+(21 actions) spans messaging (\texttt{say}, \texttt{gesture}), perception
+(\texttt{observe}, \texttt{read}), cognition (\texttt{think},
+\texttt{conclude}), goal and status management, memory operations
+(\texttt{remember}, \texttt{recall}, \texttt{forget},
+\texttt{revise\_memory}), and movement; agents are taught usage and standard
+pipelines through a skill document injected into the system prompt.
+\todo{figure: architecture diagram}
+
+\subsection{Consensus-compressed shared long-term memory}
+\label{sec:memory}
+All long-term memory lives in one vector collection. An entry is a tuple
+$(x, O, \tau, s)$: atomic text $x$ with $|x|\le L$ ($L{=}80$ chars by default),
+owner set $O$, story-order $\tau$, and provenance $s$.
+
+\paragraph{Normalization gate.} \texttt{remember}$(a, x)$ first checks $x$ for
+length and atomicity (multiple sentence terminators or coordinating
+connectives); violating inputs are split/compressed by one LLM call into atoms
+of at most $L$ characters. Compliant inputs pass with zero LLM cost.
+
+\paragraph{Consensus insert.} For each atom, retrieve the top-$k$ neighbors; if
+none exceeds cosine similarity $\theta{=}0.86$, insert a new entry with
+$O{=}\{a\}$. Otherwise a single LLM call judges semantic equivalence against
+the candidates; on a match the store keeps the \emph{shorter} of the two
+texts, sets $O \leftarrow O \cup \{a\}$, and keeps the \emph{earlier}
+story-order (and its story-time label). Thus repeated tellings converge to one
+canonical atom with provenance, and the shared-memory ratio
+$|\{e : |O_e|\ge 2\}| / |E|$ becomes a measurable structural property of the
+society.
+
+\paragraph{Deletion and revision as owner-set operations.}
+\texttt{forget} removes the caller from $O$ and deletes the entry only when
+$O=\emptyset$; \texttt{revise\_memory} is forget-then-reinsert through the same
+gate and consensus. \texttt{recall} is owner-filtered similarity search: agents
+can only retrieve what they own, so information asymmetry between characters is
+a storage-level invariant rather than a prompt-level convention.
+
+\subsection{History sedimentation: initializing a society from a source text}
+\label{sec:sedimentation}
+Given the first part of a source (chapters $1..m$ of a novel; the first third
+of a timeline), \sysname{} builds the society in two passes.
+\textbf{Pass 1 (registry).} Chunk summaries feed one merge call that outputs a
+closed-world registry: canonical IDs, display names, and \emph{aliases} for
+characters, places, and information carriers. The registry is a reviewable
+artifact; all later attribution is restricted to its IDs (unknown mentions are
+either canonicalized through a resolver over names and aliases, added by a
+single registry-completion call, or dropped with a warning --- never silently
+invented).
+\textbf{Pass 2 (sedimentation).} Chapter-aligned chunks are processed in story
+order. For each chunk, a roster call lists the characters on stage and state
+updates (location, alive); then \emph{one call per character} exhaustively
+enumerates that character's experiences in the chunk --- actions, dialogue
+gists, observations, relationship changes, gains and losses, stance shifts ---
+as time-prefixed atoms; a coverage-audit call adds missed details. Every atom
+is deposited via \texttt{remember} with story-order $\tau$, so shared scenes
+merge into multi-owner entries at load time. Final states decide who is alive;
+the dead become archived agents (never scheduled, not observable, memories
+retained). Location handling is guarded by hard invariants (ASCII canonical
+IDs, no duplicate names/aliases, every reference resolvable) enforced in code,
+not prompts. The sediment is exported holographically (text + embeddings +
+metadata), so societies rebuild with zero re-embedding.
+
+\paragraph{Goal bootstrapping.} Sequel characters start with empty goal
+stacks. On their first turns the view carries a bootstrap hint; agents recall
+their past, observe their surroundings, conclude, and push their own
+fundamental and immediate goals. In our runs, characters reconstructed
+canonical motivations (e.g., \begin{CJK}{UTF8}{gbsn}曹操\end{CJK} deriving
+``march on Xuzhou to avenge my father'' purely from sedimented memory and a
+terse kickoff). \todo{tighten example after final runs}
+
+\section{Experimental Setup}
+\label{sec:setup}
+
+\subsection{Scenarios}
+\label{sec:scenarios}
+Five societies spanning language, genre, cast size, and fiction vs.\ reality
+(Table~\ref{tab:scenarios}). For each, the \emph{sediment} span initializes
+memory; simulation then runs the sequel, and the held-out \emph{reference} span
+provides ground truth for continuation fidelity. Sources are public-domain
+texts (Wikisource) and CC-licensed timeline articles (Wikipedia), enabling
+artifact release.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lllll}
+\toprule
+Scenario & Language & Cast & Sediment & Reference \\
+\midrule
+Romance of the Three Kingdoms & zh & $\sim$40 & ch.~1--40 & ch.~41--60 \\
+Dream of the Red Chamber & zh & $\sim$30 & ch.~1--40 & ch.~41--80 \\
+Water Margin (scale stress) & zh & 108+ & ch.~1--40 & ch.~41--70 \\
+War and Peace & en & $\sim$50 & Vol.~1--2 & Vol.~3 \\
+Russia--Ukraine timeline & en & $\sim$25 & 2022/02--2023/06 & 2023/07--2024/12 \\
+\bottomrule
+\end{tabular}
+\caption{Scenarios. Cast counts are registry sizes after curation; the
+timeline scenario anthropomorphizes states, leaders, and organizations, with
+key documents as information carriers. \todo{finalize counts}}
+\label{tab:scenarios}
+\end{table}
+
+\subsection{Baselines}
+\label{sec:baselines}
+All baselines are re-implemented as \emph{memory backends} inside the \sysname{}
+runtime: identical brains, action space, scheduler, kickoffs, and budgets ---
+only the memory layer varies.
+\textbf{Generative Agents}~\cite{park2023generative}: per-agent append-only
+stream, recency/importance/relevance retrieval, periodic reflection.
+\textbf{BookWorld}~\cite{chen2025bookworld}: per-role flat histories with
+world-agent consensus summarization and post-hoc history compression.
+\textbf{G-Memory}~\cite{gmemory2025}: shared hierarchical interaction/insight
+memory. Sedimentation feeds each backend the same source span through its own
+ingestion mechanism. \todo{document per-backend ingestion adaptations in appendix}
+
+\subsection{Metrics}
+\label{sec:metrics}
+\textbf{Memory.} Entries and bytes over ticks (peak/final), per-agent vs.\
+shared split, compression ratio against the raw event log.
+\textbf{Time/cost.} Wall-clock per tick, retrieval latency, LLM calls and
+tokens by purpose bucket; one-time sedimentation cost reported separately.
+\textbf{Quality.}
+(i) BookWorld's LLM-judge dimensions (anthropomorphism, character fidelity,
+plot coherence, \todo{confirm exact dims}) for comparability;
+(ii) \emph{Continuation fidelity}: an event checklist mined from the reference
+span (e.g., ``Liu Bei relieves Tao Qian''), scored as hit rate by a judge with
+human spot checks; blinded plausibility ratings of simulated vs.\ actual
+continuations; per-character trajectory consistency;
+(iii) \emph{Memory QA}: $N{=}100$ factual questions auto-generated from the
+sediment span, answered only via \texttt{recall}; accuracy measures memory
+faithfulness under compression.
+Judges use a different model family than the simulated brains; all prompts and
+rubrics released. \todo{judge model choice; inter-rater stats}
+
+\subsection{Protocol}
+Each scenario $\times$ backend: identical kickoff and tick budget (50 ticks),
+3 seeds, mean$\pm$std. Primary figures are Pareto fronts of quality vs.\ final
+memory size and vs.\ cumulative token cost. \todo{seeds/ticks may increase for
+camera-ready}
+
+\section{Results}
+\label{sec:results}
+\todo{Main table: 5 scenarios $\times$ 4 systems $\times$ (memory, cost, quality
+triplet). Pareto figures. Scale-stress curve on Water Margin (memory vs.\ cast
+size). Sleep-economy ablation showing cost vs.\ active-agent count.}
+
+\section{Case Study: Interpretable Memory Dynamics}
+\label{sec:case}
+\todo{Three Kingdoms, 50-tick sequel: (a) timeline of one character's memory
+adds/merges/revisions aligned against plot beats and the goal stack (Cao Cao:
+revenge campaign); (b) a consensus merge example --- the peach-garden oath
+converging to one three-owner entry; (c) memory heatmap (character $\times$
+chapter) showing sediment density tracking narrative structure; (d) the
+information-asymmetry anecdote: characters acting on stale beliefs until news
+arrives, as an emergent property of owner-filtered recall.}
+
+\section{Ablations}
+\label{sec:ablations}
+\todo{On Three Kingdoms (full grid) and consensus on/off everywhere:
+consensus on/off; normalization gate on/off; $L \in \{40, 80, 160\}$;
+recall top-$k \in \{3,5,10\}$; FIFO size $\{10,20,40\}$; goal bootstrap on/off;
+archived agents kept vs.\ removed. Report memory/quality deltas.}
+
+\section{Limitations and Ethics}
+\label{sec:limitations}
+Sedimentation quality depends on the extractor LLM; registry and life/death
+states benefit from light human curation (we quantify curation effort).
+The real-world scenario evaluates \emph{continuation fidelity on held-out past
+events}; we make no forecasting claims, and we discuss the ethics of simulating
+ongoing conflicts. \todo{expand}
+
+\section{Conclusion}
+\todo{write last}
+
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{park2023generative} J.~S. Park et al. Generative Agents: Interactive
+Simulacra of Human Behavior. UIST 2023.
+\bibitem{packer2023memgpt} C.~Packer et al. MemGPT: Towards LLMs as Operating
+Systems. arXiv:2310.08560.
+\bibitem{chen2025bookworld} \todo{BookWorld: From Novels to Interactive Agent
+Societies for Story Creation. ACL 2025. verify authors}
+\bibitem{gmemory2025} \todo{G-Memory citation — verify title/venue/authors}
+\end{thebibliography}
+
+\end{document}
