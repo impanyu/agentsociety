@@ -720,7 +720,12 @@ async def _process_chunk_exhaustive(
 
     per_char_entries: dict[str, list[str]] = {}
     for cid, raw_or_exc in zip(appearing_ids, raw_results):
-        if isinstance(raw_or_exc, BaseException):
+        # Never swallow cancellation: let it propagate so an external
+        # timeout/cancel scope (e.g. scenario-level parallelism) isn't
+        # silently degraded into a per-character skip.
+        if isinstance(raw_or_exc, asyncio.CancelledError):
+            raise raw_or_exc
+        if isinstance(raw_or_exc, Exception):
             warnings.append(
                 f"history per-character sediment (沉淀) failed for {cid!r} in chunk {flat_idx}: "
                 f"{raw_or_exc}; skipped"
