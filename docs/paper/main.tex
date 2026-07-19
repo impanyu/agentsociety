@@ -11,7 +11,7 @@
 \usepackage{CJKutf8} % for Chinese scenario names in examples; swap to xeCJK if compiling with xelatex
 
 % ---- system name placeholder: final name TBD ----
-\newcommand{\sysname}{\textsc{MemoirWorld}}
+\newcommand{\sysname}{\textsc{Agentsensus}}
 \newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
 
 \title{\sysname: Consensus-Compressed Shared Memory for\\ Scalable Story-World Agent Societies}
@@ -69,9 +69,12 @@ what to whom, and when --- that story worlds live on.
 
 We argue that the unit of memory in a \emph{society} should not be the private
 log but the \emph{shared fact}. Most of what characters remember, they remember
-together: the oath in the peach garden is one fact with three owners, not three
-private paraphrases. \sysname{} builds this observation into the storage layer
-itself.
+together: the oath in the peach garden (\begin{CJK}{UTF8}{gbsn}桃园结义\end{CJK})
+is one fact with three owners, not three private paraphrases. \sysname{} builds
+this observation into the storage layer itself.
+\footnote{Simulations run natively in the source language; we quote the English
+translation in text with the source in parentheses at first mention, and give
+side-by-side Chinese/English originals in Appendix~\ref{app:examples}.}
 
 \paragraph{Contributions.}
 \begin{enumerate}
@@ -96,7 +99,7 @@ itself.
   the actual later part of the source (event hit rate, trajectory consistency)
   and \emph{memory-grounded QA} accuracy, and we report full memory/cost
   curves, enabling quality-per-byte comparisons. (\S\ref{sec:setup})
-  \item \textbf{Evidence.} Across five diverse scenarios and three strong
+  \item \textbf{Evidence.} Across four diverse scenarios and three strong
   memory baselines under a strictly controlled runtime, \sysname{} attains
   similar or better quality with \todo{X$\times$} smaller memory and
   \todo{Y$\times$} lower cost, with interpretable memory dynamics.
@@ -250,7 +253,7 @@ Scenario & Language & Cast & Sediment & Reference \\
 \midrule
 Romance of the Three Kingdoms & zh & $\sim$40 & ch.~1--40 & ch.~41--60 \\
 Dream of the Red Chamber & zh & $\sim$30 & ch.~1--40 & ch.~41--80 \\
-War and Peace & en & $\sim$50 & Vol.~1--2 & Vol.~3 \\
+Pride and Prejudice & en & $\sim$20 & ch.~1--30 & ch.~31--61 \\
 Russia--Ukraine timeline & en & $\sim$25 & 2022/02--2023/06 & 2023/07--2024/12 \\
 \bottomrule
 \end{tabular}
@@ -395,5 +398,48 @@ Social Network Simulation. arXiv:2505.09081. \todo{authors}
 \bibitem{bookmarks2026} BOOKMARKS: Efficient Active Storyline Memory for
 Role-playing. arXiv:2605.14169. \todo{authors}
 \end{thebibliography}
+
+\appendix
+
+\section{Source-language originals}
+\label{app:examples}
+The paper is in English; simulations run natively in the source language.
+To document that our results are produced on the source text (not on a
+translated proxy), this appendix pairs representative outputs with their
+Chinese originals. Translations are produced in a single pass by the same
+model family; originals are the verbatim simulation records.
+
+\subsection{Representative consensus memories}
+\label{app:consensus}
+Multi-owner entries produced by the consensus merge, with owners
+(Table~\ref{tab:app-mem}). These are the atomic memories jointly held after
+several characters record the same event.
+\begin{table}[h]
+\centering\small
+\begin{tabular}{p{4.2cm}p{4.6cm}p{3.2cm}}
+\toprule
+Source (\begin{CJK}{UTF8}{gbsn}中文原文\end{CJK}) & English translation & Owners \\
+\midrule
+\begin{CJK}{UTF8}{gbsn}刘备、关羽、张飞桃园结义\end{CJK} &
+Liu Bei, Guan Yu, and Zhang Fei swear brotherhood in the peach garden &
+liubei, guanyu, zhangfei \\
+\todo{populate from the run's \texttt{ltm\_final.json} via
+\texttt{society.translate}; keep 5--8 rows} & & \\
+\bottomrule
+\end{tabular}
+\caption{Consensus memories: Chinese source, English translation, owner set.}
+\label{tab:app-mem}
+\end{table}
+
+\subsection{Screenplay excerpt (bilingual)}
+\label{app:screenplay}
+\todo{A short scene from the Three Kingdoms sequel, source \texttt{screenplay.md}
+(zh) beside \texttt{screenplay\_en.md} (en), rendered from the same event log.}
+
+\subsection{Bootstrapped character goals}
+\label{app:goals}
+\todo{2--3 characters' self-derived goals (e.g., Cao Cao: ``march on Xuzhou to
+avenge my father'') with the Chinese \texttt{conclude}/\texttt{push\_goal}
+originals, showing goals emerge from recalled memory.}
 
 \end{document}
