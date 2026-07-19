@@ -43,10 +43,11 @@ pass deposits time-stamped memories through the same consensus channel, so that
 shared experiences (e.g., an oath sworn by three characters) converge to single
 multi-owner entries. Agents then bootstrap their own goals from recalled
 memories and simulate the \emph{sequel}, which we evaluate against the actual
-continuation of the source. Across five scenarios --- three classical Chinese
+continuation of the source. Across four scenarios --- two classical Chinese
 novels, one English classic, and a real-world geopolitical timeline --- we
-compare against Generative Agents, BookWorld, and G-Memory under identical
-brains, budgets, and schedulers, measuring memory footprint, wall-clock and
+compare against Generative Agents, G-Memory, and Collaborative Memory under
+identical brains, budgets, and schedulers, measuring memory footprint,
+wall-clock and
 token cost, narrative quality, continuation fidelity against ground truth, and
 memory-grounded question answering. \sysname{} reaches comparable or better
 quality at a fraction of the memory footprint and cost, and its memory dynamics
@@ -234,7 +235,7 @@ terse kickoff). \todo{tighten example after final runs}
 
 \subsection{Scenarios}
 \label{sec:scenarios}
-Five societies spanning language, genre, cast size, and fiction vs.\ reality
+Four societies spanning language, genre, cast size, and fiction vs.\ reality
 (Table~\ref{tab:scenarios}). For each, the \emph{sediment} span initializes
 memory; simulation then runs the sequel, and the held-out \emph{reference} span
 provides ground truth for continuation fidelity. Sources are public-domain
@@ -249,7 +250,6 @@ Scenario & Language & Cast & Sediment & Reference \\
 \midrule
 Romance of the Three Kingdoms & zh & $\sim$40 & ch.~1--40 & ch.~41--60 \\
 Dream of the Red Chamber & zh & $\sim$30 & ch.~1--40 & ch.~41--80 \\
-Water Margin (scale stress) & zh & 108+ & ch.~1--40 & ch.~41--70 \\
 War and Peace & en & $\sim$50 & Vol.~1--2 & Vol.~3 \\
 Russia--Ukraine timeline & en & $\sim$25 & 2022/02--2023/06 & 2023/07--2024/12 \\
 \bottomrule
@@ -284,16 +284,21 @@ appendix; optionally add BOOKMARKS as a story-domain per-role baseline}
 shared split, compression ratio against the raw event log.
 \textbf{Time/cost.} Wall-clock per tick, retrieval latency, LLM calls and
 tokens by purpose bucket; one-time sedimentation cost reported separately.
-\textbf{Quality.}
-(i) BookWorld's LLM-judge dimensions (anthropomorphism, character fidelity,
-plot coherence, \todo{confirm exact dims}) for comparability;
-(ii) \emph{Continuation fidelity}: an event checklist mined from the reference
-span (e.g., ``Liu Bei relieves Tao Qian''), scored as hit rate by a judge with
-human spot checks; blinded plausibility ratings of simulated vs.\ actual
-continuations; per-character trajectory consistency;
-(iii) \emph{Memory QA}: $N{=}100$ factual questions auto-generated from the
-sediment span, answered only via \texttt{recall}; accuracy measures memory
-faithfulness under compression.
+Quality has three groups (five metrics after merging redundant ones).
+\textbf{(A) Narrative quality} (LLM-judge, 1--7): character fidelity and
+coherence, following BookWorld's rubric for comparability; continuation
+plausibility folds into coherence (both ask whether the produced text is
+self-consistent with the preceding narrative). \todo{confirm exact BookWorld
+dims and keep the overlapping subset}
+\textbf{(B) Continuation fidelity} (against the held-out reference span, our
+key novel axis): (i) \emph{Event Hit Rate} --- a checklist of key events mined
+from the reference (e.g., ``Liu Bei relieves Tao Qian''), scored as the
+fraction realized in simulation by a judge with human spot checks;
+(ii) \emph{Character Trajectory Consistency} --- alignment of each character's
+simulated goals/actions with their actual later arc.
+\textbf{(C) Memory faithfulness}: \emph{Memory QA} --- $N{=}100$ factual
+questions auto-generated from the sediment span, answered only via
+\texttt{recall}; accuracy measures how well compressed memory preserves facts.
 Judges use a different model family than the simulated brains; all prompts and
 rubrics released. \todo{judge model choice; inter-rater stats}
 
@@ -305,19 +310,35 @@ camera-ready}
 
 \section{Results}
 \label{sec:results}
-\todo{Main table: 5 scenarios $\times$ 4 systems $\times$ (memory, cost, quality
-triplet). Pareto figures. Scale-stress curve on Water Margin (memory vs.\ cast
-size). Sleep-economy ablation showing cost vs.\ active-agent count.}
+\todo{Main table: 4 scenarios $\times$ 4 systems $\times$ (memory, cost, quality
+triplet). Pareto figures (quality vs.\ memory; quality vs.\ cost). Memory-vs-%
+cast-size trend across the four scenarios. Sleep-economy analysis showing cost
+vs.\ number of active agents.}
 
 \section{Case Study: Interpretable Memory Dynamics}
 \label{sec:case}
 \todo{Three Kingdoms, 50-tick sequel: (a) timeline of one character's memory
 adds/merges/revisions aligned against plot beats and the goal stack (Cao Cao:
 revenge campaign); (b) a consensus merge example --- the peach-garden oath
-converging to one three-owner entry; (c) memory heatmap (character $\times$
-chapter) showing sediment density tracking narrative structure; (d) the
-information-asymmetry anecdote: characters acting on stale beliefs until news
-arrives, as an emergent property of owner-filtered recall.}
+converging to one three-owner entry; (c) sediment-density heatmap (character
+$\times$ chapter) showing memory tracking narrative structure.}
+
+\paragraph{Shared-memory structure vs.\ social behavior.}
+We compute an agent$\times$agent \emph{shared-memory matrix} $M$, where
+$M_{ii}$ is agent $i$'s entry count and $M_{ij}$ ($i\neq j$) the number of
+entries jointly owned by $i$ and $j$. We correlate $M_{ij}$ against two
+behavioral signals from the same run: communication volume (\texttt{say}/%
+\texttt{gesture} counts between $i$ and $j$) and co-location time (ticks $i$
+and $j$ spend in the same environment). The hypothesis --- that shared memory
+grows with social contact --- is testable directly from the owner sets, event
+log, and presence index, and quantifies the interpretability of consensus
+merging. \todo{report Pearson/Spearman $r$ per scenario; heatmap figure of $M$;
+scatter of $M_{ij}$ vs.\ comm and co-location.}
+
+\paragraph{Information asymmetry.}
+Owner-filtered \texttt{recall} makes stale-belief behavior an emergent property
+(characters act on outdated knowledge until news arrives); we give one
+concrete trace. \todo{pick the cleanest example from the 50-tick run.}
 
 \section{Ablations}
 \label{sec:ablations}
