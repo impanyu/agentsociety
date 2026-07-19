@@ -5,15 +5,16 @@ constructor keyword shape, same `remember`/`recall`/`forget`/`revise`/
 `all_entries`/`export`/`restore`/`stats` methods and return shapes. None of
 them get our normalize gate or consensus merge -- that machinery is the
 contribution under test, so giving it to a baseline would invalidate the
-comparison. Every store here is a plain in-memory list of rows plus a numpy
-matrix of embeddings; ranking is real cosine similarity computed from
-`embed_fn`.
+comparison. Every store here is a plain in-memory list of rows with
+embeddings stored as plain Python lists (no numpy); ranking is real cosine
+similarity, computed in pure Python, from vectors returned by `embed_fn`.
 
 `make_memory(kind, embed_fn, llm=None, **kw)` is the factory experiment
 runners should call to select a backend by name.
 """
 
 import math
+import re
 import uuid
 from datetime import datetime, timezone
 
@@ -76,7 +77,6 @@ class GenerativeAgentsMemory:
     def __init__(self, embed_fn, llm=None, *, top_k: int = 5, collection_name=None, **kwargs):
         self._embed_fn = embed_fn
         self._llm = llm
-        self.top_k = top_k
         self._rows = {}  # id -> row dict
         self._clock = 0  # monotonic access-tick counter
 
@@ -89,8 +89,11 @@ class GenerativeAgentsMemory:
             f"with only the integer.\n\nMemory: {text}"
         )
         reply = await self._llm.chat(prompt, system=None, bucket="importance")
+        match = re.search(r"-?\d+", reply or "")
+        if not match:
+            return _DEFAULT_IMPORTANCE
         try:
-            val = int("".join(ch for ch in reply if ch.isdigit() or ch == "-"))
+            val = int(match.group())
             return max(1, min(10, val))
         except (ValueError, TypeError):
             return _DEFAULT_IMPORTANCE
@@ -213,6 +216,15 @@ class GenerativeAgentsMemory:
             for i, vec in zip(missing_idx, vectors):
                 computed[i] = list(vec)
 
+        # Advance the monotonic access-tick clock past the highest
+        # `last_access` being restored so a subsequent `recall` never
+        # computes a large-negative `ticks_since` (which would overflow
+        # `math.exp`) against a fresh instance's clock starting at 0.
+        self._clock = max(
+            [self._clock]
+            + [int(e.get("meta", {}).get("last_access", 0) or 0) for e in entries]
+        )
+
         for i, entry in enumerate(entries):
             owners = entry.get("owners", [])
             owner = owners[0] if owners else None
@@ -246,7 +258,7 @@ class GMemory:
     Fidelity note: faithful to the paper's central design choice that memory
     is a SHARED graph rather than private per-agent streams -- every
     `remember` call appends a row visible to any agent's `recall` (default
-    `owner_scope=None`, i.e. cross-agent retrieval; pass `owner_scope=True`
+    `owner_scope=False`, i.e. cross-agent retrieval; pass `owner_scope=True`
     to `recall` to restrict to the calling agent's own writes, exposed for
     completeness but not the default since G-Memory's whole point is shared
     retrieval). Each row carries a `tier` tag ("interaction" for raw
@@ -268,7 +280,6 @@ class GMemory:
     def __init__(self, embed_fn, llm=None, *, top_k: int = 5, collection_name=None, **kwargs):
         self._embed_fn = embed_fn
         self._llm = llm
-        self.top_k = top_k
         self._rows = {}
 
     async def remember(
@@ -406,7 +417,6 @@ class CollaborativeMemory:
     def __init__(self, embed_fn, llm=None, *, top_k: int = 5, collection_name=None, **kwargs):
         self._embed_fn = embed_fn
         self._llm = llm
-        self.top_k = top_k
         self._rows = {}
 
     async def remember(

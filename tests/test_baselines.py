@@ -40,8 +40,15 @@ async def test_ga_remember_then_recall_returns_text():
 
 async def test_ga_recall_ranks_by_relevance():
     m = GenerativeAgentsMemory(afake_embed)
-    await m.remember("guanyu", TEXT_A)
+    # Neutralize the recency term (DECAY=0 -> exp(0)=1 for every row
+    # regardless of ticks-since-access) so recency and importance (both
+    # default, tied) cannot decide the ranking -- only relevance can. TEXT_B
+    # is remembered *first* (so a stable sort over an all-tied score would
+    # put it on top), TEXT_A second; the query is TEXT_A, so only a
+    # genuinely-working relevance term can push TEXT_A above TEXT_B.
+    m.DECAY = 0.0
     await m.remember("guanyu", TEXT_B)
+    await m.remember("guanyu", TEXT_A)
     results = await m.recall("guanyu", TEXT_A, top_k=2)
     assert results[0]["text"] == TEXT_A
 
@@ -109,6 +116,24 @@ async def test_ga_importance_defaults_without_llm():
     await m.remember("guanyu", TEXT_A)
     entries = m.all_entries()
     assert entries[0]["meta"]["importance"] == 5
+
+
+async def test_ga_restore_advances_clock_so_recall_does_not_overflow():
+    # Regression test: a checkpoint exported from a long-running instance
+    # can carry a very large `last_access` tick. Restoring it into a fresh
+    # instance (whose internal clock starts at 0) must not leave `recall`
+    # computing a huge negative `ticks_since` -- which would overflow
+    # math.exp -- against the new, low clock.
+    m = GenerativeAgentsMemory(afake_embed)
+    await m.remember("guanyu", TEXT_A)
+    exported = m.export()
+    exported[0]["meta"]["last_access"] = 10_000_000
+
+    m2 = GenerativeAgentsMemory(afake_embed)
+    await m2.restore(exported)
+
+    results = await m2.recall("guanyu", TEXT_A, top_k=5)  # must not raise
+    assert any(r["text"] == TEXT_A for r in results)
 
 
 # ========================================================================
