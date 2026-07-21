@@ -67,15 +67,27 @@ Assembly then emits a standard scenario YAML (alive characters with empty
 goal stacks, dead characters with `archived: true`, locations, carriers)
 plus a kickoff call (marker 起始) and a holographic `SharedMemory.export()`
 dump referenced via `ltm_file` so the (expensive) sedimentation never has to
-be redone to run/resume the resulting scenario. Assembly enforces three hard
-location invariants (raising ValueError if they still don't hold after
-auto-fixing what can be auto-fixed):
+be redone to run/resume the resulting scenario. Assembly enforces three
+location invariants; registry data-quality issues (I1, I3) are auto-fixed
+with a warning rather than crashing the run, since a scenario should never
+die at the final assembly step over noisy Pass-1 registry data -- only I2,
+which should only ever fire for a genuinely malformed state table, remains
+a hard raise:
 
   I1: no two environments share a name or alias -- environments whose
-      name/alias sets collide are auto-merged first (kept id = first seen).
-  I2: every character status.location is a defined environment id.
+      name/alias sets collide are auto-merged first (kept id = first seen);
+      a pre-Pass-2 sanitizer (`_dedupe_env_aliases`) also strips
+      cross-environment alias contamination (e.g. a general environment
+      whose aliases are actually a more specific environment's name) before
+      Pass 2 ever sees the registry, and any still-residual collision at
+      assembly time is resolved the same way (drop the alias from every
+      non-rightful environment) rather than raised.
+  I2: every character status.location is a defined environment id (hard
+      invariant, still raises).
   I3: every environment id is ASCII ([a-z0-9_]+) -- non-ascii ids are
-      auto-slugged (id changes, Chinese name preserved) first.
+      auto-slugged (id changes, Chinese name preserved) first, and any
+      still-residual non-ascii id at assembly time is slugged the same way
+      rather than raised.
 
 A fourth invariant, I4 (memory attribution may only target CHARACTER ids),
 is enforced earlier during sedimentation: a memory attributed to a known
@@ -1312,6 +1324,89 @@ def _dedupe_role_ids(registry: dict, warnings: list[str]) -> None:
         registry[category] = kept
 
 
+def _resolve_alias_collisions(locations: list[dict], warnings: list[str], *, context: str) -> None:
+    """Shared alias-collision-resolution core, used both by the pre-Pass-2
+    registry sanitizer (`_dedupe_env_aliases`) and by assembly's I1 safety
+    net (`_assemble_history_scenario`).
+
+    Ensures every name/alias key across `locations` is claimed by at most
+    one environment: builds a map of alias/name-key -> the list of
+    environments that carry it (as an alias), then for every key claimed by
+    more than one environment -- or claimed as an alias when it's really
+    ANOTHER environment's own `id`/`name` (cross-environment contamination,
+    e.g. a general env like 贾府 carrying `荣国府`/`宁国府` as aliases when
+    those are the actual NAMES of the specific envs `rongguofu`/`ningguofu`)
+    -- keeps the key on the "rightful owner" (the environment whose own
+    `name` or `id` equals the key; if none matches, the first environment
+    in `locations` order to claim it) and strips the key from every other
+    environment's `aliases` list. An environment's own `name` field is
+    never touched, only `aliases` lists.
+
+    Mutates `aliases` lists in place; appends one warning per alias
+    removed, prefixed with `context` so callers (pre-Pass-2 sanitizer vs.
+    assembly-time safety net) stay distinguishable in logs.
+    """
+    name_owner: dict[str, dict] = {}
+    id_owner: dict[str, dict] = {}
+    for loc in locations:
+        name = loc.get("name")
+        if name and name not in name_owner:
+            name_owner[name] = loc
+        lid = loc.get("id")
+        if lid is not None and lid not in id_owner:
+            id_owner[lid] = loc
+
+    claimants: dict[str, list[dict]] = {}
+    for loc in locations:
+        for alias in loc.get("aliases") or []:
+            claimants.setdefault(alias, []).append(loc)
+
+    for key, envs in claimants.items():
+        rightful = name_owner.get(key) or id_owner.get(key)
+        if rightful is None:
+            if len(envs) <= 1:
+                continue
+            rightful = envs[0]  # no name/id match -- first claimant wins
+
+        for loc in envs:
+            if loc is rightful:
+                continue
+            aliases = loc.get("aliases") or []
+            if key not in aliases:
+                continue
+            loc["aliases"] = [a for a in aliases if a != key]
+            if name_owner.get(key) is rightful or id_owner.get(key) is rightful:
+                reason = f"is {rightful.get('id')!r}'s own name/id"
+            else:
+                reason = f"also claimed by {rightful.get('id')!r}"
+            warnings.append(
+                f"{context}: removed alias {key!r} from environment {loc.get('id')!r} "
+                f"({reason}); kept on {rightful.get('id')!r}"
+            )
+
+
+def _dedupe_env_aliases(registry: dict, warnings: list[str]) -> None:
+    """Pre-Pass-2 registry sanitizer: guarantees every environment
+    name/alias key in `registry["locations"]` is claimed by at most one
+    environment, fixing a Pass-1 LLM failure mode where a general/parent
+    environment's alias list contaminates a more specific child
+    environment's identity (e.g. a general env 贾府/jiafu listing
+    `荣国府`/`宁国府` as its own aliases when those are the NAMES of the
+    specific envs `rongguofu`/`ningguofu`). Left unfixed, one alias key
+    would map to multiple environments -- ambiguous for the Pass-2
+    name/alias -> canonical-id resolver, and fatal at assembly's I1 check
+    ("no two environments share a name or alias").
+
+    Delegates to `_resolve_alias_collisions` (see there for the exact
+    keep-the-rightful-owner rule). Mutates `registry["locations"]` in
+    place; a clean registry (no colliding aliases) is left untouched and no
+    warnings are appended.
+    """
+    _resolve_alias_collisions(
+        registry.get("locations") or [], warnings, context="history registry dedupe"
+    )
+
+
 def _assemble_history_scenario(
     *,
     registry: dict,
@@ -1324,42 +1419,46 @@ def _assemble_history_scenario(
     run the kickoff LLM call (which needs the assembled alive-id list) and
     the sediment export before finishing the cfg dict.
 
-    Enforces I1-I3 (raising ValueError if they still don't hold once the
-    available auto-fixes -- I1 duplicate-environment merge, I3 ascii-id
-    slugging -- have been applied)."""
+    I1 and I3 are safety-net auto-fixed (never raise -- registry data
+    quality must never crash a (possibly hours-long) sediment run at the
+    final assembly step): I1 collisions are resolved by
+    `_resolve_alias_collisions` (drop the alias from every non-rightful
+    environment) and I3 non-ascii ids are re-slugged via
+    `_ensure_ascii_location_ids`. Both should be no-ops in practice --
+    `_dedupe_env_aliases` already sanitizes aliases before Pass 2 and the
+    auto-merge/auto-slug immediately below already handle the common
+    cases -- these are defense-in-depth for registry noise (e.g. a
+    hand-edited or reused `registry=`) that slips past those. I2 remains a
+    hard invariant (see below) since it should only ever fire for a
+    genuinely malformed state table, not a registry data-quality issue."""
     raw_locations = [dict(loc) for loc in (registry.get("locations") or []) if "id" in loc]
 
     locations, merge_remap = _merge_duplicate_locations(raw_locations, warnings)
     slug_remap = _ensure_ascii_location_ids(locations, warnings)
+
+    # I1 safety net: resolve any residual name/alias collision instead of
+    # raising (should normally be a no-op -- see docstring above).
+    _resolve_alias_collisions(locations, warnings, context="history assembly (I1)")
+
+    # I3 safety net: auto-slug any residual non-ascii id instead of raising
+    # (should normally be a no-op -- see docstring above). Reuses the exact
+    # same machinery as the auto-slug pass immediately above, so it's
+    # idempotent: a second call with nothing left to fix returns {}.
+    i3_remap = _ensure_ascii_location_ids(locations, warnings)
+    if i3_remap:
+        # The rename above may reintroduce the old (now-alias) id as a
+        # fresh collision -- resolve it the same way, defensively.
+        _resolve_alias_collisions(locations, warnings, context="history assembly (I1)")
 
     def resolve_loc_ref(raw):
         if raw is None:
             return None
         cur = merge_remap.get(raw, raw)
         cur = slug_remap.get(cur, cur)
+        cur = i3_remap.get(cur, cur)
         return cur
 
     location_ids = {loc["id"] for loc in locations}
-
-    # I1 sanity check (should never trigger given the auto-merge above).
-    seen_keys: dict[str, str] = {}
-    for loc in locations:
-        keys = set(loc.get("aliases") or [])
-        if loc.get("name"):
-            keys.add(loc["name"])
-        for k in keys:
-            owner = seen_keys.get(k)
-            if owner is not None and owner != loc["id"]:
-                raise ValueError(
-                    f"I1 violated: environment name/alias {k!r} shared by {owner!r} and "
-                    f"{loc['id']!r}"
-                )
-            seen_keys[k] = loc["id"]
-
-    # I3 sanity check (should never trigger given the auto-slug above).
-    for loc in locations:
-        if not _is_ascii_id(loc["id"]):
-            raise ValueError(f"I3 violated: environment id {loc['id']!r} is not ascii")
 
     fallback_location = next(iter(location_ids), None)
 
@@ -1540,6 +1639,15 @@ async def extract_history(
     # wouldn't touch it) survive all the way to `_assemble_history_scenario`
     # and crash it with "duplicate agent id".
     _dedupe_role_ids(registry, warnings)
+
+    # Same rationale as `_dedupe_role_ids` immediately above (must run BEFORE
+    # resolvers/Pass-2/assembly ever see the registry, whether it just came
+    # out of Pass 1 or was supplied verbatim via `registry=`): a Pass-1
+    # registry can carry a general environment whose aliases contaminate a
+    # more specific environment's name (cross-environment alias
+    # contamination), which is ambiguous for Pass-2 resolution and fatal at
+    # assembly's I1 check. See `_dedupe_env_aliases` docstring.
+    _dedupe_env_aliases(registry, warnings)
 
     if ran_pass1:
         with open(registry_path, "w", encoding="utf-8") as f:

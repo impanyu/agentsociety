@@ -16,6 +16,7 @@ from society.history_extract import (
     _RegistryResolvers,
     _assemble_history_scenario,
     _chunk_history_text,
+    _dedupe_env_aliases,
     _dedupe_role_ids,
     _is_ascii_id,
     _run_sediment_pass,
@@ -276,6 +277,119 @@ async def test_extract_history_atomic_assembles_despite_duplicate_ascii_location
 
 
 # ----------------------------------------------------------------------
+# _dedupe_env_aliases: Pass-1 cross-environment alias contamination -- a
+# general env's alias list carries a more specific env's canonical name,
+# making that name/alias key ambiguous for Pass-2 resolution and fatal at
+# assembly's I1 check (real example: 红楼's general env 贾府/jiafu carries
+# aliases 宁国府 and 荣国府, the NAMES of the specific envs
+# ningguofu/rongguofu).
+# ----------------------------------------------------------------------
+
+
+def test_dedupe_env_aliases_strips_alias_that_is_another_envs_name():
+    registry = {
+        "characters": [],
+        "locations": [
+            {"id": "jiafu", "name": "贾府", "aliases": ["宁国府", "荣国府"]},
+            {"id": "ningguofu", "name": "宁国府", "aliases": []},
+            {"id": "rongguofu", "name": "荣国府", "aliases": []},
+        ],
+        "carriers": [],
+    }
+    warnings = []
+
+    _dedupe_env_aliases(registry, warnings)
+
+    by_id = {loc["id"]: loc for loc in registry["locations"]}
+    assert "宁国府" not in by_id["jiafu"]["aliases"]
+    assert "荣国府" not in by_id["jiafu"]["aliases"]
+    # rightful (name-matching) envs keep the alias as their own name, untouched.
+    assert by_id["ningguofu"]["name"] == "宁国府"
+    assert by_id["rongguofu"]["name"] == "荣国府"
+
+    # every name/alias key across the registry is now claimed by exactly one env.
+    key_owners: dict[str, set[str]] = {}
+    for loc in registry["locations"]:
+        keys = set(loc.get("aliases") or [])
+        if loc.get("name"):
+            keys.add(loc["name"])
+        for k in keys:
+            key_owners.setdefault(k, set()).add(loc["id"])
+    assert all(len(owners) == 1 for owners in key_owners.values())
+
+    assert any("宁国府" in w and "jiafu" in w for w in warnings)
+    assert any("荣国府" in w and "jiafu" in w for w in warnings)
+
+
+def test_dedupe_env_aliases_leaves_clean_registry_unchanged():
+    registry = {
+        "characters": [],
+        "locations": [
+            {"id": "changan", "name": "长安", "aliases": ["西京"]},
+            {"id": "luoyang", "name": "洛阳", "aliases": []},
+        ],
+        "carriers": [],
+    }
+    warnings = []
+
+    _dedupe_env_aliases(registry, warnings)
+
+    assert registry["locations"][0]["aliases"] == ["西京"]
+    assert registry["locations"][1]["aliases"] == []
+    assert warnings == []
+
+
+async def test_extract_history_atomic_survives_cross_environment_alias_contamination(tmp_path):
+    """Regression for the concrete failure this task fixes: red_chamber
+    assembly used to raise `I1 violated: environment name/alias '宁国府'
+    shared by 'ningguofu' and 'rongguofu'` because the general env 贾府/jiafu
+    carried both specific envs' names as its own aliases. Exercises the
+    reused-`registry=` path (as in the failing 100-minute sediment run) with
+    detail="atomic" (the default pipeline)."""
+    out = str(tmp_path / "red_chamber.yaml")
+    registry = {
+        "characters": [{"id": "daiyu", "name": "黛玉", "aliases": []}],
+        "locations": [
+            {"id": "jiafu", "name": "贾府", "aliases": ["宁国府", "荣国府"]},
+            {"id": "ningguofu", "name": "宁国府", "aliases": []},
+            {"id": "rongguofu", "name": "荣国府", "aliases": []},
+        ],
+        "carriers": [],
+    }
+
+    def fake(prompt, system=None):
+        if "[atomize]" in prompt:
+            return json.dumps(["黛玉在荣国府读书"], ensure_ascii=False)
+        if "[assign]" in prompt:
+            return json.dumps([["daiyu"]], ensure_ascii=False)
+        if "出场" in prompt:
+            return json.dumps(
+                {
+                    "state_updates": [{"id": "daiyu", "location": "荣国府", "alive": True}],
+                    "story_time": "t",
+                },
+                ensure_ascii=False,
+            )
+        if "起始" in prompt:
+            return json.dumps(
+                [{"to": ["daiyu"], "kind": "system", "content": "后传伊始"}], ensure_ascii=False
+            )
+        return "[]"
+
+    llm = FakeLLM(fn=fake)
+
+    # Must not raise ValueError: I1 violated.
+    cfg = await extract_history(
+        "黛玉" * 20, llm, out, embed_fn=afake_embed, registry=registry, detail="atomic"
+    )
+
+    by_id = {a["id"]: a for a in cfg["agents"]}
+    assert by_id["daiyu"]["status"]["location"] == "rongguofu"  # alias resolved unambiguously
+    env_ids = {a["id"] for a in cfg["agents"] if a["kind"] == "environment"}
+    assert {"jiafu", "ningguofu", "rongguofu"}.issubset(env_ids)
+
+
+# ----------------------------------------------------------------------
 # I1: colliding environment names/aliases -> auto-merge
 # ----------------------------------------------------------------------
 
@@ -351,6 +465,91 @@ def test_i3_slugs_non_ascii_environment_id_and_remaps_references():
     char_agent = next(a for a in cfg["agents"] if a["id"] == "a")
     assert char_agent["status"]["location"] == env["id"]
     assert any("I3" in w for w in warnings)
+
+
+# ----------------------------------------------------------------------
+# I1/I3 safety net: registry noise reaching assembly degrades to
+# auto-fix + warning instead of crashing the final assembly step (I2 stays
+# a hard raise -- it should only ever fire for a genuinely malformed state
+# table, not a registry data-quality issue).
+# ----------------------------------------------------------------------
+
+
+def test_i1_safety_net_autofixes_residual_alias_collision_without_raising():
+    """A residual I1 collision that neither `_dedupe_env_aliases` (not
+    exercised here -- this calls `_assemble_history_scenario` directly) nor
+    the auto-merge pass can see: `_ensure_ascii_location_ids` re-adds a
+    non-ascii env's OLD id as a fresh alias (so alias resolution still finds
+    it by that old id), and that re-added alias happens to already be
+    claimed as an (unrelated) alias by a completely different env. The
+    colliding key ("环境乙", the second env's pre-slug id) isn't either env's
+    canonical `name`, so the rightful owner is just "first claimant in
+    registry order" (the first env here). Must auto-fix + warn, not raise."""
+    registry = {
+        "characters": [{"id": "a", "name": "甲", "aliases": []}],
+        "locations": [
+            {"id": "changan", "name": "长安", "aliases": ["环境乙"]},
+            {"id": "环境乙", "name": "乙地", "aliases": []},
+        ],
+        "carriers": [],
+    }
+    state = {"a": {"location": "changan", "alive": True}}
+    warnings = []
+
+    cfg, _carriers = _assemble_history_scenario(
+        registry=registry, state=state, scenario_name="s", language="zh", warnings=warnings
+    )
+
+    env_agents = {a["id"]: a for a in cfg["agents"] if a["kind"] == "environment"}
+    assert len(env_agents) == 2  # both envs survive -- neither dropped/merged
+    assert all(_is_ascii_id(eid) for eid in env_agents)
+    assert any("I1" in w for w in warnings)
+    assert any("I3" in w for w in warnings)  # 环境乙's non-ascii id also got slugged
+
+
+def test_i3_safety_net_autofixes_residual_nonascii_id_without_raising(monkeypatch):
+    """The primary auto-slug pass (`_ensure_ascii_location_ids`, called once
+    right after the auto-merge) fixes every non-ascii id in one exhaustive
+    sweep, so nothing should ever reach the I3 safety net in real usage.
+    Simulate a residual anyway (e.g. a future bug in that primary pass) by
+    making its FIRST invocation a no-op, and confirm the safety net (the
+    same function's second call, right before I1's residual check) still
+    fixes it instead of raising."""
+    import society.history_extract as he
+
+    real_ensure = he._ensure_ascii_location_ids
+    calls = {"n": 0}
+
+    def flaky_ensure(locations, warnings):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            return {}
+        return real_ensure(locations, warnings)
+
+    monkeypatch.setattr(he, "_ensure_ascii_location_ids", flaky_ensure)
+
+    registry = {
+        "characters": [{"id": "a", "name": "甲", "aliases": []}],
+        "locations": [{"id": "长安", "name": "长安", "aliases": []}],
+        "carriers": [],
+    }
+    state = {"a": {"location": "长安", "alive": True}}
+    warnings = []
+
+    cfg, _carriers = he._assemble_history_scenario(
+        registry=registry, state=state, scenario_name="s", language="zh", warnings=warnings
+    )
+
+    env_agents = [a for a in cfg["agents"] if a["kind"] == "environment"]
+    assert len(env_agents) == 1
+    env = env_agents[0]
+    assert he._is_ascii_id(env["id"])
+    assert env["name"] == "长安"
+
+    char_agent = next(a for a in cfg["agents"] if a["id"] == "a")
+    assert char_agent["status"]["location"] == env["id"]  # remap chain includes the safety net
+    assert any("I3" in w for w in warnings)
+    assert calls["n"] == 2  # confirms the safety-net (2nd) call actually did the work
 
 
 # ----------------------------------------------------------------------
