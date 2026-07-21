@@ -116,7 +116,11 @@ async def sediment_one(spec: dict) -> dict:
 
 
 async def main():
-    results = await asyncio.gather(*(sediment_one(s) for s in SCENARIOS))
+    import sys
+    only = set(sys.argv[1].split(",")) if len(sys.argv) > 1 else None
+    specs = [s for s in SCENARIOS if only is None or s["name"] in only]
+    print(f"running: {[s['name'] for s in specs]}")
+    results = await asyncio.gather(*(sediment_one(s) for s in specs))
     print("=== SEDIMENT SUMMARY ===")
     for r in results:
         print(json.dumps(r, ensure_ascii=False))
