@@ -1220,6 +1220,98 @@ def _ensure_ascii_location_ids(locations: list[dict], warnings: list[str]) -> di
     return remap
 
 
+def _dedupe_role_ids(registry: dict, warnings: list[str]) -> None:
+    """Guarantees globally-unique ids across `registry["characters"]`,
+    `registry["locations"]`, and `registry["carriers"]` (processed in that
+    deterministic order), fixing a Pass-1 LLM failure mode where the
+    registry-merge call assigns the same id to two different entities (e.g.
+    two distinct locations both getting id "daguanlou"), which would
+    otherwise crash `_assemble_history_scenario` with "duplicate agent id".
+
+    For each role, in order:
+      - if its id is missing or non-ascii, a fresh ascii id is synthesized
+        from its name (via `_slugify_ascii_id`); the original id (if any)
+        is kept as an alias.
+      - if its id was already claimed by an earlier role with the SAME
+        name, it's a genuine duplicate entry describing the same entity --
+        the later duplicate is dropped and its aliases are merged into the
+        surviving role (no second agent is created).
+      - if its id was already claimed by an earlier role with a DIFFERENT
+        name, it's a real collision between two distinct entities -- this
+        (later) role gets a fresh id synthesized from its own name, and the
+        shared id it lost is added to its aliases so name/alias resolution
+        still finds it.
+
+    Every id handed out (kept or synthesized) is tracked in a single
+    `used_ids` mapping shared across all three categories, so a newly
+    synthesized id can never collide with anything, including ids from a
+    different category. Mutates `registry` in place (each category's list
+    may shrink if duplicates were dropped) and appends a warning for every
+    rename/drop.
+    """
+    used_ids: dict[str, dict] = {}
+    counter = [1]
+
+    for category in ("characters", "locations", "carriers"):
+        roles = registry.get(category) or []
+        kept: list[dict] = []
+        for role in roles:
+            rid = role.get("id")
+            name = role.get("name")
+
+            if rid is None or not _is_ascii_id(rid):
+                new_id = _slugify_ascii_id(name or category, used_ids, counter)
+                if rid is not None:
+                    aliases = set(role.get("aliases") or [])
+                    aliases.add(rid)
+                    role["aliases"] = sorted(a for a in aliases if a)
+                    warnings.append(
+                        f"history registry dedupe: {category} id {rid!r} missing/non-ascii; "
+                        f"synthesized ascii id {new_id!r}"
+                    )
+                role["id"] = new_id
+                used_ids[new_id] = role
+                kept.append(role)
+                continue
+
+            prior = used_ids.get(rid)
+            if prior is None:
+                used_ids[rid] = role
+                kept.append(role)
+                continue
+
+            if prior.get("name") == name:
+                # Same id + same name -> genuinely the same entity: drop
+                # this later duplicate, merging its aliases into the entry
+                # that was kept.
+                merged_aliases = set(prior.get("aliases") or [])
+                merged_aliases.update(role.get("aliases") or [])
+                prior["aliases"] = sorted(a for a in merged_aliases if a)
+                warnings.append(
+                    f"history registry dedupe: dropped duplicate {category} entry "
+                    f"{rid!r} (same id, same name {name!r})"
+                )
+                continue
+
+            # Same id, different name -> Pass 1 mis-assigned one id to two
+            # distinct entities. Disambiguate this (later) role with a
+            # fresh id, keeping the old shared id resolvable as an alias.
+            new_id = _slugify_ascii_id(name or rid, used_ids, counter)
+            aliases = set(role.get("aliases") or [])
+            aliases.add(rid)
+            role["aliases"] = sorted(a for a in aliases if a)
+            role["id"] = new_id
+            warnings.append(
+                f"history registry dedupe: {category} id {rid!r} collided between "
+                f"{prior.get('name')!r} and {name!r}; renamed the latter to {new_id!r} "
+                "(old id kept as alias)"
+            )
+            used_ids[new_id] = role
+            kept.append(role)
+
+        registry[category] = kept
+
+
 def _assemble_history_scenario(
     *,
     registry: dict,
@@ -1438,6 +1530,18 @@ async def extract_history(
     ran_pass1 = registry is None
     if registry is None:
         registry = await _run_registry_pass(llm, flat_texts, hints, warnings)
+
+    # Guarantee globally-unique role ids BEFORE anything else touches the
+    # registry (resolvers, Pass-2 sedimentation/deposit-owner assignment,
+    # assembly) -- whether `registry` just came out of Pass 1 above or was
+    # supplied verbatim via the `registry=` argument (a reused/hand-edited
+    # registry can carry the same duplicate-id bug). Without this, two
+    # roles sharing an already-ascii id (so `_ensure_ascii_location_ids`
+    # wouldn't touch it) survive all the way to `_assemble_history_scenario`
+    # and crash it with "duplicate agent id".
+    _dedupe_role_ids(registry, warnings)
+
+    if ran_pass1:
         with open(registry_path, "w", encoding="utf-8") as f:
             json.dump(registry, f, ensure_ascii=False, indent=2)
 

@@ -16,6 +16,7 @@ from society.history_extract import (
     _RegistryResolvers,
     _assemble_history_scenario,
     _chunk_history_text,
+    _dedupe_role_ids,
     _is_ascii_id,
     _run_sediment_pass,
     extract_history,
@@ -135,6 +136,143 @@ async def test_unresolved_location_dropped_keeps_previous_with_warning():
     assert state["caocao"]["location"] == "xuchang"
     assert any("remained unresolved after registry augmentation" in w for w in warnings)
     assert not any(loc["id"] == "不存在之地" for loc in registry["locations"])
+
+
+# ----------------------------------------------------------------------
+# _dedupe_role_ids: Pass-1 duplicate-id bug (real example: 红楼's 大观楼 and
+# 缀锦阁 both got id "daguanlou"; 三国's has "hulaoguan" x2) -- distinct
+# entities sharing an already-ascii id must be disambiguated, while genuine
+# same-id-same-name duplicates collapse to one entry, all without ever
+# letting `_assemble_history_scenario` see two roles with the same id
+# (which would otherwise raise "duplicate agent id").
+# ----------------------------------------------------------------------
+
+
+def test_dedupe_role_ids_renames_distinct_locations_sharing_ascii_id():
+    registry = {
+        "characters": [],
+        "locations": [
+            {"id": "daguanlou", "name": "大观楼", "aliases": []},
+            {"id": "daguanlou", "name": "缀锦阁", "aliases": []},
+        ],
+        "carriers": [],
+    }
+    warnings = []
+
+    _dedupe_role_ids(registry, warnings)
+
+    locs = registry["locations"]
+    assert len(locs) == 2
+    ids = [loc["id"] for loc in locs]
+    assert len(set(ids)) == 2  # globally unique now
+    assert ids[0] == "daguanlou"  # first entry keeps the original id
+    renamed = locs[1]
+    assert renamed["id"] != "daguanlou"
+    assert "daguanlou" in renamed["aliases"]  # old id preserved as an alias
+    assert any("collided" in w for w in warnings)
+
+
+def test_dedupe_role_ids_collapses_same_id_same_name_duplicate():
+    registry = {
+        "characters": [],
+        "locations": [
+            {"id": "hulaoguan", "name": "虎牢关", "aliases": ["虎牢"]},
+            {"id": "hulaoguan", "name": "虎牢关", "aliases": ["汜水关"]},
+        ],
+        "carriers": [],
+    }
+    warnings = []
+
+    _dedupe_role_ids(registry, warnings)
+
+    locs = registry["locations"]
+    assert len(locs) == 1  # collapsed to a single entry, not two agents
+    assert locs[0]["id"] == "hulaoguan"
+    assert set(locs[0]["aliases"]) == {"虎牢", "汜水关"}  # aliases merged
+    assert any("dropped duplicate" in w for w in warnings)
+
+
+def test_dedupe_role_ids_disambiguates_character_and_location_sharing_id():
+    registry = {
+        "characters": [{"id": "lvbu", "name": "吕布", "aliases": []}],
+        "locations": [{"id": "lvbu", "name": "吕布祠", "aliases": []}],
+        "carriers": [],
+    }
+    warnings = []
+
+    _dedupe_role_ids(registry, warnings)
+
+    char_id = registry["characters"][0]["id"]
+    loc = registry["locations"][0]
+    assert char_id == "lvbu"  # characters are processed first, keep priority
+    assert loc["id"] != "lvbu"  # location renamed to stay globally unique
+    assert "lvbu" in loc["aliases"]
+    assert any("collided" in w for w in warnings)
+
+
+def test_dedupe_role_ids_leaves_clean_registry_unchanged():
+    registry = {
+        "characters": [{"id": "caocao", "name": "曹操", "aliases": ["孟德"]}],
+        "locations": [{"id": "xuchang", "name": "许昌", "aliases": []}],
+        "carriers": [{"id": "letter1", "name": "一封信", "aliases": []}],
+    }
+    warnings = []
+
+    _dedupe_role_ids(registry, warnings)
+
+    assert registry["characters"][0]["id"] == "caocao"
+    assert registry["locations"][0]["id"] == "xuchang"
+    assert registry["carriers"][0]["id"] == "letter1"
+    assert warnings == []
+
+
+async def test_extract_history_atomic_assembles_despite_duplicate_ascii_location_ids(tmp_path):
+    """Regression for the crash this task fixes: a Pass-1 registry with two
+    locations sharing the ascii id "daguanlou" used to survive all the way
+    to assembly (only non-ascii ids were auto-fixed) and blow up with
+    `ValueError: duplicate agent id: daguanlou`."""
+    out = str(tmp_path / "honglou.yaml")
+    registry = {
+        "characters": [{"id": "daiyu", "name": "黛玉", "aliases": []}],
+        "locations": [
+            {"id": "daguanlou", "name": "大观楼", "aliases": []},
+            {"id": "daguanlou", "name": "缀锦阁", "aliases": []},
+        ],
+        "carriers": [],
+    }
+
+    def fake(prompt, system=None):
+        if "[atomize]" in prompt:
+            return json.dumps(["黛玉在大观楼读书"], ensure_ascii=False)
+        if "[assign]" in prompt:
+            return json.dumps([["daiyu"]], ensure_ascii=False)
+        if "出场" in prompt:
+            return json.dumps(
+                {
+                    "state_updates": [{"id": "daiyu", "location": "大观楼", "alive": True}],
+                    "story_time": "t",
+                },
+                ensure_ascii=False,
+            )
+        if "起始" in prompt:
+            return json.dumps(
+                [{"to": ["daiyu"], "kind": "system", "content": "后传伊始"}], ensure_ascii=False
+            )
+        return "[]"
+
+    llm = FakeLLM(fn=fake)
+
+    # Must not raise ValueError: duplicate agent id.
+    cfg = await extract_history(
+        "黛玉" * 20, llm, out, embed_fn=afake_embed, registry=registry, detail="atomic"
+    )
+
+    agent_ids = [a["id"] for a in cfg["agents"]]
+    assert len(agent_ids) == len(set(agent_ids))  # globally unique across all agent kinds
+
+    env_ids = {a["id"] for a in cfg["agents"] if a["kind"] == "environment"}
+    assert "daguanlou" in env_ids
+    assert len(env_ids) >= 2  # 大观楼 kept id, 缀锦阁 renamed -- neither dropped
 
 
 # ----------------------------------------------------------------------
