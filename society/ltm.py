@@ -117,7 +117,7 @@ class SharedMemory:
 
     async def _consensus_insert(
         self,
-        agent_id: str,
+        owners: list[str],
         text: str,
         tick: int,
         source: str,
@@ -159,15 +159,18 @@ class SharedMemory:
                 if 0 <= idx < len(candidates):
                     match_idx = idx
 
+        new_owners = sorted(set(owners))
+
         if match_idx == -1:
             new_id = uuid.uuid4().hex
             metadata = {
-                "owners": json.dumps([agent_id]),
-                f"owner_{agent_id}": True,
+                "owners": json.dumps(new_owners),
                 "created_at": _now_iso(),
                 "source": source,
                 "tick": tick,
             }
+            for o in new_owners:
+                metadata[f"owner_{o}"] = True
             if story_order is not None:
                 metadata["story_order"] = story_order
             if story_time is not None:
@@ -178,14 +181,13 @@ class SharedMemory:
                 embeddings=[embedding],
                 metadatas=[metadata],
             )
-            return {"id": new_id, "text": text, "merged": False, "owners": [agent_id]}
+            return {"id": new_id, "text": text, "merged": False, "owners": new_owners}
 
         candidate = candidates[match_idx]
         cid = candidate["id"]
         meta = candidate["meta"]
-        owners = set(json.loads(meta.get("owners", "[]")))
-        owners.add(agent_id)
-        owners = sorted(owners)
+        existing_owners = set(json.loads(meta.get("owners", "[]")))
+        merged_owners = sorted(existing_owners | set(new_owners))
 
         keep_text = candidate["text"]
         update_kwargs = {}
@@ -195,10 +197,11 @@ class SharedMemory:
             update_kwargs["embeddings"] = [embedding]
 
         update_metadata = {
-            "owners": json.dumps(owners),
-            f"owner_{agent_id}": True,
+            "owners": json.dumps(merged_owners),
             "tick": tick,
         }
+        for o in new_owners:
+            update_metadata[f"owner_{o}"] = True
 
         existing_story_order = meta.get("story_order")
         existing_story_time = meta.get("story_time")
@@ -221,7 +224,7 @@ class SharedMemory:
         update_kwargs["metadatas"] = [update_metadata]
         self._collection.update(ids=[cid], **update_kwargs)
 
-        return {"id": cid, "text": keep_text, "merged": True, "owners": owners}
+        return {"id": cid, "text": keep_text, "merged": True, "owners": merged_owners}
 
     # ------------------------------------------------------------------
     # public API
@@ -247,7 +250,7 @@ class SharedMemory:
         for entry in entries:
             results.append(
                 await self._consensus_insert(
-                    agent_id,
+                    [agent_id],
                     entry,
                     tick,
                     source,
@@ -256,6 +259,36 @@ class SharedMemory:
                 )
             )
         return results
+
+    async def remember_atomic(
+        self,
+        owners: list[str],
+        text: str,
+        tick: int = 0,
+        source: str = "sediment",
+        story_order: int | None = None,
+        story_time: str | None = None,
+    ) -> dict | None:
+        """Deposit a PRE-ATOMIZED fragment (already one complete event) owned by
+        `owners` (list[str], >=1). Skips the normalize/split gate (the caller has
+        already atomized), applies ONLY the token cap, then consensus-inserts with
+        the full owner set. Returns the insert result dict, or None if text is
+        empty/whitespace after stripping."""
+        text = text.strip()
+        if not text:
+            return None
+        if not owners:
+            raise ValueError("remember_atomic requires at least one owner")
+
+        text = truncate_to_tokens(text, self.max_tokens)
+        return await self._consensus_insert(
+            sorted(set(owners)),
+            text,
+            tick,
+            source,
+            story_order=story_order,
+            story_time=story_time,
+        )
 
     async def recall(self, agent_id: str, query: str, top_k: int = 5) -> list[dict]:
         """Return the top_k entries owned by agent_id, ranked by similarity to query."""

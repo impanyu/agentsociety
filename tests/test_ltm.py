@@ -125,3 +125,70 @@ async def test_max_chars_kwarg_accepted_but_ignored():
     m = mem(None, max_chars=5, max_tokens=50)
     text = "黛玉葬花"  # far more than 5 chars, well under 50 tokens
     assert m._needs_normalize(text) is False
+
+
+# ----------------------------------------------------------------------
+# remember_atomic: multi-owner atomic deposit
+# ----------------------------------------------------------------------
+
+
+async def test_remember_atomic_stores_multiple_owners():
+    m = mem(None)
+    out = await m.remember_atomic(["a", "b", "c"], "刘备与张飞结拜")
+    assert out is not None and out["merged"] is False
+    (entry,) = m.all_entries()
+    assert set(entry["owners"]) == {"a", "b", "c"}
+    # each owner_* flag independently supports recall
+    got_a = await m.recall("a", "刘备与张飞结拜")
+    got_b = await m.recall("b", "刘备与张飞结拜")
+    assert [e["text"] for e in got_a] == ["刘备与张飞结拜"]
+    assert [e["text"] for e in got_b] == ["刘备与张飞结拜"]
+
+
+async def test_remember_atomic_merge_unions_owners():
+    # LLM says the new fragment is equivalent to candidate index 0 -> merge path.
+    llm = FakeLLM(responses=["0"])
+    m = mem(llm)
+    await m.remember_atomic(["a", "b", "c"], "国王死于春天")
+    out = await m.remember_atomic(["d"], "国王死于春天")
+    assert out["merged"] is True
+    (entry,) = m.all_entries()
+    assert set(entry["owners"]) == {"a", "b", "c", "d"}
+
+
+async def test_remember_atomic_applies_token_cap():
+    m = mem(None, max_tokens=50)
+    long_en = "the quick brown fox jumps over the lazy dog and keeps running " * 5
+    assert count_tokens(long_en) > 50
+    out = await m.remember_atomic(["a"], long_en)
+    assert count_tokens(out["text"]) <= 50
+
+
+async def test_remember_atomic_empty_text_returns_none():
+    m = mem(None)
+    out = await m.remember_atomic(["a"], "   ")
+    assert out is None
+    assert m.all_entries() == []
+
+
+async def test_remember_atomic_empty_owners_raises():
+    m = mem(None)
+    try:
+        await m.remember_atomic([], "some fragment")
+    except ValueError:
+        pass
+    else:
+        assert False, "expected ValueError"
+    assert m.all_entries() == []
+
+
+async def test_forget_survives_on_multi_owner_atomic_entry():
+    m = mem(None)
+    out = await m.remember_atomic(["a", "b", "c"], "刘备与张飞结拜")
+    memory_id = out["id"]
+    assert m.forget("a", memory_id) is True
+    (entry,) = m.all_entries()
+    assert set(entry["owners"]) == {"b", "c"}
+    assert m.forget("b", memory_id) is True
+    assert m.forget("c", memory_id) is True
+    assert m.all_entries() == []
