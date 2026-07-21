@@ -87,10 +87,18 @@ async def sediment_one(spec: dict) -> dict:
     llm.max_concurrency = PER_CONC
     llm._semaphore = asyncio.Semaphore(PER_CONC)
     text = spec["slice"]()
+    # Reuse the already-reviewed registry (from experiments.extract_roles) so
+    # Pass 1 is skipped and we sediment against the exact same role set.
+    registry_path = out_yaml + ".registry.json"
+    registry = None
+    if os.path.exists(registry_path):
+        with open(registry_path, "r", encoding="utf-8") as rf:
+            registry = json.load(rf)
     t0 = time.time()
     try:
         cfg = await extract_history(
-            text, llm, out_yaml, embed_fn=embed_fn, language=spec["lang"], detail="atomic"
+            text, llm, out_yaml, embed_fn=embed_fn, language=spec["lang"],
+            detail="atomic", registry=registry,
         )
         dt = time.time() - t0
         ltm = json.load(open(out_yaml + ".ltm.json"))
