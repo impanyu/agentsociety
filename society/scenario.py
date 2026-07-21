@@ -120,13 +120,20 @@ def _make_brain(a: dict, *, llm, language: str, scenario_dir: str):
     return RetrievalBrain(corpus_text)
 
 
-def build_agents_and_map(cfg: dict, *, llm) -> tuple[dict, "WorldMap", dict, list]:
+def build_agents_and_map(cfg: dict, *, llm, embed_fn=None) -> tuple[dict, "WorldMap", dict, list]:
     """Build the agents dict + WorldMap from a loaded scenario dict.
 
     This is the brain/agent-construction core shared by `build_society`
     (fresh run) and `society.persistence.restore_society` (resume from a
     checkpoint) -- kept in exactly one place so the two paths can never
     drift apart on how a scenario's agents/brains/map are constructed.
+
+    `embed_fn` (the same async embedding function used for SharedMemory)
+    is threaded into each agent's STM as `cache_embed_fn`, so the STM
+    cache's "relevance"/"hybrid" eviction strategies (config knobs
+    `cache_strategy`/`cache_alpha` in `defaults`) have an embedder to
+    score with. It's optional (None) since it's only required when a
+    non-"fifo" cache_strategy is configured.
 
     Returns (agents, worldmap, defaults, seed_specs) where `defaults` is
     the resolved `cfg["defaults"]` dict and `seed_specs` is the
@@ -139,6 +146,8 @@ def build_agents_and_map(cfg: dict, *, llm) -> tuple[dict, "WorldMap", dict, lis
 
     fifo_size = defaults.get("fifo_size", 20)
     distance = defaults.get("distance", 20)
+    cache_strategy = defaults.get("cache_strategy", "fifo")
+    cache_alpha = defaults.get("cache_alpha", 0.5)
 
     agents: dict[str, Agent] = {}
     env_ids = []
@@ -151,6 +160,9 @@ def build_agents_and_map(cfg: dict, *, llm) -> tuple[dict, "WorldMap", dict, lis
             status=a.get("status"),
             private_keys=set(a["private_status_keys"]) if a.get("private_status_keys") else None,
             goals=a.get("goals"),
+            cache_strategy=cache_strategy,
+            cache_alpha=cache_alpha,
+            cache_embed_fn=embed_fn,
         )
         agent = Agent(
             a["id"],
@@ -205,7 +217,7 @@ async def build_society(
     ltm_file already reflects (a superset of) their effect. Otherwise each
     agent's seed_memories are seeded as before.
     """
-    agents, worldmap, defaults, seed_specs = build_agents_and_map(cfg, llm=llm)
+    agents, worldmap, defaults, seed_specs = build_agents_and_map(cfg, llm=llm, embed_fn=embed_fn)
 
     memory_max_tokens = defaults.get(
         "memory_max_tokens", defaults.get("memory_max_chars", 50)

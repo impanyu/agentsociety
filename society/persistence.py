@@ -94,7 +94,7 @@ async def restore_society(ckpt: dict, *, llm, embed_fn, event_log, out_dir=None)
     effects; replaying them would duplicate work).
     """
     cfg = ckpt["scenario"]
-    agents, worldmap, defaults, _seed_specs = build_agents_and_map(cfg, llm=llm)
+    agents, worldmap, defaults, _seed_specs = build_agents_and_map(cfg, llm=llm, embed_fn=embed_fn)
 
     memory_max_tokens = defaults.get(
         "memory_max_tokens", defaults.get("memory_max_chars", 50)
@@ -121,8 +121,9 @@ async def restore_society(ckpt: dict, *, llm, embed_fn, event_log, out_dir=None)
         if agent is None:
             continue
 
-        for action, result in state.get("fifo", []):
-            agent.stm.fifo.append(action, result)
+        agent.stm.fifo.restore_items(
+            [(action, result) for action, result in state.get("fifo", [])]
+        )
 
         # build_agents_and_map already seeded goals/status from the
         # scenario's initial config (same as a fresh build_society run) --

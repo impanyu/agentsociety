@@ -669,7 +669,7 @@ class Kernel:
                     self._budget_hit = True
                     result = ActionResult(False, error="budget exceeded")
 
-        agent.stm.fifo.append(
+        await agent.stm.fifo.append(
             {"name": action.name, "params": action.params}, result.to_dict()
         )
         self.event_log.append(
