@@ -15,22 +15,38 @@ Two passes:
   can be reviewed/edited by a human before Pass 2 (closed-world attribution
   depends on it being accurate).
 
-  Pass 2 (sediment): extracts atomic, time-prefixed memories per canonical
-  character id plus a state_updates list (location/alive) that is folded
-  into a last-write-wins state table across chunks in story order. Runs in
-  one of two modes (H5, `--detail`):
+  Pass 2 (sediment): extracts atomic memories owned by one or more
+  canonical role ids (characters/locations/carriers, plus a reserved
+  `narrator` catch-all) plus a state_updates list (location/alive) that is
+  folded into a last-write-wins state table across chunks in story order.
+  Runs in one of three modes (`--detail`):
 
     - "fast" (the original v1 behaviour): one LLM call per chunk (marker
       沉淀) returning memories for every character AND the state_updates,
       in a single JSON object.
-    - "exhaustive" (default): per chunk, a roster call (marker 出场)
-      identifies which registry characters appear plus state_updates/
-      story_time, then ONE 沉淀 call PER appearing character demanding an
-      exhaustive atomic-fact enumeration, followed by a configurable number
-      of coverage-audit rounds (marker 补漏) that catch missed facts. Text
-      is chunked by 回目 chapter boundaries when the input looks like a
-      classic chaptered novel (see `_chunk_history_text`), so chapter
-      titles can serve as a time anchor for memories and prompts.
+    - "exhaustive": per chunk, a roster call (marker 出场) identifies which
+      registry characters appear plus state_updates/story_time, then ONE
+      沉淀 call PER appearing character demanding an exhaustive atomic-fact
+      enumeration, followed by a configurable number of coverage-audit
+      rounds (marker 补漏) that catch missed facts. This mode tends to
+      over-produce per-character micro-memories and, because its prompts
+      are Chinese, can push English-source memories toward Chinese too.
+    - "atomic" (the DEFAULT, Task B2): per chunk, a roster call (state
+      only) -> one atomize call breaking the chunk into complete, self-
+      contained, source-language fragments (each capped at ~50 tokens) ->
+      one assign call attributing each fragment to the owner role id(s)
+      that experience/know it (falling back to the reserved `narrator`
+      role for pure scene-setting with no clear owner). Each fragment is
+      deposited exactly once via `SharedMemory.remember_atomic`, however
+      many owners it has, instead of once per owning character. The
+      read-only roster/atomize/assign LLM calls run concurrently across
+      chunks; deposits are sequential in story order (consensus insert is
+      stateful).
+
+  Text is chunked by 回目 chapter boundaries when the input looks like a
+  classic chaptered novel (see `_chunk_history_text`) in both "exhaustive"
+  and "atomic" modes, so chapter titles can serve as a time anchor for
+  memories and prompts.
 
   Every location reference (state_updates[].location, in either mode) is
   resolved through a deterministic id/name/alias -> canonical-id resolver
@@ -208,6 +224,44 @@ def _coverage_prompt(
         "只输出 JSON,不要输出任何解释文字。\n\n"
         f"已抽取记忆:{json.dumps(extracted, ensure_ascii=False)}\n\n"
         f"提示信息:{hints or ''}\n\n正文:\n{chunk_text}"
+    )
+
+
+def _atomize_prompt(chunk_text: str, chapter_title: str | None, hints: str) -> str:
+    title_line = f"Chapter/section title: {chapter_title}\n\n" if chapter_title else ""
+    hints_line = f"Hints: {hints}\n\n" if hints else ""
+    return (
+        "[atomize] Break the passage below into a JSON array of atomic memory "
+        "fragments. Each fragment must state ONE complete event or fact, must be "
+        "self-contained (resolve pronouns to explicit names instead of \"he\"/\"she\"/"
+        "\"it\"/\"they\"), and MUST be written in the SAME LANGUAGE as the passage -- "
+        "do not translate it into any other language, whatever that language is. "
+        "Keep each fragment short: roughly one sentence, at most ~50 tokens. Output "
+        "ONLY a JSON array of strings, e.g. [\"fragment 1\", \"fragment 2\"]. Do not "
+        "output any explanation or extra text.\n\n"
+        f"{title_line}{hints_line}Passage:\n{chunk_text}"
+    )
+
+
+def _assign_prompt(fragments: list[str], registry: dict, hints: str) -> str:
+    alias_table = _alias_table(registry)
+    numbered = "\n".join(f"{i}: {f}" for i, f in enumerate(fragments))
+    return (
+        "[assign] Below is a table of role ids (characters, locations, and "
+        "information carriers) with their names/aliases, followed by a numbered "
+        "list of memory fragments. For EACH fragment, list the id(s) of the "
+        "role(s) it belongs to -- the character(s) who experience or know about "
+        "it, or the location/carrier it concerns. A fragment MAY have MULTIPLE "
+        "owners. If a fragment is pure scene-setting/narration with no clear "
+        "character or location owner, assign it to the location it happens in, or "
+        "to the reserved id \"narrator\" if nothing else applies. Only use ids "
+        "from the role table below (plus \"narrator\") -- never invent new ids.\n"
+        "Output ONLY a JSON array where element i is itself a JSON array of "
+        "owner-id strings for fragment i (same length and order as the fragment "
+        "list below), e.g. [[\"id1\"], [\"id1\", \"id2\"], [\"narrator\"]]. Do not "
+        "output any explanation or extra text.\n\n"
+        f"Role table:\n{alias_table}\n(reserved catch-all id: narrator)\n\n"
+        f"Hints: {hints or ''}\n\nFragments:\n{numbered}"
     )
 
 
@@ -823,6 +877,235 @@ async def _run_sediment_pass_exhaustive(
 
 
 # ----------------------------------------------------------------------
+# Pass 2 -- atomic mode (roster + atomize + assign) [Task B2, default]
+# ----------------------------------------------------------------------
+
+NARRATOR_ID = "narrator"
+
+
+def _ensure_narrator_role(registry: dict) -> bool:
+    """Ensure `registry` has a reserved catch-all environment role with id
+    `NARRATOR_ID`, so atomic-mode scene/narration fragments with no clear
+    character/location owner always have a valid owner to fall back to.
+
+    Added to `registry["locations"]` (not a separate category) so it is
+    picked up by `_RegistryResolvers` and by `_assemble_history_scenario`
+    for free, exactly like any other environment role. No-op (returns
+    False) if an entry with that id is already present -- idempotent
+    across repeated runs against a reused/hand-edited registry.
+    """
+    locations = registry.setdefault("locations", [])
+    if any(loc.get("id") == NARRATOR_ID for loc in locations):
+        return False
+    locations.append(
+        {
+            "id": NARRATOR_ID,
+            "name": "Narrator/旁白",
+            "aliases": [],
+            "profile": (
+                "Reserved catch-all owner for scene-setting/narration fragments "
+                "with no clear character or location owner."
+            ),
+        }
+    )
+    return True
+
+
+async def _process_chunk_atomic(
+    llm,
+    chunk: dict,
+    registry: dict,
+    resolvers: _RegistryResolvers,
+    hints: str,
+    warnings: list[str],
+) -> dict:
+    """Read-only LLM phase for one chunk in atomic mode: roster (state only)
+    -> atomize -> assign. Deliberately does NOT touch `shared` -- callers run
+    this concurrently across chunks (asyncio.gather) and then deposit the
+    returned fragments sequentially in story order (consensus insert is
+    stateful, so deposit order must be preserved even though this read-only
+    phase need not be).
+
+    Returns {"flat_idx": int, "story_time": str | None,
+    "state_updates": [raw update dicts, as from `_roster_prompt`],
+    "deposits": [(fragment_text, [owner_id, ...]), ...]}.
+    """
+    chunk_text = chunk["text"]
+    chapter_title = chunk["title"]
+    flat_idx = chunk["flat_idx"]
+
+    # 1. Roster call: state_updates + story_time only in this mode (its
+    # per-character `characters` list isn't used for extraction here --
+    # that's the whole point of replacing per-character extraction). A
+    # failed/malformed roster response degrades to best-effort state (no
+    # state_updates, story_time falls back to the chapter title) rather
+    # than aborting the chunk -- atomization/assignment don't depend on it.
+    story_time: str | None = f"【{chapter_title}】" if chapter_title else None
+    state_updates: list[dict] = []
+    roster_prompt = _roster_prompt(chunk_text, chapter_title, registry, hints)
+    raw = await llm.chat(roster_prompt, bucket="extract")
+    try:
+        roster = _extract_json_block(raw)
+        if not isinstance(roster, dict):
+            raise ValueError("roster (出场) pass did not return a JSON object")
+    except (ValueError, json.JSONDecodeError) as exc:
+        warnings.append(
+            f"history roster (出场) pass failed for chunk {flat_idx}: {exc}; "
+            "proceeding with atomize/assign only (state is best-effort)"
+        )
+    else:
+        story_time = roster.get("story_time") or story_time
+        state_updates = roster.get("state_updates") or []
+
+    empty_result = {
+        "flat_idx": flat_idx,
+        "story_time": story_time,
+        "state_updates": state_updates,
+        "deposits": [],
+    }
+
+    # 2. Atomize call.
+    atomize_prompt = _atomize_prompt(chunk_text, chapter_title, hints)
+    raw = await llm.chat(atomize_prompt, bucket="extract")
+    try:
+        fragments_raw = _extract_json_block(raw)
+        if not isinstance(fragments_raw, list):
+            raise ValueError("atomize pass did not return a JSON array")
+    except (ValueError, json.JSONDecodeError) as exc:
+        warnings.append(
+            f"history atomize pass failed for chunk {flat_idx}: {exc}; chunk's memories skipped"
+        )
+        return empty_result
+
+    fragments = [str(f).strip() for f in fragments_raw if str(f).strip()]
+    if not fragments:
+        return empty_result
+
+    # 3. Assign call: owner id(s) per fragment.
+    assign_prompt = _assign_prompt(fragments, registry, hints)
+    raw = await llm.chat(assign_prompt, bucket="extract")
+    try:
+        owners_raw = _extract_json_block(raw)
+        if not isinstance(owners_raw, list):
+            raise ValueError("assign pass did not return a JSON array")
+    except (ValueError, json.JSONDecodeError) as exc:
+        warnings.append(
+            f"history assign pass failed for chunk {flat_idx}: {exc}; every fragment in "
+            f"the chunk falls back to {NARRATOR_ID!r}"
+        )
+        owners_raw = [[] for _ in fragments]
+
+    if len(owners_raw) != len(fragments):
+        warnings.append(
+            f"history assign pass: chunk {flat_idx} returned {len(owners_raw)} owner "
+            f"list(s) for {len(fragments)} fragment(s); padding/truncating defensively"
+        )
+        if len(owners_raw) < len(fragments):
+            owners_raw = list(owners_raw) + [[] for _ in range(len(fragments) - len(owners_raw))]
+        else:
+            owners_raw = owners_raw[: len(fragments)]
+
+    deposits: list[tuple[str, list[str]]] = []
+    for fragment, raw_owner_list in zip(fragments, owners_raw):
+        owners: list[str] = []
+        if isinstance(raw_owner_list, list):
+            for ref in raw_owner_list:
+                classified = resolvers.classify(ref)
+                if classified is None:
+                    warnings.append(
+                        f"history assign: chunk {flat_idx} assigned a fragment to unknown "
+                        f"id {ref!r}; dropped"
+                    )
+                    continue
+                cid, _kind = classified
+                if cid not in owners:
+                    owners.append(cid)
+        if not owners:
+            # Pure scene-setting, an empty owner list, or an owner list that
+            # was entirely unresolvable -- the reserved catch-all always
+            # resolves (it's a registry entry, added by `_ensure_narrator_role`
+            # before this is ever called) so a fragment is never dropped for
+            # lack of an owner.
+            owners = [NARRATOR_ID]
+        deposits.append((fragment, owners))
+
+    return {
+        "flat_idx": flat_idx,
+        "story_time": story_time,
+        "state_updates": state_updates,
+        "deposits": deposits,
+    }
+
+
+async def _run_sediment_pass_atomic(
+    llm,
+    shared: SharedMemory,
+    chunks: list[dict],
+    registry: dict,
+    hints: str,
+    warnings: list[str],
+) -> dict:
+    """Atomic-mode Pass 2 (Task B2, default): `chunks` a list of chunk dicts
+    as produced by `_chunk_history_text` (chapter-aware). Per chunk: one
+    roster call (state only) -> one atomize call -> one assign call -- no
+    per-character extraction. The read-only roster/atomize/assign LLM calls
+    for ALL chunks run concurrently (`asyncio.gather`, `return_exceptions=True`);
+    a `CancelledError` from any chunk is re-raised rather than swallowed (an
+    external timeout/cancel scope must still see it), while any other
+    exception degrades that one chunk to a skip+warning without aborting the
+    rest. Once every chunk's read-only phase has resolved, deposits
+    (`shared.remember_atomic`) happen sequentially in chunk/story order --
+    consensus insert is stateful, so deposit order must be preserved even
+    though gathering the LLM calls need not preserve completion order.
+
+    Returns the final state table (same shape as `_run_sediment_pass`).
+    """
+    _ensure_narrator_role(registry)
+    resolvers = _RegistryResolvers(registry)
+    raw_state_updates: list[tuple[int, dict]] = []
+
+    raw_results = await asyncio.gather(
+        *(_process_chunk_atomic(llm, chunk, registry, resolvers, hints, warnings) for chunk in chunks),
+        return_exceptions=True,
+    )
+
+    resolved: list[dict | None] = []
+    for chunk, result in zip(chunks, raw_results):
+        flat_idx = chunk["flat_idx"]
+        if isinstance(result, asyncio.CancelledError):
+            raise result
+        if isinstance(result, Exception):
+            warnings.append(
+                f"history atomic pipeline failed for chunk {flat_idx}: {result}; chunk skipped"
+            )
+            resolved.append(None)
+            continue
+        resolved.append(result)
+
+    for entry in resolved:
+        if entry is None:
+            continue
+        for update in entry["state_updates"]:
+            raw_state_updates.append((entry["flat_idx"], update))
+
+    for entry in resolved:
+        if entry is None:
+            continue
+        flat_idx = entry["flat_idx"]
+        story_time = entry["story_time"]
+        for i, (fragment, owners) in enumerate(entry["deposits"]):
+            await shared.remember_atomic(
+                owners,
+                fragment,
+                source="history",
+                story_order=flat_idx * 1000 + i,
+                story_time=story_time,
+            )
+
+    return await _resolve_and_finalize_state(llm, registry, resolvers, raw_state_updates, warnings)
+
+
+# ----------------------------------------------------------------------
 # Assembly
 # ----------------------------------------------------------------------
 
@@ -1091,7 +1374,7 @@ async def extract_history(
     registry_only: bool = False,
     chunk_chars: int = CHUNK_CHARS,
     max_agents: int = 15,
-    detail: str = "exhaustive",
+    detail: str = "atomic",
     coverage_rounds: int = 1,
 ) -> dict:
     """Runs the two-pass history-sedimentation pipeline and writes a scenario.
@@ -1110,12 +1393,17 @@ async def extract_history(
     to `<out_yaml>.ltm.json`, validates the result with `load_scenario`, and
     returns the assembled cfg dict (always has a `_warnings` list).
 
-    `detail` selects the Pass 2 strategy: "exhaustive" (default, Task H5)
-    runs a roster call + one 沉淀 call per appearing character + coverage
-    audits per chunk (chapter-aware chunking, see `_chunk_history_text`);
-    "fast" runs the original v1 single-call-per-chunk pipeline. Any
+    `detail` selects the Pass 2 strategy: "atomic" (DEFAULT, Task B2) runs
+    a roster call (state only) + one atomize call + one assign call per
+    chunk -- atomic, source-language, self-contained fragments each
+    deposited once via `SharedMemory.remember_atomic` under however many
+    owner role ids (character/location/carrier/`narrator`) they're
+    assigned to; "exhaustive" runs a roster call + one 沉淀 call per
+    appearing character + coverage audits per chunk; "fast" runs the
+    original v1 single-call-per-chunk pipeline. "atomic" and "exhaustive"
+    both use chapter-aware chunking (see `_chunk_history_text`). Any
     location reference collected during Pass 2 that doesn't resolve
-    against the registry (in either mode) triggers a single 补注册
+    against the registry (in any mode) triggers a single 补注册
     registry-augmentation call once all chunks are processed; the
     (possibly amended) registry is re-written to `<out_yaml>.registry.json`
     if it changed.
@@ -1125,7 +1413,7 @@ async def extract_history(
     dropped just to make room, and that policy needs its own design pass --
     see design doc §9).
     """
-    if detail not in ("exhaustive", "fast"):
+    if detail not in ("atomic", "exhaustive", "fast"):
         raise ValueError(f"extract_history: unknown detail mode {detail!r}")
 
     warnings: list[str] = []
@@ -1136,7 +1424,7 @@ async def extract_history(
     # chunks. Scale the overlap down to stay well under chunk_chars.
     overlap = min(CHUNK_OVERLAP, max(0, chunk_chars // 4))
 
-    if detail == "exhaustive":
+    if detail in ("atomic", "exhaustive"):
         history_chunks = _chunk_history_text(text, chunk_chars=chunk_chars, overlap=overlap)
         flat_texts = [c["text"] for c in history_chunks]
     else:
@@ -1161,7 +1449,9 @@ async def extract_history(
 
     shared = SharedMemory(embed_fn, llm)
     locations_before = len(registry.get("locations") or [])
-    if detail == "exhaustive":
+    if detail == "atomic":
+        state = await _run_sediment_pass_atomic(llm, shared, history_chunks, registry, hints, warnings)
+    elif detail == "exhaustive":
         state = await _run_sediment_pass_exhaustive(
             llm, shared, history_chunks, registry, hints, warnings, coverage_rounds=coverage_rounds
         )
