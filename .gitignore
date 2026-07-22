@@ -5,3 +5,7 @@ runs/
 .chroma/
 config.json
 .superpowers/
+
+# holographic LTM exports (embeddings, huge, regenerable from sediment)
+scenarios/*.yaml.ltm.json
+scenarios/*.yaml.ltm.en.json

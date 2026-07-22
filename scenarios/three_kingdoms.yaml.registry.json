@@ -1,0 +1,3334 @@
+{
+  "characters": [
+    {
+      "id": "liubei",
+      "name": "刘备",
+      "aliases": [
+        "玄德"
+      ],
+      "profile": "蜀汉开国皇帝，桃园三结义大哥，仁德之君。"
+    },
+    {
+      "id": "guanyu",
+      "name": "关羽",
+      "aliases": [
+        "关云长"
+      ],
+      "profile": "蜀汉五虎上将之首，忠义化身，刘备二弟。"
+    },
+    {
+      "id": "zhangfei",
+      "name": "张飞",
+      "aliases": [],
+      "profile": "蜀汉五虎上将之一，勇猛过人的刘备三弟。"
+    },
+    {
+      "id": "zhugeliang",
+      "name": "诸葛亮",
+      "aliases": [
+        "孔明"
+      ],
+      "profile": "蜀汉丞相，号卧龙先生，足智多谋的政治家与军事家。"
+    },
+    {
+      "id": "zhaoyun",
+      "name": "赵云",
+      "aliases": [],
+      "profile": "蜀汉五虎上将之一，常山真定人，英勇忠诚。"
+    },
+    {
+      "id": "machao",
+      "name": "马超",
+      "aliases": [],
+      "profile": "西凉马腾之子，蜀汉五虎上将之一，勇冠三军。"
+    },
+    {
+      "id": "caocao",
+      "name": "曹操",
+      "aliases": [],
+      "profile": "曹魏奠基者，汉丞相，乱世奸雄。"
+    },
+    {
+      "id": "caopi",
+      "name": "曹丕",
+      "aliases": [],
+      "profile": "曹操之子，后篡汉建立魏国。"
+    },
+    {
+      "id": "caozhi",
+      "name": "曹植",
+      "aliases": [],
+      "profile": "曹操之子，才高八斗的文学家。"
+    },
+    {
+      "id": "xiahoudun",
+      "name": "夏侯惇",
+      "aliases": [],
+      "profile": "曹魏猛将，拔矢啖睛的悍将。"
+    },
+    {
+      "id": "xiahouyuan",
+      "name": "夏侯渊",
+      "aliases": [],
+      "profile": "曹魏大将，夏侯惇族弟，擅长奔袭。"
+    },
+    {
+      "id": "caoren",
+      "name": "曹仁",
+      "aliases": [],
+      "profile": "曹魏大将，曹操堂弟，善守。"
+    },
+    {
+      "id": "caohong",
+      "name": "曹洪",
+      "aliases": [],
+      "profile": "曹魏大将，曹操堂弟，曾舍命救主。"
+    },
+    {
+      "id": "zhangliao",
+      "name": "张辽",
+      "aliases": [],
+      "profile": "曹魏五子良将之首，原为吕布部将，逍遥津威震江东。"
+    },
+    {
+      "id": "xuhuang",
+      "name": "徐晃",
+      "aliases": [],
+      "profile": "曹魏五子良将之一，原杨奉部将，长驱直入。"
+    },
+    {
+      "id": "zhanghe",
+      "name": "张郃",
+      "aliases": [],
+      "profile": "曹魏五子良将之一，原袁绍部将，屡建战功。"
+    },
+    {
+      "id": "yujin",
+      "name": "于禁",
+      "aliases": [],
+      "profile": "曹魏五子良将之一，治军严整。"
+    },
+    {
+      "id": "yuejin",
+      "name": "乐进",
+      "aliases": [],
+      "profile": "曹魏五子良将之一，以骁果著称。"
+    },
+    {
+      "id": "xuchu",
+      "name": "许褚",
+      "aliases": [],
+      "profile": "曹魏猛将，虎痴，曹操宿卫。"
+    },
+    {
+      "id": "dianwei",
+      "name": "典韦",
+      "aliases": [],
+      "profile": "曹魏猛将，宛城战死，古之恶来。"
+    },
+    {
+      "id": "jiaxu",
+      "name": "贾诩",
+      "aliases": [],
+      "profile": "曹魏谋士，计谋多端，先后效力李傕、张绣、曹操。"
+    },
+    {
+      "id": "xunyu",
+      "name": "荀彧",
+      "aliases": [],
+      "profile": "曹操首席谋士，王佐之才，居中持重。"
+    },
+    {
+      "id": "xunyou",
+      "name": "荀攸",
+      "aliases": [],
+      "profile": "曹操谋士，荀彧之侄，机变百出。"
+    },
+    {
+      "id": "chengyu",
+      "name": "程昱",
+      "aliases": [],
+      "profile": "曹魏谋士，刚毅多智。"
+    },
+    {
+      "id": "guojia",
+      "name": "郭嘉",
+      "aliases": [],
+      "profile": "曹魏谋士，天资奇才，十胜十败定北征。"
+    },
+    {
+      "id": "liuye",
+      "name": "刘晔",
+      "aliases": [],
+      "profile": "曹魏谋士，发明霹雳车，善出奇计。"
+    },
+    {
+      "id": "manchong",
+      "name": "满宠",
+      "aliases": [],
+      "profile": "曹魏谋士，精于法理。"
+    },
+    {
+      "id": "lvqian",
+      "name": "吕虔",
+      "aliases": [],
+      "profile": "曹魏将领，以忠勇闻。"
+    },
+    {
+      "id": "maojie",
+      "name": "毛玠",
+      "aliases": [],
+      "profile": "曹魏谋士，提倡屯田，廉洁公直。"
+    },
+    {
+      "id": "dongzhao",
+      "name": "董昭",
+      "aliases": [],
+      "profile": "曹魏谋士，劝曹操移驾许都。"
+    },
+    {
+      "id": "sunjian",
+      "name": "孙坚",
+      "aliases": [],
+      "profile": "江东猛虎，孙吴奠基者，勇烈过人，死于刘表军。"
+    },
+    {
+      "id": "sunce",
+      "name": "孙策",
+      "aliases": [],
+      "profile": "孙坚长子，小霸王，平定江东。"
+    },
+    {
+      "id": "sunquan",
+      "name": "孙权",
+      "aliases": [],
+      "profile": "孙坚次子，吴大帝，继承父兄基业，雄踞江东。"
+    },
+    {
+      "id": "zhouyu",
+      "name": "周瑜",
+      "aliases": [],
+      "profile": "东吴大都督，赤壁之战指挥官，儒将风范。"
+    },
+    {
+      "id": "lusu",
+      "name": "鲁肃",
+      "aliases": [],
+      "profile": "东吴名将，主张联刘抗曹，促成孙刘联盟。"
+    },
+    {
+      "id": "zhangzhao",
+      "name": "张昭",
+      "aliases": [],
+      "profile": "东吴重臣，孙策托孤内事不决问张昭。"
+    },
+    {
+      "id": "chengpu",
+      "name": "程普",
+      "aliases": [],
+      "profile": "东吴老将，历仕孙坚、孙策、孙权三代。"
+    },
+    {
+      "id": "huanggai",
+      "name": "黄盖",
+      "aliases": [],
+      "profile": "东吴老将，献苦肉计，火烧曹船。"
+    },
+    {
+      "id": "handang",
+      "name": "韩当",
+      "aliases": [],
+      "profile": "东吴将领，从孙坚起兵。"
+    },
+    {
+      "id": "ganning",
+      "name": "甘宁",
+      "aliases": [],
+      "profile": "东吴猛将，百骑劫曹营，锦帆贼之称。"
+    },
+    {
+      "id": "taishici",
+      "name": "太史慈",
+      "aliases": [],
+      "profile": "东吴猛将，曾与孙策酣斗神亭岭。"
+    },
+    {
+      "id": "lingtong",
+      "name": "凌统",
+      "aliases": [],
+      "profile": "东吴将领，凌操之子。"
+    },
+    {
+      "id": "lvmeng",
+      "name": "吕蒙",
+      "aliases": [],
+      "profile": "东吴将领，后接替鲁肃为都督，白衣渡江。"
+    },
+    {
+      "id": "zhanghong",
+      "name": "张纮",
+      "aliases": [],
+      "profile": "东吴谋士，与张昭并称二张。"
+    },
+    {
+      "id": "zhugejin",
+      "name": "诸葛瑾",
+      "aliases": [],
+      "profile": "诸葛亮之兄，东吴大臣。"
+    },
+    {
+      "id": "yuanshao",
+      "name": "袁绍",
+      "aliases": [],
+      "profile": "河北霸主，四世三公，官渡之战败于曹操。"
+    },
+    {
+      "id": "yuanshu",
+      "name": "袁术",
+      "aliases": [],
+      "profile": "袁绍之弟，僭称帝号，败亡。"
+    },
+    {
+      "id": "yuantan",
+      "name": "袁谭",
+      "aliases": [],
+      "profile": "袁绍长子，青州刺史。"
+    },
+    {
+      "id": "yuanxi",
+      "name": "袁熙",
+      "aliases": [],
+      "profile": "袁绍次子，幽州刺史。"
+    },
+    {
+      "id": "yuanshang",
+      "name": "袁尚",
+      "aliases": [],
+      "profile": "袁绍三子，冀州嗣主。"
+    },
+    {
+      "id": "dongzhuo",
+      "name": "董卓",
+      "aliases": [],
+      "profile": "西凉军阀，废立皇帝，迁都长安，暴虐无道。"
+    },
+    {
+      "id": "lvbu",
+      "name": "吕布",
+      "aliases": [],
+      "profile": "飞将，武艺无双，先后事丁原、董卓，反复无常。"
+    },
+    {
+      "id": "diaochan",
+      "name": "貂蝉",
+      "aliases": [],
+      "profile": "王允府中歌伎，连环计离间董卓吕布。"
+    },
+    {
+      "id": "wangyun",
+      "name": "王允",
+      "aliases": [],
+      "profile": "汉司徒，设连环计诛杀董卓。"
+    },
+    {
+      "id": "liru",
+      "name": "李儒",
+      "aliases": [],
+      "profile": "董卓女婿，首席谋士，多献毒计。"
+    },
+    {
+      "id": "lisu",
+      "name": "李肃",
+      "aliases": [],
+      "profile": "董卓部将，说降吕布，后参与诛杀董卓。"
+    },
+    {
+      "id": "hanxiandi",
+      "name": "汉献帝",
+      "aliases": [
+        "刘协",
+        "陈留王",
+        "献帝"
+      ],
+      "profile": "东汉末代皇帝，先被董卓废立，后被曹操挟持。"
+    },
+    {
+      "id": "shaodi",
+      "name": "少帝刘辩",
+      "aliases": [
+        "皇子辩",
+        "少帝"
+      ],
+      "profile": "汉灵帝之子，被董卓废为弘农王。"
+    },
+    {
+      "id": "hejin",
+      "name": "何进",
+      "aliases": [],
+      "profile": "大将军，诛宦官失败被杀。"
+    },
+    {
+      "id": "hetaihou",
+      "name": "何太后",
+      "aliases": [],
+      "profile": "汉灵帝皇后，何进之妹。"
+    },
+    {
+      "id": "dongtaihou",
+      "name": "董太后",
+      "aliases": [],
+      "profile": "汉灵帝之母，与何太后争权。"
+    },
+    {
+      "id": "zhangrang",
+      "name": "张让",
+      "aliases": [],
+      "profile": "十常侍之首，宦官首恶。"
+    },
+    {
+      "id": "zhaozhong",
+      "name": "赵忠",
+      "aliases": [],
+      "profile": "十常侍之一，权宦。"
+    },
+    {
+      "id": "duangui",
+      "name": "段圭",
+      "aliases": [
+        "段珪"
+      ],
+      "profile": "十常侍之一，挟帝出逃。"
+    },
+    {
+      "id": "jianshuo",
+      "name": "蹇硕",
+      "aliases": [],
+      "profile": "宦官，西园八校尉之首，欲杀何进。"
+    },
+    {
+      "id": "luzhi",
+      "name": "卢植",
+      "aliases": [],
+      "profile": "汉末名将，刘备之师，刚直不阿。"
+    },
+    {
+      "id": "huangfusong",
+      "name": "皇甫嵩",
+      "aliases": [],
+      "profile": "汉末名将，讨黄巾主帅。"
+    },
+    {
+      "id": "zhujun",
+      "name": "朱儁",
+      "aliases": [
+        "朱俊",
+        "朱隽"
+      ],
+      "profile": "汉末名将，讨黄巾功臣。"
+    },
+    {
+      "id": "gongsunzan",
+      "name": "公孙瓒",
+      "aliases": [],
+      "profile": "北平太守，刘备同门，白马将军，后败于袁绍。"
+    },
+    {
+      "id": "liubiao",
+      "name": "刘表",
+      "aliases": [],
+      "profile": "荆州牧，坐拥荆襄，无大志的守户之犬。"
+    },
+    {
+      "id": "taoqian",
+      "name": "陶谦",
+      "aliases": [],
+      "profile": "徐州牧，三让徐州于刘备。"
+    },
+    {
+      "id": "kongrong",
+      "name": "孔融",
+      "aliases": [],
+      "profile": "北海太守，孔子之后，后被曹操所杀。"
+    },
+    {
+      "id": "mateng",
+      "name": "马腾",
+      "aliases": [],
+      "profile": "西凉太守，马超之父，参与衣带诏。"
+    },
+    {
+      "id": "hansui",
+      "name": "韩遂",
+      "aliases": [],
+      "profile": "西凉军阀，与马腾结义。"
+    },
+    {
+      "id": "zhangxiu",
+      "name": "张绣",
+      "aliases": [],
+      "profile": "张济之侄，屯兵宛城，降曹复叛，后再次降曹。"
+    },
+    {
+      "id": "liuyan",
+      "name": "刘焉",
+      "aliases": [],
+      "profile": "幽州太守，刘备起兵时的上官。"
+    },
+    {
+      "id": "liuyu",
+      "name": "刘虞",
+      "aliases": [],
+      "profile": "汉宗室，幽州牧，被公孙瓒杀害。"
+    },
+    {
+      "id": "zhangjiao",
+      "name": "张角",
+      "aliases": [],
+      "profile": "黄巾起义领袖，太平道教主。"
+    },
+    {
+      "id": "zhangbao",
+      "name": "张宝",
+      "aliases": [],
+      "profile": "张角之弟，黄巾首领。"
+    },
+    {
+      "id": "zhangliang",
+      "name": "张梁",
+      "aliases": [],
+      "profile": "张角之弟，黄巾首领。"
+    },
+    {
+      "id": "chengong",
+      "name": "陈宫",
+      "aliases": [],
+      "profile": "吕布谋士，后拒绝降曹慷慨赴死。"
+    },
+    {
+      "id": "chendeng",
+      "name": "陈登",
+      "aliases": [],
+      "profile": "广陵太守，助曹操灭吕布，屡献奇谋。"
+    },
+    {
+      "id": "chengui",
+      "name": "陈珪",
+      "aliases": [],
+      "profile": "陈登之父，善谋略。"
+    },
+    {
+      "id": "zhangmiao",
+      "name": "张邈",
+      "aliases": [],
+      "profile": "陈留太守，叛曹迎吕布。"
+    },
+    {
+      "id": "xushu",
+      "name": "徐庶",
+      "aliases": [
+        "单福"
+      ],
+      "profile": "谋士，化名单福投刘备，后因孝道归曹操。"
+    },
+    {
+      "id": "simahui",
+      "name": "司马徽",
+      "aliases": [
+        "水镜先生"
+      ],
+      "profile": "隐士，推荐卧龙凤雏。"
+    },
+    {
+      "id": "cuizhouping",
+      "name": "崔州平",
+      "aliases": [],
+      "profile": "诸葛亮之友。"
+    },
+    {
+      "id": "shiguangyuan",
+      "name": "石广元",
+      "aliases": [],
+      "profile": "诸葛亮之友。"
+    },
+    {
+      "id": "menggongwei",
+      "name": "孟公威",
+      "aliases": [],
+      "profile": "诸葛亮之友。"
+    },
+    {
+      "id": "zhugejun",
+      "name": "诸葛均",
+      "aliases": [],
+      "profile": "诸葛亮之弟。"
+    },
+    {
+      "id": "huangchengyan",
+      "name": "黄承彦",
+      "aliases": [],
+      "profile": "诸葛亮岳父。"
+    },
+    {
+      "id": "liuqi",
+      "name": "刘琦",
+      "aliases": [],
+      "profile": "刘表长子，后守江夏。"
+    },
+    {
+      "id": "liucong",
+      "name": "刘琮",
+      "aliases": [],
+      "profile": "刘表次子，降曹操。"
+    },
+    {
+      "id": "caimao",
+      "name": "蔡瑁",
+      "aliases": [],
+      "profile": "刘表妻弟，荆州水军统领，主降派。"
+    },
+    {
+      "id": "kuaiyue",
+      "name": "蒯越",
+      "aliases": [],
+      "profile": "刘表谋士。"
+    },
+    {
+      "id": "kuailiang",
+      "name": "蒯良",
+      "aliases": [],
+      "profile": "刘表谋士。"
+    },
+    {
+      "id": "hanfu",
+      "name": "韩馥",
+      "aliases": [],
+      "profile": "冀州牧，后让冀州于袁绍。"
+    },
+    {
+      "id": "fengji",
+      "name": "逢纪",
+      "aliases": [],
+      "profile": "袁绍谋士，屡进谗言。"
+    },
+    {
+      "id": "shenpei",
+      "name": "审配",
+      "aliases": [],
+      "profile": "袁绍谋士，死守冀州城，刚烈。"
+    },
+    {
+      "id": "tianfeng",
+      "name": "田丰",
+      "aliases": [],
+      "profile": "袁绍谋士，多智而遭忌，被赐死。"
+    },
+    {
+      "id": "jushou",
+      "name": "沮授",
+      "aliases": [],
+      "profile": "袁绍谋士，屡献良策不被用，被俘不降死。"
+    },
+    {
+      "id": "guotu",
+      "name": "郭图",
+      "aliases": [],
+      "profile": "袁绍谋士，谗臣。"
+    },
+    {
+      "id": "xuyou",
+      "name": "许攸",
+      "aliases": [],
+      "profile": "袁绍谋士，降曹献计烧乌巢。"
+    },
+    {
+      "id": "xinping",
+      "name": "辛评",
+      "aliases": [],
+      "profile": "袁谭谋士。"
+    },
+    {
+      "id": "xinpi",
+      "name": "辛毗",
+      "aliases": [],
+      "profile": "袁谭谋士，后降曹。"
+    },
+    {
+      "id": "gaolan",
+      "name": "高览",
+      "aliases": [],
+      "profile": "袁绍部将，阵前降曹。"
+    },
+    {
+      "id": "yanliang",
+      "name": "颜良",
+      "aliases": [],
+      "profile": "袁绍大将，被关羽斩于白马。"
+    },
+    {
+      "id": "wenchou",
+      "name": "文丑",
+      "aliases": [],
+      "profile": "袁绍大将，被关羽斩于延津。"
+    },
+    {
+      "id": "chunyuqiong",
+      "name": "淳于琼",
+      "aliases": [],
+      "profile": "袁绍部将，守乌巢被劫。"
+    },
+    {
+      "id": "gaogan",
+      "name": "高干",
+      "aliases": [],
+      "profile": "袁绍外甥，并州刺史。"
+    },
+    {
+      "id": "lvkuang",
+      "name": "吕旷",
+      "aliases": [],
+      "profile": "袁绍部将，降曹。"
+    },
+    {
+      "id": "lvxiang",
+      "name": "吕翔",
+      "aliases": [],
+      "profile": "袁绍部将，降曹。"
+    },
+    {
+      "id": "lijue",
+      "name": "李傕",
+      "aliases": [
+        "李催"
+      ],
+      "profile": "董卓部将，后把持朝政。"
+    },
+    {
+      "id": "guosi",
+      "name": "郭汜",
+      "aliases": [
+        "郭泛"
+      ],
+      "profile": "董卓部将，与李傕内斗。"
+    },
+    {
+      "id": "zhangji",
+      "name": "张济",
+      "aliases": [],
+      "profile": "董卓部将，张绣之叔。"
+    },
+    {
+      "id": "fanchou",
+      "name": "樊稠",
+      "aliases": [],
+      "profile": "董卓部将。"
+    },
+    {
+      "id": "yangfeng",
+      "name": "杨奉",
+      "aliases": [],
+      "profile": "白波军将领，后降曹操。"
+    },
+    {
+      "id": "hanxian",
+      "name": "韩暹",
+      "aliases": [],
+      "profile": "白波军将领。"
+    },
+    {
+      "id": "dongcheng",
+      "name": "董承",
+      "aliases": [],
+      "profile": "国舅，衣带诏核心人物。"
+    },
+    {
+      "id": "wangzifu",
+      "name": "王子服",
+      "aliases": [],
+      "profile": "衣带诏参与者。"
+    },
+    {
+      "id": "jiping",
+      "name": "吉平",
+      "aliases": [],
+      "profile": "太医，谋毒曹操事败撞阶殉义。"
+    },
+    {
+      "id": "miheng",
+      "name": "祢衡",
+      "aliases": [],
+      "profile": "汉末名士，裸衣骂曹，后被黄祖所杀。"
+    },
+    {
+      "id": "chenlin",
+      "name": "陈琳",
+      "aliases": [],
+      "profile": "袁绍幕僚，作檄文讨曹操，后降曹。"
+    },
+    {
+      "id": "zhengxuan",
+      "name": "郑玄",
+      "aliases": [],
+      "profile": "汉末经学大师。"
+    },
+    {
+      "id": "zangba",
+      "name": "臧霸",
+      "aliases": [],
+      "profile": "吕布部将，后降曹，镇守青徐。"
+    },
+    {
+      "id": "houcheng",
+      "name": "侯成",
+      "aliases": [],
+      "profile": "吕布部将，盗赤兔马降曹。"
+    },
+    {
+      "id": "songxian",
+      "name": "宋宪",
+      "aliases": [],
+      "profile": "吕布部将，降曹。"
+    },
+    {
+      "id": "weixu",
+      "name": "魏续",
+      "aliases": [],
+      "profile": "吕布部将，降曹。"
+    },
+    {
+      "id": "haomeng",
+      "name": "郝萌",
+      "aliases": [],
+      "profile": "吕布部将。"
+    },
+    {
+      "id": "caoxing",
+      "name": "曹性",
+      "aliases": [],
+      "profile": "吕布部将，射伤夏侯惇一眼。"
+    },
+    {
+      "id": "chenglian",
+      "name": "成廉",
+      "aliases": [],
+      "profile": "吕布部将。"
+    },
+    {
+      "id": "gaoshun",
+      "name": "高顺",
+      "aliases": [],
+      "profile": "吕布部将，陷阵营统领，忠义。"
+    },
+    {
+      "id": "jiling",
+      "name": "纪灵",
+      "aliases": [],
+      "profile": "袁术大将。"
+    },
+    {
+      "id": "zhangxun",
+      "name": "张勋",
+      "aliases": [],
+      "profile": "袁术大将。"
+    },
+    {
+      "id": "qiaorui",
+      "name": "桥蕤",
+      "aliases": [],
+      "profile": "袁术大将。"
+    },
+    {
+      "id": "leibo",
+      "name": "雷薄",
+      "aliases": [],
+      "profile": "袁术部将。"
+    },
+    {
+      "id": "chenlan",
+      "name": "陈兰",
+      "aliases": [],
+      "profile": "袁术部将。"
+    },
+    {
+      "id": "huaxiong",
+      "name": "华雄",
+      "aliases": [],
+      "profile": "董卓部将，被关羽温酒斩之。"
+    },
+    {
+      "id": "huzhen",
+      "name": "胡轸",
+      "aliases": [],
+      "profile": "董卓部将。"
+    },
+    {
+      "id": "zhaocen",
+      "name": "赵岑",
+      "aliases": [],
+      "profile": "董卓部将，献汜水关。"
+    },
+    {
+      "id": "limeng",
+      "name": "李蒙",
+      "aliases": [],
+      "profile": "李傕部将。"
+    },
+    {
+      "id": "wangfang",
+      "name": "王方",
+      "aliases": [],
+      "profile": "李傕部将。"
+    },
+    {
+      "id": "niufu",
+      "name": "牛辅",
+      "aliases": [],
+      "profile": "董卓女婿。"
+    },
+    {
+      "id": "huchier",
+      "name": "胡赤儿",
+      "aliases": [],
+      "profile": "牛辅心腹。"
+    },
+    {
+      "id": "caiyong",
+      "name": "蔡邕",
+      "aliases": [],
+      "profile": "汉末名士，被王允所杀。"
+    },
+    {
+      "id": "zhangwen",
+      "name": "张温",
+      "aliases": [],
+      "profile": "汉司空，被董卓杀害。"
+    },
+    {
+      "id": "dingyuan",
+      "name": "丁原",
+      "aliases": [],
+      "profile": "并州刺史，吕布义父，被吕布杀害。"
+    },
+    {
+      "id": "liudai",
+      "name": "刘岱",
+      "aliases": [],
+      "profile": "兖州刺史，讨董诸侯。"
+    },
+    {
+      "id": "wangkuang",
+      "name": "王匡",
+      "aliases": [],
+      "profile": "河内太守，讨董诸侯。"
+    },
+    {
+      "id": "qiaomao",
+      "name": "乔瑁",
+      "aliases": [],
+      "profile": "东郡太守，讨董诸侯。"
+    },
+    {
+      "id": "baoxin",
+      "name": "鲍信",
+      "aliases": [],
+      "profile": "讨董诸侯，曹操部将。"
+    },
+    {
+      "id": "kongzhou",
+      "name": "孔伷",
+      "aliases": [],
+      "profile": "豫州刺史，讨董诸侯。"
+    },
+    {
+      "id": "zhangchao",
+      "name": "张超",
+      "aliases": [],
+      "profile": "广陵太守，讨董诸侯。"
+    },
+    {
+      "id": "yuanyi",
+      "name": "袁遗",
+      "aliases": [],
+      "profile": "山阳太守，讨董诸侯。"
+    },
+    {
+      "id": "zhangyang",
+      "name": "张杨",
+      "aliases": [
+        "张扬"
+      ],
+      "profile": "上党太守，讨董诸侯。"
+    },
+    {
+      "id": "maridi",
+      "name": "马日磾",
+      "aliases": [
+        "马日䃅"
+      ],
+      "profile": "汉末名臣。"
+    },
+    {
+      "id": "zhaoqi",
+      "name": "赵岐",
+      "aliases": [],
+      "profile": "汉使，劝和袁绍公孙瓒。"
+    },
+    {
+      "id": "yangang",
+      "name": "严纲",
+      "aliases": [],
+      "profile": "公孙瓒部将。"
+    },
+    {
+      "id": "tiankai",
+      "name": "田楷",
+      "aliases": [],
+      "profile": "公孙瓒部将。"
+    },
+    {
+      "id": "gongsunyue",
+      "name": "公孙越",
+      "aliases": [],
+      "profile": "公孙瓒之弟。"
+    },
+    {
+      "id": "guanchun",
+      "name": "关纯",
+      "aliases": [],
+      "profile": "韩馥部将。"
+    },
+    {
+      "id": "gengwu",
+      "name": "耿武",
+      "aliases": [],
+      "profile": "韩馥部将。"
+    },
+    {
+      "id": "yuanwei",
+      "name": "袁隗",
+      "aliases": [],
+      "profile": "袁绍叔父，太傅。"
+    },
+    {
+      "id": "zhoubi",
+      "name": "周毖",
+      "aliases": [],
+      "profile": "汉臣，被董卓杀。"
+    },
+    {
+      "id": "wuqiong",
+      "name": "伍琼",
+      "aliases": [],
+      "profile": "汉臣，被董卓杀。"
+    },
+    {
+      "id": "huangwan",
+      "name": "黄琬",
+      "aliases": [],
+      "profile": "汉司徒。"
+    },
+    {
+      "id": "xunshuang",
+      "name": "荀爽",
+      "aliases": [],
+      "profile": "汉司空。"
+    },
+    {
+      "id": "shisunrui",
+      "name": "士孙瑞",
+      "aliases": [],
+      "profile": "汉仆射，参与诛董卓。"
+    },
+    {
+      "id": "dingguan",
+      "name": "丁管",
+      "aliases": [],
+      "profile": "汉臣，怒击董卓。"
+    },
+    {
+      "id": "wufu",
+      "name": "伍孚",
+      "aliases": [],
+      "profile": "越骑校尉，刺董失败死。"
+    },
+    {
+      "id": "zhongfu",
+      "name": "种拂",
+      "aliases": [],
+      "profile": "汉臣，被李傕杀。"
+    },
+    {
+      "id": "lukui",
+      "name": "鲁馗",
+      "aliases": [],
+      "profile": "汉臣，被李傕杀。"
+    },
+    {
+      "id": "zhouhuan",
+      "name": "周奂",
+      "aliases": [],
+      "profile": "汉臣，死于国难。"
+    },
+    {
+      "id": "cuilie",
+      "name": "崔烈",
+      "aliases": [],
+      "profile": "汉臣，死于李傕之乱。"
+    },
+    {
+      "id": "wangqi",
+      "name": "王颀",
+      "aliases": [],
+      "profile": "汉臣。"
+    },
+    {
+      "id": "xurong",
+      "name": "徐荣",
+      "aliases": [],
+      "profile": "董卓部将，曾大败曹操。"
+    },
+    {
+      "id": "caosong",
+      "name": "曹嵩",
+      "aliases": [],
+      "profile": "曹操之父，被张闿劫杀。"
+    },
+    {
+      "id": "caobao",
+      "name": "曹豹",
+      "aliases": [],
+      "profile": "吕布岳父，守徐州。"
+    },
+    {
+      "id": "zhangkai",
+      "name": "张闿",
+      "aliases": [],
+      "profile": "陶谦部将，劫杀曹嵩。"
+    },
+    {
+      "id": "xuelan",
+      "name": "薛兰",
+      "aliases": [],
+      "profile": "吕布部将。"
+    },
+    {
+      "id": "lifeng",
+      "name": "李封",
+      "aliases": [],
+      "profile": "吕布部将。"
+    },
+    {
+      "id": "sunguan",
+      "name": "孙观",
+      "aliases": [],
+      "profile": "泰山贼，降吕布后降曹。"
+    },
+    {
+      "id": "wudun",
+      "name": "吴敦",
+      "aliases": [],
+      "profile": "泰山贼。"
+    },
+    {
+      "id": "yinli",
+      "name": "尹礼",
+      "aliases": [],
+      "profile": "泰山贼。"
+    },
+    {
+      "id": "changxi",
+      "name": "昌豨",
+      "aliases": [],
+      "profile": "泰山贼。"
+    },
+    {
+      "id": "chezhou",
+      "name": "车胄",
+      "aliases": [],
+      "profile": "曹操部将，守徐州，被关羽斩。"
+    },
+    {
+      "id": "ganfuren",
+      "name": "甘夫人",
+      "aliases": [],
+      "profile": "刘备之妻，刘禅生母。"
+    },
+    {
+      "id": "mifuren",
+      "name": "糜夫人",
+      "aliases": [
+        "麋夫人"
+      ],
+      "profile": "刘备之妻，糜竺之妹。"
+    },
+    {
+      "id": "jianyong",
+      "name": "简雍",
+      "aliases": [],
+      "profile": "刘备幕僚，擅言辞。"
+    },
+    {
+      "id": "mizhu",
+      "name": "糜竺",
+      "aliases": [
+        "麋竺"
+      ],
+      "profile": "刘备臣，屡次捐资助军。"
+    },
+    {
+      "id": "mifang",
+      "name": "糜芳",
+      "aliases": [
+        "麋芳"
+      ],
+      "profile": "糜竺之弟。"
+    },
+    {
+      "id": "sunqian",
+      "name": "孙乾",
+      "aliases": [
+        "孙干"
+      ],
+      "profile": "刘备幕僚，外交使者。"
+    },
+    {
+      "id": "chenzhen",
+      "name": "陈震",
+      "aliases": [],
+      "profile": "刘备使者。"
+    },
+    {
+      "id": "guanping",
+      "name": "关平",
+      "aliases": [],
+      "profile": "关羽义子。"
+    },
+    {
+      "id": "liufeng",
+      "name": "刘封",
+      "aliases": [
+        "寇封"
+      ],
+      "profile": "刘备义子，原名寇封。"
+    },
+    {
+      "id": "liumi",
+      "name": "刘泌",
+      "aliases": [],
+      "profile": "刘封之舅。"
+    },
+    {
+      "id": "zhoucang",
+      "name": "周仓",
+      "aliases": [],
+      "profile": "关羽部将，黄巾余党。"
+    },
+    {
+      "id": "liaohua",
+      "name": "廖化",
+      "aliases": [],
+      "profile": "黄巾余党，后归关羽。"
+    },
+    {
+      "id": "peiyuanshao",
+      "name": "裴元绍",
+      "aliases": [],
+      "profile": "黄巾余党。"
+    },
+    {
+      "id": "guochang",
+      "name": "郭常",
+      "aliases": [],
+      "profile": "关羽途中遇到的老人。"
+    },
+    {
+      "id": "guochangzhi",
+      "name": "郭常之子",
+      "aliases": [],
+      "profile": "盗关羽马之人。"
+    },
+    {
+      "id": "huban",
+      "name": "胡班",
+      "aliases": [],
+      "profile": "荥阳太守王植部下，放关羽。"
+    },
+    {
+      "id": "pujing",
+      "name": "普净",
+      "aliases": [],
+      "profile": "镇国寺僧人，暗示关羽。"
+    },
+    {
+      "id": "kongxiu",
+      "name": "孔秀",
+      "aliases": [],
+      "profile": "东岭关守将。"
+    },
+    {
+      "id": "hanfu2",
+      "name": "韩福",
+      "aliases": [],
+      "profile": "洛阳太守。"
+    },
+    {
+      "id": "mengtan",
+      "name": "孟坦",
+      "aliases": [],
+      "profile": "韩福部将。"
+    },
+    {
+      "id": "bianxi",
+      "name": "卞喜",
+      "aliases": [],
+      "profile": "汜水关守将。"
+    },
+    {
+      "id": "wangzhi",
+      "name": "王植",
+      "aliases": [],
+      "profile": "荥阳太守。"
+    },
+    {
+      "id": "liuyan2",
+      "name": "刘延",
+      "aliases": [],
+      "profile": "滑州太守。"
+    },
+    {
+      "id": "qinqi",
+      "name": "秦琪",
+      "aliases": [],
+      "profile": "夏侯惇部将，黄河渡口守将。"
+    },
+    {
+      "id": "caiyang",
+      "name": "蔡阳",
+      "aliases": [],
+      "profile": "曹操部将，被关羽所斩。"
+    },
+    {
+      "id": "liupi",
+      "name": "刘辟",
+      "aliases": [],
+      "profile": "黄巾余党，后归刘备。"
+    },
+    {
+      "id": "gongdu",
+      "name": "龚都",
+      "aliases": [],
+      "profile": "黄巾余党，归刘备。"
+    },
+    {
+      "id": "fuhuanghou",
+      "name": "伏皇后",
+      "aliases": [],
+      "profile": "汉献帝皇后。"
+    },
+    {
+      "id": "fuwan",
+      "name": "伏完",
+      "aliases": [],
+      "profile": "伏皇后之父。"
+    },
+    {
+      "id": "dongguifei",
+      "name": "董贵妃",
+      "aliases": [],
+      "profile": "董承之妹，献帝妃。"
+    },
+    {
+      "id": "yangbiao",
+      "name": "杨彪",
+      "aliases": [],
+      "profile": "汉太尉。"
+    },
+    {
+      "id": "zhaoyan",
+      "name": "赵彦",
+      "aliases": [],
+      "profile": "汉议郎，被曹操杀。"
+    },
+    {
+      "id": "wuzilan",
+      "name": "吴子兰",
+      "aliases": [],
+      "profile": "衣带诏参与者。"
+    },
+    {
+      "id": "zhongji",
+      "name": "种辑",
+      "aliases": [],
+      "profile": "衣带诏参与者。"
+    },
+    {
+      "id": "wushuo",
+      "name": "吴硕",
+      "aliases": [],
+      "profile": "衣带诏参与者。"
+    },
+    {
+      "id": "qinqingtong",
+      "name": "秦庆童",
+      "aliases": [],
+      "profile": "董承家奴，告密。"
+    },
+    {
+      "id": "xugong",
+      "name": "许贡",
+      "aliases": [],
+      "profile": "吴郡太守，被杀，其客刺孙策。"
+    },
+    {
+      "id": "yuji",
+      "name": "于吉",
+      "aliases": [],
+      "profile": "道士，被孙策所杀。"
+    },
+    {
+      "id": "wufuren",
+      "name": "吴夫人",
+      "aliases": [
+        "吴太夫人"
+      ],
+      "profile": "孙坚之妻，孙权之母。"
+    },
+    {
+      "id": "qiaofuren",
+      "name": "乔夫人",
+      "aliases": [],
+      "profile": "孙策之妻大乔。"
+    },
+    {
+      "id": "sunjing",
+      "name": "孙静",
+      "aliases": [],
+      "profile": "孙坚之弟。"
+    },
+    {
+      "id": "liuwan",
+      "name": "刘琬",
+      "aliases": [],
+      "profile": "汉使，预言孙权。"
+    },
+    {
+      "id": "yufan",
+      "name": "虞翻",
+      "aliases": [],
+      "profile": "东吴谋士。"
+    },
+    {
+      "id": "huaxin",
+      "name": "华歆",
+      "aliases": [],
+      "profile": "东吴使者，后投曹。"
+    },
+    {
+      "id": "lvfan",
+      "name": "吕范",
+      "aliases": [],
+      "profile": "东吴官员。"
+    },
+    {
+      "id": "guyong",
+      "name": "顾雍",
+      "aliases": [],
+      "profile": "东吴重臣。"
+    },
+    {
+      "id": "huatuo",
+      "name": "华佗",
+      "aliases": [],
+      "profile": "神医。"
+    },
+    {
+      "id": "lingcao",
+      "name": "凌操",
+      "aliases": [],
+      "profile": "凌统之父，被甘宁射杀。"
+    },
+    {
+      "id": "dongshi",
+      "name": "董袭",
+      "aliases": [],
+      "profile": "东吴将领。"
+    },
+    {
+      "id": "chenjiu",
+      "name": "陈就",
+      "aliases": [],
+      "profile": "黄祖部将。"
+    },
+    {
+      "id": "denglong",
+      "name": "邓龙",
+      "aliases": [],
+      "profile": "黄祖部将。"
+    },
+    {
+      "id": "sufei",
+      "name": "苏飞",
+      "aliases": [],
+      "profile": "黄祖部将，后降吴。"
+    },
+    {
+      "id": "panzhang",
+      "name": "潘璋",
+      "aliases": [],
+      "profile": "东吴将领。"
+    },
+    {
+      "id": "sunyi",
+      "name": "孙翊",
+      "aliases": [],
+      "profile": "孙坚之子，孙权之弟。"
+    },
+    {
+      "id": "xushi",
+      "name": "徐氏",
+      "aliases": [],
+      "profile": "孙翊之妻，为夫报仇。"
+    },
+    {
+      "id": "guilan",
+      "name": "妫览",
+      "aliases": [],
+      "profile": "杀孙翊的叛将。"
+    },
+    {
+      "id": "daiyuan",
+      "name": "戴员",
+      "aliases": [],
+      "profile": "杀孙翊的叛将。"
+    },
+    {
+      "id": "bianhong",
+      "name": "边洪",
+      "aliases": [],
+      "profile": "妫览手下。"
+    },
+    {
+      "id": "sungao",
+      "name": "孙高",
+      "aliases": [],
+      "profile": "孙翊家将。"
+    },
+    {
+      "id": "fuying",
+      "name": "傅婴",
+      "aliases": [],
+      "profile": "孙翊家将，助徐氏报仇。"
+    },
+    {
+      "id": "sunkuang",
+      "name": "孙匡",
+      "aliases": [],
+      "profile": "孙坚之子。"
+    },
+    {
+      "id": "sunlang",
+      "name": "孙朗",
+      "aliases": [],
+      "profile": "孙坚庶子。"
+    },
+    {
+      "id": "sunren",
+      "name": "孙仁",
+      "aliases": [],
+      "profile": "孙坚之女，后为刘备之妻孙尚香。"
+    },
+    {
+      "id": "zhanghu",
+      "name": "张虎",
+      "aliases": [],
+      "profile": "江夏贼。"
+    },
+    {
+      "id": "chensheng",
+      "name": "陈生",
+      "aliases": [],
+      "profile": "江夏贼。"
+    },
+    {
+      "id": "lvgong",
+      "name": "吕公",
+      "aliases": [],
+      "profile": "刘表部将，射杀孙坚。"
+    },
+    {
+      "id": "huankai",
+      "name": "桓楷",
+      "aliases": [],
+      "profile": "孙坚谋士。"
+    },
+    {
+      "id": "wangcan",
+      "name": "王粲",
+      "aliases": [],
+      "profile": "文学家，劝刘琮降曹。"
+    },
+    {
+      "id": "fuxun",
+      "name": "傅巽",
+      "aliases": [],
+      "profile": "刘表谋士，主降。"
+    },
+    {
+      "id": "zhangyun",
+      "name": "张允",
+      "aliases": [],
+      "profile": "刘表部将，蔡瑁同党。"
+    },
+    {
+      "id": "songzhong",
+      "name": "宋忠",
+      "aliases": [],
+      "profile": "刘琮使者。"
+    },
+    {
+      "id": "ligui",
+      "name": "李珪",
+      "aliases": [],
+      "profile": "刘表幕官，反对降曹被杀。"
+    },
+    {
+      "id": "wangwei",
+      "name": "王威",
+      "aliases": [],
+      "profile": "刘琮部将，主战。"
+    },
+    {
+      "id": "wenpin",
+      "name": "文聘",
+      "aliases": [],
+      "profile": "刘表部将，后降曹成为名将。"
+    },
+    {
+      "id": "caihe",
+      "name": "蔡和",
+      "aliases": [],
+      "profile": "蔡瑁族弟。"
+    },
+    {
+      "id": "caizhong",
+      "name": "蔡中",
+      "aliases": [],
+      "profile": "蔡瑁族弟。"
+    },
+    {
+      "id": "caixun",
+      "name": "蔡勋",
+      "aliases": [],
+      "profile": "蔡瑁族弟。"
+    },
+    {
+      "id": "zhangwu",
+      "name": "张武",
+      "aliases": [],
+      "profile": "江夏叛贼。"
+    },
+    {
+      "id": "chensun",
+      "name": "陈孙",
+      "aliases": [],
+      "profile": "江夏叛贼。"
+    },
+    {
+      "id": "yiji",
+      "name": "伊籍",
+      "aliases": [],
+      "profile": "刘备幕僚，多次示警。"
+    },
+    {
+      "id": "jiangyiqu",
+      "name": "蒋义渠",
+      "aliases": [],
+      "profile": "袁绍部将。"
+    },
+    {
+      "id": "yuli",
+      "name": "狱吏",
+      "aliases": [],
+      "profile": "看守田丰的狱吏。"
+    },
+    {
+      "id": "liufuren",
+      "name": "刘夫人",
+      "aliases": [
+        "刘氏"
+      ],
+      "profile": "袁绍之妻。"
+    },
+    {
+      "id": "fulao",
+      "name": "父老",
+      "aliases": [],
+      "profile": "冀州传达天象的父老。"
+    },
+    {
+      "id": "yinkui",
+      "name": "殷馗",
+      "aliases": [],
+      "profile": "占星士。"
+    },
+    {
+      "id": "shihuan",
+      "name": "史涣",
+      "aliases": [],
+      "profile": "曹操部将。"
+    },
+    {
+      "id": "jiaochu",
+      "name": "焦触",
+      "aliases": [],
+      "profile": "袁熙部将，降曹。"
+    },
+    {
+      "id": "zhangnan",
+      "name": "张南",
+      "aliases": [],
+      "profile": "袁熙部将，降曹。"
+    },
+    {
+      "id": "wangxiu",
+      "name": "王修",
+      "aliases": [],
+      "profile": "袁谭别驾，忠义。"
+    },
+    {
+      "id": "hanheng",
+      "name": "韩珩",
+      "aliases": [],
+      "profile": "袁谭部将。"
+    },
+    {
+      "id": "wuhuanchu",
+      "name": "乌桓触",
+      "aliases": [],
+      "profile": "乌桓首领，降曹。"
+    },
+    {
+      "id": "tianchou",
+      "name": "田畴",
+      "aliases": [],
+      "profile": "向导，助曹操征乌桓。"
+    },
+    {
+      "id": "tadun",
+      "name": "蹋顿",
+      "aliases": [],
+      "profile": "乌桓单于。"
+    },
+    {
+      "id": "gongsunkang",
+      "name": "公孙康",
+      "aliases": [],
+      "profile": "辽东太守。"
+    },
+    {
+      "id": "gongsungong",
+      "name": "公孙恭",
+      "aliases": [],
+      "profile": "公孙康之弟。"
+    },
+    {
+      "id": "cuiyan",
+      "name": "崔琰",
+      "aliases": [],
+      "profile": "曹操谋士，容貌威严。"
+    },
+    {
+      "id": "zhenshi",
+      "name": "甄氏",
+      "aliases": [],
+      "profile": "袁熙之妻，后为曹丕之妻。"
+    },
+    {
+      "id": "caifuren",
+      "name": "蔡夫人",
+      "aliases": [],
+      "profile": "刘表继妻，蔡瑁之姐。"
+    },
+    {
+      "id": "hanhao",
+      "name": "韩浩",
+      "aliases": [],
+      "profile": "曹操部将。"
+    },
+    {
+      "id": "xiahoulan",
+      "name": "夏侯兰",
+      "aliases": [],
+      "profile": "曹操部将。"
+    },
+    {
+      "id": "xilv",
+      "name": "郗虑",
+      "aliases": [],
+      "profile": "曹操党羽，逮捕孔融。"
+    },
+    {
+      "id": "zhixi",
+      "name": "脂习",
+      "aliases": [],
+      "profile": "孔融好友，抚尸痛哭。"
+    },
+    {
+      "id": "caoang",
+      "name": "曹昂",
+      "aliases": [],
+      "profile": "曹操长子，战死宛城。"
+    },
+    {
+      "id": "caoanmin",
+      "name": "曹安民",
+      "aliases": [],
+      "profile": "曹操之侄。"
+    },
+    {
+      "id": "zoushi",
+      "name": "邹氏",
+      "aliases": [],
+      "profile": "张济之妻，曹操纳之。"
+    },
+    {
+      "id": "hucheer",
+      "name": "胡车儿",
+      "aliases": [],
+      "profile": "张绣部将，盗典韦戟。"
+    },
+    {
+      "id": "dianman",
+      "name": "典满",
+      "aliases": [],
+      "profile": "典韦之子。"
+    },
+    {
+      "id": "renjun",
+      "name": "任峻",
+      "aliases": [],
+      "profile": "曹操部将，典农中郎将。"
+    },
+    {
+      "id": "wanghou",
+      "name": "王垕",
+      "aliases": [],
+      "profile": "曹操粮官，被借头平怨。"
+    },
+    {
+      "id": "yanshi",
+      "name": "严氏",
+      "aliases": [],
+      "profile": "吕布之妻。"
+    },
+    {
+      "id": "hanyin",
+      "name": "韩胤",
+      "aliases": [],
+      "profile": "袁术使者。"
+    },
+    {
+      "id": "yanxiang",
+      "name": "阎象",
+      "aliases": [],
+      "profile": "袁术谋士。"
+    },
+    {
+      "id": "chenji",
+      "name": "陈纪",
+      "aliases": [],
+      "profile": "袁术部将。"
+    },
+    {
+      "id": "lifeng2",
+      "name": "李丰",
+      "aliases": [],
+      "profile": "袁术部将。"
+    },
+    {
+      "id": "lianggang",
+      "name": "梁刚",
+      "aliases": [],
+      "profile": "袁术部将。"
+    },
+    {
+      "id": "yuejiu",
+      "name": "乐就",
+      "aliases": [],
+      "profile": "袁术部将。"
+    },
+    {
+      "id": "zhangxian",
+      "name": "张先",
+      "aliases": [],
+      "profile": "张绣部将。"
+    },
+    {
+      "id": "leixu",
+      "name": "雷叙",
+      "aliases": [],
+      "profile": "张绣部将。"
+    },
+    {
+      "id": "duanwei",
+      "name": "段煨",
+      "aliases": [],
+      "profile": "汉将，杀李傕。"
+    },
+    {
+      "id": "wuxi",
+      "name": "伍习",
+      "aliases": [],
+      "profile": "杀郭汜的将领。"
+    },
+    {
+      "id": "litong",
+      "name": "李通",
+      "aliases": [],
+      "profile": "曹操部将。"
+    },
+    {
+      "id": "jiangqi",
+      "name": "蒋奇",
+      "aliases": [],
+      "profile": "袁绍部将。"
+    },
+    {
+      "id": "hanmeng",
+      "name": "韩猛",
+      "aliases": [],
+      "profile": "袁绍部将，押粮官。"
+    },
+    {
+      "id": "xinming",
+      "name": "辛明",
+      "aliases": [],
+      "profile": "袁绍部将。"
+    },
+    {
+      "id": "suiyuanjin",
+      "name": "眭元进",
+      "aliases": [],
+      "profile": "袁绍部将。"
+    },
+    {
+      "id": "zhaorui",
+      "name": "赵叡",
+      "aliases": [],
+      "profile": "袁绍部将。"
+    },
+    {
+      "id": "fengli",
+      "name": "冯礼",
+      "aliases": [],
+      "profile": "袁尚部将。"
+    },
+    {
+      "id": "lifu",
+      "name": "李孚",
+      "aliases": [],
+      "profile": "袁尚谋士。"
+    },
+    {
+      "id": "shenrong",
+      "name": "审荣",
+      "aliases": [],
+      "profile": "审配之侄，献冀州城门。"
+    },
+    {
+      "id": "mayan",
+      "name": "马延",
+      "aliases": [],
+      "profile": "袁绍部将。"
+    },
+    {
+      "id": "zhangyi",
+      "name": "张顗",
+      "aliases": [
+        "张𫖮"
+      ],
+      "profile": "袁绍部将。"
+    },
+    {
+      "id": "juhu",
+      "name": "沮鹄",
+      "aliases": [],
+      "profile": "沮授之子。"
+    },
+    {
+      "id": "yinkai",
+      "name": "尹楷",
+      "aliases": [],
+      "profile": "袁尚部将。"
+    },
+    {
+      "id": "cenbi",
+      "name": "岑璧",
+      "aliases": [],
+      "profile": "袁谭部将。"
+    },
+    {
+      "id": "nanhualaoxian",
+      "name": "南华老仙",
+      "aliases": [],
+      "profile": "授予张角天书的神仙。"
+    },
+    {
+      "id": "zuofeng",
+      "name": "左丰",
+      "aliases": [],
+      "profile": "黄门宦官，受贿陷害卢植。"
+    },
+    {
+      "id": "zoujing",
+      "name": "邹靖",
+      "aliases": [],
+      "profile": "刘焉部将，助刘备破黄巾。"
+    },
+    {
+      "id": "chengyuanzhi",
+      "name": "程远志",
+      "aliases": [],
+      "profile": "黄巾将领。"
+    },
+    {
+      "id": "dengmao",
+      "name": "邓茂",
+      "aliases": [],
+      "profile": "黄巾将领。"
+    },
+    {
+      "id": "gongjing",
+      "name": "龚景",
+      "aliases": [],
+      "profile": "青州太守。"
+    },
+    {
+      "id": "gaosheng",
+      "name": "高升",
+      "aliases": [],
+      "profile": "张宝副将。"
+    },
+    {
+      "id": "yanzheng",
+      "name": "严政",
+      "aliases": [],
+      "profile": "张宝部将，刺杀张宝。"
+    },
+    {
+      "id": "zhaohong",
+      "name": "赵弘",
+      "aliases": [],
+      "profile": "黄巾余党。"
+    },
+    {
+      "id": "hanzhong",
+      "name": "韩忠",
+      "aliases": [],
+      "profile": "黄巾余党。"
+    },
+    {
+      "id": "sunzhong",
+      "name": "孙仲",
+      "aliases": [],
+      "profile": "黄巾余党。"
+    },
+    {
+      "id": "zhangjun",
+      "name": "张钧",
+      "aliases": [],
+      "profile": "汉议郎，上奏为刘备请功。"
+    },
+    {
+      "id": "duyou",
+      "name": "督邮",
+      "aliases": [],
+      "profile": "安喜县督邮，索贿被张飞鞭打。"
+    },
+    {
+      "id": "liuhui",
+      "name": "刘恢",
+      "aliases": [],
+      "profile": "代州太守，收留刘备。"
+    },
+    {
+      "id": "liutao",
+      "name": "刘陶",
+      "aliases": [],
+      "profile": "汉谏议大夫，死谏十常侍。"
+    },
+    {
+      "id": "chendan",
+      "name": "陈耽",
+      "aliases": [],
+      "profile": "汉司徒，死谏被杀。"
+    },
+    {
+      "id": "ouxing",
+      "name": "区星",
+      "aliases": [],
+      "profile": "长沙贼，被孙坚平。"
+    },
+    {
+      "id": "zhangju",
+      "name": "张举",
+      "aliases": [],
+      "profile": "渔阳叛乱领袖。"
+    },
+    {
+      "id": "zhangchun",
+      "name": "张纯",
+      "aliases": [],
+      "profile": "渔阳叛乱领袖。"
+    },
+    {
+      "id": "dongzhong",
+      "name": "董重",
+      "aliases": [],
+      "profile": "董太后之侄。"
+    },
+    {
+      "id": "hemiao",
+      "name": "何苗",
+      "aliases": [],
+      "profile": "何进之弟。"
+    },
+    {
+      "id": "wuyangjun",
+      "name": "舞阳君",
+      "aliases": [],
+      "profile": "何进之母。"
+    },
+    {
+      "id": "panyin",
+      "name": "潘隐",
+      "aliases": [],
+      "profile": "何进亲信。"
+    },
+    {
+      "id": "guosheng",
+      "name": "郭胜",
+      "aliases": [],
+      "profile": "宦官，十常侍之一。"
+    },
+    {
+      "id": "dongmin",
+      "name": "董旻",
+      "aliases": [],
+      "profile": "董卓之弟。"
+    },
+    {
+      "id": "zhengtai",
+      "name": "郑泰",
+      "aliases": [],
+      "profile": "汉臣，反对召董卓入京。"
+    },
+    {
+      "id": "pengbo",
+      "name": "彭伯",
+      "aliases": [],
+      "profile": "汉臣。"
+    },
+    {
+      "id": "mingong",
+      "name": "闵贡",
+      "aliases": [],
+      "profile": "汉臣，护驾。"
+    },
+    {
+      "id": "cuiyi",
+      "name": "崔毅",
+      "aliases": [],
+      "profile": "崔毅庄收留少帝与陈留王。"
+    },
+    {
+      "id": "zhaomeng",
+      "name": "赵萌",
+      "aliases": [],
+      "profile": "汉官。"
+    },
+    {
+      "id": "weihong",
+      "name": "卫弘",
+      "aliases": [],
+      "profile": "资助曹操起兵。"
+    },
+    {
+      "id": "baozhong",
+      "name": "鲍忠",
+      "aliases": [],
+      "profile": "鲍信之弟，被华雄斩。"
+    },
+    {
+      "id": "yushe",
+      "name": "俞涉",
+      "aliases": [],
+      "profile": "袁术部将，被华雄斩。"
+    },
+    {
+      "id": "panfeng",
+      "name": "潘凤",
+      "aliases": [],
+      "profile": "韩馥部将，被华雄斩。"
+    },
+    {
+      "id": "fangyue",
+      "name": "方悦",
+      "aliases": [],
+      "profile": "王匡部将，被吕布斩。"
+    },
+    {
+      "id": "mushun",
+      "name": "穆顺",
+      "aliases": [],
+      "profile": "张杨部将，被吕布斩。"
+    },
+    {
+      "id": "wuanguo",
+      "name": "武安国",
+      "aliases": [],
+      "profile": "孔融部将，被吕布断腕。"
+    },
+    {
+      "id": "zongbao",
+      "name": "宗宝",
+      "aliases": [],
+      "profile": "孔融部将，被管亥斩。"
+    },
+    {
+      "id": "guanhai",
+      "name": "管亥",
+      "aliases": [],
+      "profile": "黄巾贼首，围北海。"
+    },
+    {
+      "id": "tianshi",
+      "name": "田氏",
+      "aliases": [],
+      "profile": "濮阳富户，助曹操破吕布。"
+    },
+    {
+      "id": "heyi",
+      "name": "何仪",
+      "aliases": [],
+      "profile": "黄巾余党。"
+    },
+    {
+      "id": "huangshao",
+      "name": "黄劭",
+      "aliases": [],
+      "profile": "黄巾余党。"
+    },
+    {
+      "id": "heman",
+      "name": "何曼",
+      "aliases": [],
+      "profile": "黄巾余党。"
+    },
+    {
+      "id": "xusi",
+      "name": "许汜",
+      "aliases": [],
+      "profile": "吕布谋士。"
+    },
+    {
+      "id": "wangkai",
+      "name": "王楷",
+      "aliases": [],
+      "profile": "吕布谋士。"
+    },
+    {
+      "id": "guosiqi",
+      "name": "郭汜妻",
+      "aliases": [],
+      "profile": "郭汜之妻，被杨彪使反间计。"
+    },
+    {
+      "id": "yangbiaoqi",
+      "name": "杨彪妻",
+      "aliases": [],
+      "profile": "杨彪之妻。"
+    },
+    {
+      "id": "lixian",
+      "name": "李暹",
+      "aliases": [],
+      "profile": "李傕之侄。"
+    },
+    {
+      "id": "zuoling",
+      "name": "左灵",
+      "aliases": [],
+      "profile": "李傕所派使者。"
+    },
+    {
+      "id": "yangqi",
+      "name": "杨琦",
+      "aliases": [],
+      "profile": "汉臣。"
+    },
+    {
+      "id": "huangfuli",
+      "name": "皇甫郦",
+      "aliases": [],
+      "profile": "皇甫嵩之子。"
+    },
+    {
+      "id": "songguo",
+      "name": "宋果",
+      "aliases": [],
+      "profile": "杨奉部下，欲杀杨奉事泄。"
+    },
+    {
+      "id": "cuiyong",
+      "name": "崔勇",
+      "aliases": [],
+      "profile": "郭汜部将。"
+    },
+    {
+      "id": "lile",
+      "name": "李乐",
+      "aliases": [],
+      "profile": "白波军。"
+    },
+    {
+      "id": "hucai",
+      "name": "胡才",
+      "aliases": [],
+      "profile": "白波军。"
+    },
+    {
+      "id": "fude",
+      "name": "伏德",
+      "aliases": [],
+      "profile": "伏皇后之兄。"
+    },
+    {
+      "id": "shanghong",
+      "name": "尚弘",
+      "aliases": [],
+      "profile": "汉臣。"
+    },
+    {
+      "id": "hanrong",
+      "name": "韩融",
+      "aliases": [],
+      "profile": "汉太仆。"
+    },
+    {
+      "id": "wangyi",
+      "name": "王邑",
+      "aliases": [],
+      "profile": "河东太守。"
+    },
+    {
+      "id": "yangmi",
+      "name": "杨密",
+      "aliases": [],
+      "profile": "汉臣。"
+    },
+    {
+      "id": "humiao",
+      "name": "胡邈",
+      "aliases": [],
+      "profile": "汉臣。"
+    },
+    {
+      "id": "wangchang",
+      "name": "王昌",
+      "aliases": [],
+      "profile": "汉臣。"
+    },
+    {
+      "id": "wangzhong",
+      "name": "王忠",
+      "aliases": [],
+      "profile": "曹操部将，虚张声势攻徐州。"
+    },
+    {
+      "id": "yanbaihu",
+      "name": "严白虎",
+      "aliases": [],
+      "profile": "吴郡贼，被孙策消灭。"
+    },
+    {
+      "id": "liuyao",
+      "name": "刘繇",
+      "aliases": [],
+      "profile": "扬州刺史，被孙策击败。"
+    },
+    {
+      "id": "wanglang",
+      "name": "王朗",
+      "aliases": [],
+      "profile": "会稽太守，后为魏臣。"
+    },
+    {
+      "id": "wangze",
+      "name": "王则",
+      "aliases": [],
+      "profile": "曹操使者。"
+    },
+    {
+      "id": "yingshao",
+      "name": "应劭",
+      "aliases": [],
+      "profile": "泰山太守。"
+    },
+    {
+      "id": "bianrang",
+      "name": "边让",
+      "aliases": [],
+      "profile": "九江太守，被曹操所杀。"
+    },
+    {
+      "id": "tonger",
+      "name": "童儿",
+      "aliases": [],
+      "profile": "诸葛亮的书童。"
+    },
+    {
+      "id": "mutong",
+      "name": "牧童",
+      "aliases": [],
+      "profile": "南漳的牧童，为刘备引路。"
+    },
+    {
+      "id": "guanding",
+      "name": "关定",
+      "aliases": [],
+      "profile": "关羽同乡，收留二嫂。"
+    },
+    {
+      "id": "quyi",
+      "name": "曲义",
+      "aliases": [],
+      "profile": "袁绍部将，先登营。"
+    },
+    {
+      "id": "caojie",
+      "name": "曹节",
+      "aliases": [],
+      "profile": "十常侍之一。"
+    },
+    {
+      "id": "houan",
+      "name": "侯览",
+      "aliases": [],
+      "profile": "十常侍之一。"
+    },
+    {
+      "id": "chengkuang",
+      "name": "程旷",
+      "aliases": [],
+      "profile": "十常侍之一。"
+    },
+    {
+      "id": "xiayun",
+      "name": "夏恽",
+      "aliases": [],
+      "profile": "十常侍之一。"
+    },
+    {
+      "id": "tangfei",
+      "name": "唐妃",
+      "aliases": [],
+      "profile": "少帝刘辩之妃。"
+    },
+    {
+      "id": "cuiyong2",
+      "name": "崔勇",
+      "aliases": [],
+      "profile": "郭汜部将。"
+    }
+  ],
+  "locations": [
+    {
+      "id": "luoyang",
+      "name": "洛阳",
+      "aliases": [],
+      "profile": "东汉都城，董卓迁都长安前政治中心。"
+    },
+    {
+      "id": "changan",
+      "name": "长安",
+      "aliases": [],
+      "profile": "西汉旧都，董卓迁都于此。"
+    },
+    {
+      "id": "xuchang",
+      "name": "许昌",
+      "aliases": [
+        "许都"
+      ],
+      "profile": "汉献帝迁都于此，曹操挟天子令诸侯之地。"
+    },
+    {
+      "id": "yecheng",
+      "name": "邺城",
+      "aliases": [
+        "邺郡",
+        "邺"
+      ],
+      "profile": "冀州治所，袁绍、曹操先后据为基业。"
+    },
+    {
+      "id": "longzhong",
+      "name": "隆中",
+      "aliases": [
+        "卧龙冈"
+      ],
+      "profile": "诸葛亮隐居躬耕之地。"
+    },
+    {
+      "id": "wancheng",
+      "name": "宛城",
+      "aliases": [
+        "南阳"
+      ],
+      "profile": "南阳郡治，张绣屯兵之所，曹操征张绣处。"
+    },
+    {
+      "id": "xuzhou",
+      "name": "徐州",
+      "aliases": [],
+      "profile": "中原重镇，陶谦、刘备、吕布先后据有。"
+    },
+    {
+      "id": "xiapi",
+      "name": "下邳",
+      "aliases": [
+        "下邳城"
+      ],
+      "profile": "徐州要地，吕布困守并处决之地。"
+    },
+    {
+      "id": "xiaopei",
+      "name": "小沛",
+      "aliases": [],
+      "profile": "刘备曾屯驻的小城，屡为前沿。"
+    },
+    {
+      "id": "pingyuan",
+      "name": "平原",
+      "aliases": [],
+      "profile": "刘备曾任县令之地。"
+    },
+    {
+      "id": "jizhou",
+      "name": "冀州",
+      "aliases": [],
+      "profile": "河北大州，袁绍根据地。"
+    },
+    {
+      "id": "qingzhou",
+      "name": "青州",
+      "aliases": [],
+      "profile": "山东大州，曹操收青州兵之处。"
+    },
+    {
+      "id": "jingzhou",
+      "name": "荆州",
+      "aliases": [],
+      "profile": "汉末大州，刘表长期割据。"
+    },
+    {
+      "id": "jiangxia",
+      "name": "江夏",
+      "aliases": [],
+      "profile": "荆州东部要郡，黄祖、刘琦驻守。"
+    },
+    {
+      "id": "xiangyang",
+      "name": "襄阳",
+      "aliases": [],
+      "profile": "荆州治所，刘表首府。"
+    },
+    {
+      "id": "fancheng",
+      "name": "樊城",
+      "aliases": [],
+      "profile": "襄阳北岸重镇，关羽北伐围攻之地。"
+    },
+    {
+      "id": "xinye",
+      "name": "新野",
+      "aliases": [],
+      "profile": "刘备投刘表后驻守之地，诸葛亮出山首战。"
+    },
+    {
+      "id": "runan",
+      "name": "汝南",
+      "aliases": [],
+      "profile": "袁绍家族故地，刘备短暂栖身。"
+    },
+    {
+      "id": "guandu",
+      "name": "官渡",
+      "aliases": [],
+      "profile": "曹操与袁绍决战之地。"
+    },
+    {
+      "id": "baima",
+      "name": "白马",
+      "aliases": [],
+      "profile": "袁绍攻曹前沿，关羽斩颜良处。"
+    },
+    {
+      "id": "yanjin",
+      "name": "延津",
+      "aliases": [],
+      "profile": "黄河渡口，文丑被斩处。"
+    },
+    {
+      "id": "wuchao",
+      "name": "乌巢",
+      "aliases": [],
+      "profile": "袁绍屯粮之地，被曹操烧毁。"
+    },
+    {
+      "id": "liyang",
+      "name": "黎阳",
+      "aliases": [],
+      "profile": "袁曹相持的战场。"
+    },
+    {
+      "id": "cangting",
+      "name": "仓亭",
+      "aliases": [],
+      "profile": "曹操十面埋伏大破袁绍处。"
+    },
+    {
+      "id": "bailangshan",
+      "name": "白狼山",
+      "aliases": [],
+      "profile": "曹操远征乌桓决战地。"
+    },
+    {
+      "id": "liucheng",
+      "name": "柳城",
+      "aliases": [],
+      "profile": "乌桓巢穴。"
+    },
+    {
+      "id": "liaodong",
+      "name": "辽东",
+      "aliases": [],
+      "profile": "公孙康割据地。"
+    },
+    {
+      "id": "xiangping",
+      "name": "襄平",
+      "aliases": [],
+      "profile": "辽东郡治。"
+    },
+    {
+      "id": "yizhou",
+      "name": "易州",
+      "aliases": [],
+      "profile": "河北州郡，曹操班师驻马处。"
+    },
+    {
+      "id": "bingzhou",
+      "name": "并州",
+      "aliases": [],
+      "profile": "高干割据之地。"
+    },
+    {
+      "id": "youzhou",
+      "name": "幽州",
+      "aliases": [],
+      "profile": "汉末北方大州，刘虞、公孙瓒相争。"
+    },
+    {
+      "id": "meiwu",
+      "name": "郿坞",
+      "aliases": [],
+      "profile": "董卓所筑坞堡，屯粮草金银。"
+    },
+    {
+      "id": "fengyiting",
+      "name": "凤仪亭",
+      "aliases": [],
+      "profile": "董卓相府内亭，吕布貂蝉私会处。"
+    },
+    {
+      "id": "xiangfu_luoyang",
+      "name": "洛阳相府",
+      "aliases": [],
+      "profile": "董卓在洛阳的府邸，曹操刺董之处。"
+    },
+    {
+      "id": "xiangfu_changan",
+      "name": "长安相府",
+      "aliases": [],
+      "profile": "董卓在长安的府邸，连环计核心场所。"
+    },
+    {
+      "id": "sishuiguan",
+      "name": "汜水关",
+      "aliases": [],
+      "profile": "洛阳东面险关，温酒斩华雄处。"
+    },
+    {
+      "id": "hulaoguan",
+      "name": "虎牢关",
+      "aliases": [],
+      "profile": "洛阳东方雄关，三英战吕布处。"
+    },
+    {
+      "id": "bowangpo",
+      "name": "博望坡",
+      "aliases": [],
+      "profile": "诸葛亮初用兵火烧夏侯惇处。"
+    },
+    {
+      "id": "tanxi",
+      "name": "檀溪",
+      "aliases": [],
+      "profile": "襄阳城外溪水，的卢跃马处。"
+    },
+    {
+      "id": "huanghedukou",
+      "name": "黄河渡口",
+      "aliases": [],
+      "profile": "关羽千里走单骑过五关斩六将之末。"
+    },
+    {
+      "id": "beihai",
+      "name": "北海",
+      "aliases": [],
+      "profile": "孔融为太守，黄巾围城处。"
+    },
+    {
+      "id": "puyang",
+      "name": "濮阳",
+      "aliases": [],
+      "profile": "曹操与吕布反复争夺之地。"
+    },
+    {
+      "id": "shouchun",
+      "name": "寿春",
+      "aliases": [],
+      "profile": "袁术称帝的都城。"
+    },
+    {
+      "id": "julu",
+      "name": "巨鹿郡",
+      "aliases": [],
+      "profile": "黄巾起义发源地。"
+    },
+    {
+      "id": "zhuoxian",
+      "name": "涿县",
+      "aliases": [],
+      "profile": "刘备、关羽、张飞的故乡。"
+    },
+    {
+      "id": "taoyuan",
+      "name": "桃园",
+      "aliases": [],
+      "profile": "刘关张结义的地方。"
+    },
+    {
+      "id": "guangzong",
+      "name": "广宗",
+      "aliases": [],
+      "profile": "卢植讨张角战场。"
+    },
+    {
+      "id": "yingchuan",
+      "name": "颍川",
+      "aliases": [],
+      "profile": "黄巾战场，曹操家乡所在。"
+    },
+    {
+      "id": "dayangshan",
+      "name": "大兴山",
+      "aliases": [],
+      "profile": "刘备初战黄巾处。"
+    },
+    {
+      "id": "changshe",
+      "name": "长社",
+      "aliases": [],
+      "profile": "皇甫嵩朱儁破黄巾处。"
+    },
+    {
+      "id": "wujunfuchun",
+      "name": "吴郡富春",
+      "aliases": [],
+      "profile": "孙坚的家乡。"
+    },
+    {
+      "id": "shayang",
+      "name": "山阳",
+      "aliases": [],
+      "profile": "曹操迎击吕布的地区。"
+    },
+    {
+      "id": "yingyang",
+      "name": "荥阳",
+      "aliases": [],
+      "profile": "曹操追击董卓遇伏兵败处。"
+    },
+    {
+      "id": "mangdangshan",
+      "name": "芒砀山",
+      "aliases": [],
+      "profile": "张飞败后落草处。"
+    },
+    {
+      "id": "tushan",
+      "name": "土山",
+      "aliases": [],
+      "profile": "关羽兵败被围，约三事处。"
+    },
+    {
+      "id": "gucheng",
+      "name": "古城",
+      "aliases": [],
+      "profile": "刘关张失散重聚处。"
+    },
+    {
+      "id": "donglingguan",
+      "name": "东岭关",
+      "aliases": [],
+      "profile": "关羽千里走单骑第一关。"
+    },
+    {
+      "id": "zhenguosi",
+      "name": "镇国寺",
+      "aliases": [],
+      "profile": "关羽过关斩卞喜处。"
+    },
+    {
+      "id": "hua_zhou",
+      "name": "滑州",
+      "aliases": [],
+      "profile": "关羽渡过黄河前最后一站。"
+    },
+    {
+      "id": "beimanyshan",
+      "name": "北邙山",
+      "aliases": [],
+      "profile": "洛阳北面山，少帝陈留王逃难处。"
+    },
+    {
+      "id": "ganling",
+      "name": "官渡",
+      "aliases": [],
+      "profile": "曹操袁绍决战之地。"
+    },
+    {
+      "id": "yangwu",
+      "name": "阳武",
+      "aliases": [],
+      "profile": "官渡前线。"
+    },
+    {
+      "id": "suoyang",
+      "name": "酸枣",
+      "aliases": [],
+      "profile": "讨董诸侯会盟处。"
+    },
+    {
+      "id": "hanguo",
+      "name": "汉江",
+      "aliases": [],
+      "profile": "刘备兵败投刘表途经。"
+    },
+    {
+      "id": "raoshan",
+      "name": "穰山",
+      "aliases": [],
+      "profile": "刘备被曹操击败处。"
+    },
+    {
+      "id": "luoshenkou",
+      "name": "罗川口",
+      "aliases": [],
+      "profile": "东吴水寨。"
+    },
+    {
+      "id": "chaishu",
+      "name": "柴桑",
+      "aliases": [],
+      "profile": "孙权屯兵处。"
+    },
+    {
+      "id": "ouxhu",
+      "name": "鄱阳湖",
+      "aliases": [],
+      "profile": "东吴水军基地。"
+    },
+    {
+      "id": "wuhui",
+      "name": "吴会",
+      "aliases": [],
+      "profile": "吴郡与会稽，江东腹地。"
+    },
+    {
+      "id": "beihaigates",
+      "name": "北海",
+      "aliases": [],
+      "profile": "孔融任太守的郡。"
+    },
+    {
+      "id": "langya",
+      "name": "瑯琊",
+      "aliases": [],
+      "profile": "徐州地区。"
+    },
+    {
+      "id": "xiliang",
+      "name": "西凉",
+      "aliases": [],
+      "profile": "马腾、韩遂割据地。"
+    },
+    {
+      "id": "yuzhou",
+      "name": "豫州",
+      "aliases": [],
+      "profile": "中原大州。"
+    },
+    {
+      "id": "yanzhou",
+      "name": "兖州",
+      "aliases": [],
+      "profile": "曹操早期根据地。"
+    },
+    {
+      "id": "hedong",
+      "name": "河东",
+      "aliases": [],
+      "profile": "董卓家乡。"
+    },
+    {
+      "id": "jibei",
+      "name": "济北",
+      "aliases": [],
+      "profile": "鲍信辖区。"
+    },
+    {
+      "id": "changsha",
+      "name": "长沙",
+      "aliases": [],
+      "profile": "孙坚曾任太守之地。"
+    },
+    {
+      "id": "wutaiyuan",
+      "name": "五丈原",
+      "aliases": [],
+      "profile": "诸葛亮病逝之处。(未直接出场但提及)"
+    },
+    {
+      "id": "xuanwumen",
+      "name": "宣平门",
+      "aliases": [],
+      "profile": "长安城门。"
+    },
+    {
+      "id": "beiyemen",
+      "name": "北掖门",
+      "aliases": [],
+      "profile": "长安宫门，董卓被杀处。"
+    },
+    {
+      "id": "weiyangdian",
+      "name": "未央殿",
+      "aliases": [],
+      "profile": "长安皇宫正殿。"
+    },
+    {
+      "id": "jiadedian",
+      "name": "嘉德殿",
+      "aliases": [],
+      "profile": "洛阳皇宫大殿。"
+    },
+    {
+      "id": "yongangong",
+      "name": "永安宫",
+      "aliases": [],
+      "profile": "少帝被囚禁处。"
+    },
+    {
+      "id": "qingxuanmen",
+      "name": "青琐门",
+      "aliases": [],
+      "profile": "洛阳宫门，何进被杀处。"
+    },
+    {
+      "id": "changlegong",
+      "name": "长乐宫",
+      "aliases": [],
+      "profile": "洛阳皇宫。"
+    },
+    {
+      "id": "cuihuafang",
+      "name": "翠花楼",
+      "aliases": [],
+      "profile": "洛阳宫中楼台。"
+    },
+    {
+      "id": "beigong",
+      "name": "北宫",
+      "aliases": [],
+      "profile": "洛阳皇宫北部。"
+    },
+    {
+      "id": "wangyunfu",
+      "name": "王允府",
+      "aliases": [],
+      "profile": "王允宅邸，连环计策划处。"
+    },
+    {
+      "id": "dongjun",
+      "name": "东郡",
+      "aliases": [],
+      "profile": "曹操曾任太守之地。"
+    },
+    {
+      "id": "chenliu",
+      "name": "陈留",
+      "aliases": [],
+      "profile": "曹操起兵之地。"
+    },
+    {
+      "id": "yanjin2",
+      "name": "延津",
+      "aliases": [],
+      "profile": "黄河渡口，文丑被斩处。"
+    },
+    {
+      "id": "shuijingzhuang",
+      "name": "水镜庄",
+      "aliases": [],
+      "profile": "司马徽隐居处。"
+    },
+    {
+      "id": "xuanwuchi",
+      "name": "玄武池",
+      "aliases": [],
+      "profile": "曹操训练水军处。"
+    },
+    {
+      "id": "miankou",
+      "name": "沔口",
+      "aliases": [],
+      "profile": "汉水入江处，夏口附近。"
+    },
+    {
+      "id": "dankang",
+      "name": "丹阳",
+      "aliases": [],
+      "profile": "孙策借兵之地。"
+    },
+    {
+      "id": "yuzhang",
+      "name": "豫章",
+      "aliases": [],
+      "profile": "江东郡县。"
+    },
+    {
+      "id": "huainan",
+      "name": "淮南",
+      "aliases": [],
+      "profile": "袁术称帝的势力范围。"
+    },
+    {
+      "id": "shouchun2",
+      "name": "寿春",
+      "aliases": [],
+      "profile": "袁术都城。"
+    },
+    {
+      "id": "jiangdong",
+      "name": "江东",
+      "aliases": [],
+      "profile": "孙氏基业所在。"
+    },
+    {
+      "id": "jianye",
+      "name": "建业",
+      "aliases": [],
+      "profile": "东吴都城（后期）。未直接出现但背景。"
+    },
+    {
+      "id": "wujun",
+      "name": "吴郡",
+      "aliases": [],
+      "profile": "江东重镇。"
+    },
+    {
+      "id": "kuaiji",
+      "name": "会稽",
+      "aliases": [],
+      "profile": "王朗为太守，后被孙策攻取。"
+    },
+    {
+      "id": "loc_1",
+      "name": "曲阿",
+      "aliases": [
+        "qu'a"
+      ],
+      "profile": "刘繇驻地，孙策攻之。"
+    },
+    {
+      "id": "shentingling",
+      "name": "神亭岭",
+      "aliases": [],
+      "profile": "孙策与太史慈酣斗处。"
+    },
+    {
+      "id": "niuzhu",
+      "name": "牛渚",
+      "aliases": [],
+      "profile": "长江要津。"
+    },
+    {
+      "id": "moling",
+      "name": "秣陵",
+      "aliases": [],
+      "profile": "后改称建业。"
+    },
+    {
+      "id": "bahe",
+      "name": "白河",
+      "aliases": [],
+      "profile": "博陵渡口附近，设伏水淹曹军处。"
+    },
+    {
+      "id": "bolingdukou",
+      "name": "博陵渡口",
+      "aliases": [],
+      "profile": "诸葛亮火烧新野后伏兵处。"
+    },
+    {
+      "id": "queweipo",
+      "name": "鹊尾坡",
+      "aliases": [],
+      "profile": "刘备携民渡江途经处。"
+    },
+    {
+      "id": "shanhou",
+      "name": "山后",
+      "aliases": [],
+      "profile": "张宝屯兵处。"
+    },
+    {
+      "id": "yangcheng",
+      "name": "阳城",
+      "aliases": [],
+      "profile": "孙坚攻董卓屯兵处。"
+    },
+    {
+      "id": "wulin",
+      "name": "吴郡富春",
+      "aliases": [],
+      "profile": "孙坚故乡。"
+    },
+    {
+      "id": "qiantang",
+      "name": "钱塘",
+      "aliases": [],
+      "profile": "吴郡县名。"
+    },
+    {
+      "id": "yandu",
+      "name": "盐渎",
+      "aliases": [],
+      "profile": "孙坚曾任县丞处。"
+    },
+    {
+      "id": "xuyi",
+      "name": "盱眙",
+      "aliases": [],
+      "profile": "徐州要地。"
+    },
+    {
+      "id": "anzhixian",
+      "name": "定州中山府安喜县",
+      "aliases": [],
+      "profile": "刘备任县尉处。"
+    },
+    {
+      "id": "guan_yi",
+      "name": "馆驿",
+      "aliases": [],
+      "profile": "安喜县馆驿，张飞鞭督邮处。"
+    },
+    {
+      "id": "daizhou",
+      "name": "代州",
+      "aliases": [],
+      "profile": "刘恢收留刘备处。"
+    },
+    {
+      "id": "yuyang",
+      "name": "渔阳",
+      "aliases": [],
+      "profile": "张举张纯叛乱地。"
+    },
+    {
+      "id": "hejian",
+      "name": "河间",
+      "aliases": [],
+      "profile": "郡名。"
+    },
+    {
+      "id": "wenling",
+      "name": "文陵",
+      "aliases": [],
+      "profile": "汉灵帝陵墓。"
+    },
+    {
+      "id": "mianchi",
+      "name": "渑池",
+      "aliases": [],
+      "profile": "董卓驻军处。"
+    },
+    {
+      "id": "cuimanzhuang",
+      "name": "崔毅庄",
+      "aliases": [],
+      "profile": "少帝与陈留王逃难借住处。"
+    },
+    {
+      "id": "wenmingyuan",
+      "name": "温明园",
+      "aliases": [],
+      "profile": "董卓宴请大臣议废立处。"
+    },
+    {
+      "id": "bohai",
+      "name": "渤海",
+      "aliases": [],
+      "profile": "袁绍出走任太守处。"
+    },
+    {
+      "id": "zhongmou",
+      "name": "中牟县",
+      "aliases": [],
+      "profile": "陈宫捉放曹操处。"
+    },
+    {
+      "id": "chenggao",
+      "name": "成皋",
+      "aliases": [],
+      "profile": "曹操杀吕伯奢处。"
+    },
+    {
+      "id": "yi_cheng",
+      "name": "沂都",
+      "aliases": [],
+      "profile": "袁术攻吕布经过处。"
+    },
+    {
+      "id": "jieshi",
+      "name": "碣石",
+      "aliases": [],
+      "profile": "渤海边地。"
+    },
+    {
+      "id": "junshan",
+      "name": "浚山",
+      "aliases": [],
+      "profile": "袁术军屯驻处。"
+    },
+    {
+      "id": "loc_2",
+      "name": "东阿",
+      "aliases": [
+        "dong'e"
+      ],
+      "profile": "曹操早期据点。"
+    },
+    {
+      "id": "juanzhou",
+      "name": "鄄城",
+      "aliases": [],
+      "profile": "曹操谋士保住的城池。"
+    },
+    {
+      "id": "fanzian",
+      "name": "范县",
+      "aliases": [],
+      "profile": "同上。"
+    },
+    {
+      "id": "tea_house",
+      "name": "茶馆",
+      "aliases": [],
+      "profile": "隐约出现地点。"
+    },
+    {
+      "id": "narrator",
+      "name": "Narrator/旁白",
+      "aliases": [],
+      "profile": "Reserved catch-all owner for scene-setting/narration fragments with no clear character or location owner."
+    },
+    {
+      "id": "nanpi",
+      "name": "南皮",
+      "aliases": [],
+      "profile": "渤海郡治所，袁绍败后病逝于此。"
+    },
+    {
+      "id": "xiakou",
+      "name": "夏口",
+      "aliases": [],
+      "profile": "江夏郡长江要塞，赤壁之战后刘备屯驻地。"
+    },
+    {
+      "id": "dingtao",
+      "name": "定陶",
+      "aliases": [],
+      "profile": "兖州济阴郡治，曹操与吕布反复争夺之地。"
+    },
+    {
+      "id": "liangdong",
+      "name": "梁东",
+      "aliases": [],
+      "profile": "梁县东部地区，孙坚与董卓军交战处。"
+    },
+    {
+      "id": "haiyu",
+      "name": "海隅",
+      "aliases": [],
+      "profile": "滨海偏远之地，人物逃亡或出兵途经处。"
+    },
+    {
+      "id": "jishan",
+      "name": "箕山",
+      "aliases": [],
+      "profile": "颍川名山，许由隐居地，亦为汉末隐逸象征。"
+    }
+  ],
+  "carriers": [
+    {
+      "id": "yidaizhao",
+      "name": "衣带诏",
+      "profile": "汉献帝咬破指尖所写的密诏，藏于玉带锦袍内赐董承，令诛曹操。"
+    },
+    {
+      "id": "caocaojiaozhao",
+      "name": "曹操矫诏",
+      "profile": "曹操假传皇帝诏书，号召天下诸侯讨伐董卓。"
+    },
+    {
+      "id": "chenlinxiwen",
+      "name": "陈琳檄文",
+      "profile": "袁绍命陈琳起草的讨曹檄文，文章犀利，曹操读后头风顿愈。"
+    },
+    {
+      "id": "guanyuliushu",
+      "name": "关羽留书",
+      "profile": "关羽挂印封金时留给曹操的告辞信，表明寻兄之志。"
+    },
+    {
+      "id": "xumuweishu",
+      "name": "徐母伪书",
+      "profile": "曹操伪造的徐庶母亲信件，骗取徐庶离开刘备。"
+    }
+  ]
+}

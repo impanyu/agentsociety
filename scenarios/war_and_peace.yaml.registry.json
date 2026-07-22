@@ -1,0 +1,808 @@
+{
+  "characters": [
+    {
+      "id": "anna_pavlovna_scherer",
+      "name": "Anna Pavlovna Scherer",
+      "aliases": [
+        "Anna Pávlovna",
+        "Anna Pávlovna Schérer",
+        "安娜·帕夫洛夫娜",
+        "安娜·帕夫洛夫娜·舍列尔"
+      ],
+      "profile": "女官，圣彼得堡社交圈的主持者"
+    },
+    {
+      "id": "vasili_kuragin",
+      "name": "Prince Vasili Kuragin",
+      "aliases": [
+        "Prince Vasíli",
+        "Prince Vasíli Kurágin",
+        "瓦西里公爵",
+        "瓦西里·库拉金公爵",
+        "Prince Vasíli Sergéevich"
+      ],
+      "profile": "库拉金家族家长，工于心计的公爵"
+    },
+    {
+      "id": "anatole_kuragin",
+      "name": "Anatole Kuragin",
+      "aliases": [
+        "Anatole",
+        "Anatole Kurágin",
+        "阿纳托利"
+      ],
+      "profile": "瓦西里公爵之子，浪荡公子"
+    },
+    {
+      "id": "hippolyte_kuragin",
+      "name": "Hippolyte Kuragin",
+      "aliases": [
+        "Prince Hippolyte",
+        "伊波利特",
+        "伊波利特公爵"
+      ],
+      "profile": "瓦西里公爵之子，社交界的丑角"
+    },
+    {
+      "id": "helene_kuragin",
+      "name": "Hélène Kuragin",
+      "aliases": [
+        "Princess Hélène",
+        "赫勒内",
+        "海伦"
+      ],
+      "profile": "瓦西里公爵之女，以美貌著称"
+    },
+    {
+      "id": "pierre_bezukhov",
+      "name": "Pierre Bezukhov",
+      "aliases": [
+        "Pierre",
+        "皮埃尔"
+      ],
+      "profile": "别祖霍夫伯爵的私生子，继承爵位和巨额财产"
+    },
+    {
+      "id": "andrew_bolkonsky",
+      "name": "Prince Andrew Bolkonsky",
+      "aliases": [
+        "Prince Andrew",
+        "Prince Andrew Bolkónski",
+        "安德烈公爵",
+        "安德烈·博尔孔斯基",
+        "Bolkónski"
+      ],
+      "profile": "博尔孔斯基老公爵之子，追求荣光的年轻军官"
+    },
+    {
+      "id": "lise_bolkonskaya",
+      "name": "Lisa Bolkonskaya",
+      "aliases": [
+        "Lise",
+        "Little Princess",
+        "小公爵夫人",
+        "the little princess",
+        "丽莎",
+        "小王妃",
+        "小公主"
+      ],
+      "profile": "安德烈公爵的妻子，怀孕的年轻妇人"
+    },
+    {
+      "id": "mary_bolkonskaya",
+      "name": "Princess Mary Bolkonskaya",
+      "aliases": [
+        "Princess Mary",
+        "玛丽亚公爵小姐",
+        "玛丽公主",
+        "玛丽亚"
+      ],
+      "profile": "博尔孔斯基老亲王之女，虔诚善良"
+    },
+    {
+      "id": "old_prince_bolkonsky",
+      "name": "Prince Nicholas Bolkonsky",
+      "aliases": [
+        "Prince Bolkónski",
+        "the old prince",
+        "老博尔孔斯基公爵",
+        "老公爵",
+        "Prince Nicholas Andreevich Bolkonski",
+        "老亲王"
+      ],
+      "profile": "退隐的将军，性格严苛的家长"
+    },
+    {
+      "id": "bourienne",
+      "name": "Mademoiselle Bourienne",
+      "aliases": [
+        "布里安小姐",
+        "布里安娜小姐"
+      ],
+      "profile": "玛丽亚公爵小姐的法国女伴"
+    },
+    {
+      "id": "tikhon",
+      "name": "Tikhon",
+      "aliases": [
+        "Tíkhon",
+        "吉洪"
+      ],
+      "profile": "博尔孔斯基家的老仆人"
+    },
+    {
+      "id": "michael_ivanovich",
+      "name": "Michael Ivanovich",
+      "aliases": [
+        "Michael Ivánovich",
+        "米哈伊尔·伊万诺维奇"
+      ],
+      "profile": "博尔孔斯基家的建筑师"
+    },
+    {
+      "id": "kutuzov",
+      "name": "Mikhail Kutuzov",
+      "aliases": [
+        "Kutúzov",
+        "General Kutúzov",
+        "库图佐夫将军"
+      ],
+      "profile": "俄军总司令"
+    },
+    {
+      "id": "bagration",
+      "name": "Prince Bagration",
+      "aliases": [
+        "Bagratión",
+        "Prince Bagratión",
+        "巴格拉季翁"
+      ],
+      "profile": "俄军前锋指挥官"
+    },
+    {
+      "id": "denisov",
+      "name": "Vasily Denisov",
+      "aliases": [
+        "Váska Denísov",
+        "Denísov",
+        "杰尼索夫"
+      ],
+      "profile": "骠骑连长，罗斯托夫的朋友"
+    },
+    {
+      "id": "nicholas_rostov",
+      "name": "Nicholas Rostov",
+      "aliases": [
+        "Nicholas Rostóv",
+        "Nikolai Rostóv",
+        "Nicholas",
+        "尼古拉·罗斯托夫",
+        "尼古拉",
+        "Rostóv"
+      ],
+      "profile": "罗斯托夫伯爵的长子，骠骑兵军官"
+    },
+    {
+      "id": "ilya_rostov",
+      "name": "Count Ilya Rostov",
+      "aliases": [
+        "Ilyá Rostóv",
+        "Count Rostov",
+        "罗斯托夫伯爵",
+        "老罗斯托夫伯爵",
+        "伯爵"
+      ],
+      "profile": "罗斯托夫家族家长，好客慷慨"
+    },
+    {
+      "id": "natalia_rostova",
+      "name": "Countess Natalia Rostova",
+      "aliases": [
+        "Countess Rostóva",
+        "Countess Rostova",
+        "罗斯托夫伯爵夫人",
+        "伯爵夫人",
+        "母亲"
+      ],
+      "profile": "罗斯托夫伯爵的妻子，娜塔莎的母亲"
+    },
+    {
+      "id": "natasha_rostova",
+      "name": "Natasha Rostova",
+      "aliases": [
+        "Natásha",
+        "娜塔莎"
+      ],
+      "profile": "罗斯托夫家的小女儿，活泼好动"
+    },
+    {
+      "id": "sonya",
+      "name": "Sonya",
+      "aliases": [
+        "Sónya",
+        "索尼娅"
+      ],
+      "profile": "罗斯托夫家的养女，尼古拉的恋人"
+    },
+    {
+      "id": "vera_rostova",
+      "name": "Vera Rostova",
+      "aliases": [
+        "Véra",
+        "薇拉"
+      ],
+      "profile": "罗斯托夫伯爵的长女，不受偏爱"
+    },
+    {
+      "id": "petya_rostov",
+      "name": "Petya Rostov",
+      "aliases": [
+        "Pétya",
+        "Petya Rostóv"
+      ],
+      "profile": "罗斯托夫伯爵的小儿子"
+    },
+    {
+      "id": "boris_drubetskoy",
+      "name": "Boris Drubetskoy",
+      "aliases": [
+        "Borís",
+        "鲍里斯"
+      ],
+      "profile": "安娜·米哈伊洛夫娜之子，野心勃勃的军官"
+    },
+    {
+      "id": "anna_mikhaylovna",
+      "name": "Princess Anna Mikhaylovna Drubetskaya",
+      "aliases": [
+        "Anna Mikháylovna",
+        "Princess Anna Mikháylovna",
+        "安娜·米哈伊洛夫娜"
+      ],
+      "profile": "贫困的公主，为儿子前程奔走"
+    },
+    {
+      "id": "julie_karagina",
+      "name": "Julie Karagina",
+      "aliases": [
+        "Julie Karágina",
+        "Julie",
+        "朱莉·卡拉金娜"
+      ],
+      "profile": "玛丽亚公爵小姐的朋友，社交名媛"
+    },
+    {
+      "id": "marya_dmitrievna",
+      "name": "Marya Dmitrievna Akhrosimova",
+      "aliases": [
+        "Márya Dmítrievna",
+        "玛丽亚·德米特里耶夫娜"
+      ],
+      "profile": "社交圈中以直率著称的贵妇"
+    },
+    {
+      "id": "dolokhov",
+      "name": "Fyodor Dolokhov",
+      "aliases": [
+        "Dólokhov",
+        "多洛霍夫"
+      ],
+      "profile": "骠骑兵军官，兼有英勇与放荡的性格"
+    },
+    {
+      "id": "zherkov",
+      "name": "Zherkov",
+      "aliases": [
+        "Zherkóv",
+        "热尔科夫"
+      ],
+      "profile": "骠骑兵军官，轻浮"
+    },
+    {
+      "id": "nesvitski",
+      "name": "Prince Nesvitski",
+      "aliases": [
+        "Nesvítski",
+        "涅斯维茨基"
+      ],
+      "profile": "俄军参谋军官"
+    },
+    {
+      "id": "tushin",
+      "name": "Captain Tushin",
+      "aliases": [
+        "Túshin",
+        "图申",
+        "炮兵上尉图申"
+      ],
+      "profile": "炮兵连长，朴实而英勇"
+    },
+    {
+      "id": "bilibin",
+      "name": "Bilibin",
+      "aliases": [
+        "Bilíbin",
+        "比利宾"
+      ],
+      "profile": "俄国外交官，机智多谋"
+    },
+    {
+      "id": "francis",
+      "name": "Emperor Francis I",
+      "aliases": [
+        "Emperor Francis",
+        "Franz",
+        "弗朗茨",
+        "奥地利皇帝"
+      ],
+      "profile": "奥地利皇帝"
+    },
+    {
+      "id": "napoleon",
+      "name": "Napoleon Bonaparte",
+      "aliases": [
+        "Napoleon",
+        "Bonaparte",
+        "拿破仑",
+        "波拿巴"
+      ],
+      "profile": "法兰西帝国皇帝"
+    },
+    {
+      "id": "murat",
+      "name": "Joachim Murat",
+      "aliases": [
+        "Murat",
+        "缪拉"
+      ],
+      "profile": "法国元帅"
+    },
+    {
+      "id": "lannes",
+      "name": "Jean Lannes",
+      "aliases": [
+        "Lannes",
+        "拉纳"
+      ],
+      "profile": "法国元帅"
+    },
+    {
+      "id": "mack",
+      "name": "General Mack",
+      "aliases": [
+        "Mack",
+        "马克"
+      ],
+      "profile": "奥地利将军，乌尔姆投降"
+    },
+    {
+      "id": "mortemart",
+      "name": "Vicomte de Mortemart",
+      "aliases": [
+        "Mortemart",
+        "the vicomte",
+        "子爵"
+      ],
+      "profile": "法国流亡贵族，善讲故事"
+    },
+    {
+      "id": "abbe_morio",
+      "name": "Abbé Morio",
+      "aliases": [
+        "Abbé Morio",
+        "the abbé",
+        "修道院长"
+      ],
+      "profile": "修道院长，参与社交争论"
+    },
+    {
+      "id": "the_aunt",
+      "name": "The Aunt",
+      "aliases": [
+        "the aunt",
+        "姑妈",
+        "年迈的姑妈"
+      ],
+      "profile": "安娜·帕夫洛夫娜的姑母，被用作社交礼仪的象征"
+    },
+    {
+      "id": "berg",
+      "name": "Berg",
+      "aliases": [
+        "伯格"
+      ],
+      "profile": "近卫军军官，讲求实际"
+    },
+    {
+      "id": "shinshin",
+      "name": "Shinshin",
+      "aliases": [
+        "申申"
+      ],
+      "profile": "罗斯托夫伯爵的亲戚，健谈"
+    },
+    {
+      "id": "marya_karagina",
+      "name": "Marya Lvovna Karagina",
+      "aliases": [
+        "Márya Lvóvna Karágina",
+        "卡拉金娜夫人"
+      ],
+      "profile": "朱莉的母亲"
+    },
+    {
+      "id": "count_bezukhov",
+      "name": "Count Kirill Bezukhov",
+      "aliases": [
+        "Count Bezúkhov",
+        "别祖霍夫伯爵",
+        "老别祖霍夫伯爵"
+      ],
+      "profile": "皮埃尔的父亲，富有的濒死老伯爵"
+    },
+    {
+      "id": "catiche",
+      "name": "Princess Catherine Semënovna",
+      "aliases": [
+        "Catiche",
+        "Princess Catherine",
+        "卡蒂切公主",
+        "大公主"
+      ],
+      "profile": "别祖霍夫伯爵的侄女，遗产争夺者"
+    },
+    {
+      "id": "sophie",
+      "name": "Princess Sophie",
+      "aliases": [
+        "Sophie",
+        "二公主"
+      ],
+      "profile": "别祖霍夫伯爵的侄女之一"
+    },
+    {
+      "id": "lorrain",
+      "name": "Doctor Lorrain",
+      "aliases": [
+        "Lorrain",
+        "洛兰医生"
+      ],
+      "profile": "别祖霍夫伯爵的法国医生"
+    },
+    {
+      "id": "colonel_schubert",
+      "name": "Colonel Schubert",
+      "aliases": [
+        "Colonel Bogdánich",
+        "Bogdánich",
+        "团长"
+      ],
+      "profile": "罗斯托夫所在团的团长"
+    },
+    {
+      "id": "timokhin",
+      "name": "Timokhin",
+      "aliases": [
+        "Timókhin",
+        "季莫欣"
+      ],
+      "profile": "步兵连长，英勇的伊兹梅尔老兵"
+    },
+    {
+      "id": "kirsten",
+      "name": "Staff Captain Kirsten",
+      "aliases": [
+        "Kírsten"
+      ],
+      "profile": "老资格的军官"
+    },
+    {
+      "id": "telyanin",
+      "name": "Telyanin",
+      "aliases": [
+        "Telyánin"
+      ],
+      "profile": "偷窃丹尼索夫钱包的中尉"
+    },
+    {
+      "id": "lavrushka",
+      "name": "Lavrushka",
+      "aliases": [
+        "Lavrúshka"
+      ],
+      "profile": "丹尼索夫的勤务兵"
+    },
+    {
+      "id": "stevens",
+      "name": "Stevens",
+      "aliases": [
+        "The Englishman"
+      ],
+      "profile": "英国海军军官，参与打赌"
+    },
+    {
+      "id": "dmitri",
+      "name": "Dmitri Vasilevich",
+      "aliases": [
+        "Dmítri Vasílevich",
+        "Dmítri",
+        "德米特里"
+      ],
+      "profile": "罗斯托夫家的管家"
+    },
+    {
+      "id": "wintzingerode",
+      "name": "Count Wintzingerode",
+      "aliases": [
+        "Wintzingerode"
+      ],
+      "profile": "俄军将领"
+    },
+    {
+      "id": "kozlovski",
+      "name": "Kozlovski",
+      "aliases": [
+        "Kozlóvski"
+      ],
+      "profile": "库图佐夫的副官"
+    },
+    {
+      "id": "petrushka",
+      "name": "Petrushka",
+      "aliases": [],
+      "profile": "安德烈公爵的随从"
+    }
+  ],
+  "locations": [
+    {
+      "id": "petersburg",
+      "name": "St. Petersburg",
+      "aliases": [
+        "Petersburg",
+        "圣彼得堡",
+        "彼得堡"
+      ],
+      "profile": "俄罗斯帝国首都"
+    },
+    {
+      "id": "moscow",
+      "name": "Moscow",
+      "aliases": [
+        "莫斯科"
+      ],
+      "profile": "俄罗斯古都"
+    },
+    {
+      "id": "bald_hills",
+      "name": "Bald Hills",
+      "aliases": [
+        "秃山",
+        "秃山庄园"
+      ],
+      "profile": "博尔孔斯基家族的庄园"
+    },
+    {
+      "id": "anna_pavlovna_drawing_room",
+      "name": "Anna Pavlovna's drawing room",
+      "aliases": [
+        "Anna Pávlovna's reception",
+        "安娜·帕夫洛夫娜的客厅",
+        "客厅",
+        "Anna Pávlovna's house"
+      ],
+      "profile": "圣彼得堡社交晚会的场所"
+    },
+    {
+      "id": "rostov_house",
+      "name": "Rostovs' house",
+      "aliases": [
+        "罗斯托夫家",
+        "Rostóv's house",
+        "Povarskáya"
+      ],
+      "profile": "莫斯科的罗斯托夫宅邸"
+    },
+    {
+      "id": "bezukhov_house",
+      "name": "Count Bezukhov's house",
+      "aliases": [
+        "别祖霍夫府邸",
+        "Count Bezúkhov's house"
+      ],
+      "profile": "别祖霍夫伯爵在莫斯科的宅邸"
+    },
+    {
+      "id": "anatole_house",
+      "name": "Anatole Kuragin's house",
+      "aliases": [],
+      "profile": "阿纳托利在彼得堡的住所"
+    },
+    {
+      "id": "braunau",
+      "name": "Braunau",
+      "aliases": [
+        "布劳瑙"
+      ],
+      "profile": "奥地利的俄军驻地"
+    },
+    {
+      "id": "enns_bridge",
+      "name": "Enns Bridge",
+      "aliases": [
+        "bridge over the Enns",
+        "恩斯河桥",
+        "the bridge"
+      ],
+      "profile": "恩斯河上的桥梁，俄军撤退的通道"
+    },
+    {
+      "id": "schoen_grabern",
+      "name": "Schön Grabern",
+      "aliases": [
+        "Schön Grabern",
+        "申格拉本",
+        "申格拉伯恩"
+      ],
+      "profile": "俄法交战村庄"
+    },
+    {
+      "id": "grunth",
+      "name": "Grunth",
+      "aliases": [
+        "Grunth",
+        "格林特"
+      ],
+      "profile": "巴格拉季翁的阵地所在"
+    },
+    {
+      "id": "brunn",
+      "name": "Brünn",
+      "aliases": [
+        "Brünn",
+        "布吕恩"
+      ],
+      "profile": "奥地利城市，外交场所"
+    },
+    {
+      "id": "vienna",
+      "name": "Vienna",
+      "aliases": [
+        "Vienna",
+        "维也纳"
+      ],
+      "profile": "奥地利首都"
+    },
+    {
+      "id": "danube",
+      "name": "Danube River",
+      "aliases": [
+        "Danube",
+        "多瑙河"
+      ],
+      "profile": "河流，战区"
+    },
+    {
+      "id": "ulm",
+      "name": "Ulm",
+      "aliases": [
+        "Ulm",
+        "乌尔姆"
+      ],
+      "profile": "奥地利要塞，马克投降地"
+    },
+    {
+      "id": "hollabrunn",
+      "name": "Hollabrünn",
+      "aliases": [
+        "Hollabrünn",
+        "霍拉布伦"
+      ],
+      "profile": "巴格拉季翁阻击地"
+    },
+    {
+      "id": "zaim",
+      "name": "Znaim",
+      "aliases": [
+        "Znaim",
+        "茨纳伊姆"
+      ],
+      "profile": "俄军撤退目标"
+    },
+    {
+      "id": "salzeneck",
+      "name": "Salzeneck",
+      "aliases": [],
+      "profile": "俄军驻扎的村庄"
+    },
+    {
+      "id": "thabor_bridge",
+      "name": "Thabor Bridge",
+      "aliases": [
+        "Tabor Bridge",
+        "塔博尔桥"
+      ],
+      "profile": "维也纳附近，法军夺取的桥梁"
+    },
+    {
+      "id": "schonbrunn",
+      "name": "Schönbrunn",
+      "aliases": [],
+      "profile": "奥地利皇宫"
+    },
+    {
+      "id": "narrator",
+      "name": "Narrator/旁白",
+      "aliases": [],
+      "profile": "Reserved catch-all owner for scene-setting/narration fragments with no clear character or location owner."
+    },
+    {
+      "id": "road_to_brunn",
+      "name": "Road to Brünn",
+      "aliases": [
+        "road to Brünn"
+      ],
+      "profile": "通往布吕恩的道路"
+    },
+    {
+      "id": "schongrabern",
+      "name": "Schön Grabern",
+      "aliases": [
+        "schon_grabern"
+      ],
+      "profile": "俄法交战村庄，申格拉本的另一拼写"
+    },
+    {
+      "id": "road_brunn_to_krems",
+      "name": "Road from Brünn to Krems",
+      "aliases": [
+        "离开布吕恩，前往克雷姆斯寻找库图佐夫军队的途中"
+      ],
+      "profile": "从布吕恩到克雷姆斯的途中"
+    }
+  ],
+  "carriers": [
+    {
+      "id": "julie_letter",
+      "name": "Julie Karagina's letter to Princess Mary",
+      "aliases": [
+        "朱莉的信"
+      ],
+      "profile": "朱莉讲述莫斯科社交新闻的信件"
+    },
+    {
+      "id": "mary_reply",
+      "name": "Princess Mary's reply to Julie",
+      "aliases": [
+        "玛丽亚的回信"
+      ],
+      "profile": "玛丽亚表达宗教沉思和乡下见闻的回信"
+    },
+    {
+      "id": "bezukhov_will",
+      "name": "Count Bezukhov's will",
+      "aliases": [
+        "别祖霍夫伯爵的遗嘱",
+        "mosaic will",
+        "遗嘱"
+      ],
+      "profile": "老伯爵留给皮埃尔的遗嘱"
+    },
+    {
+      "id": "bolkonsky_letter",
+      "name": "Old Prince Bolkonsky's letter of recommendation",
+      "aliases": [
+        "推荐信",
+        "老公爵的推荐信"
+      ],
+      "profile": "老博尔孔斯基公爵为安德烈写给库图佐夫的荐书"
+    },
+    {
+      "id": "bezukhov_petition",
+      "name": "Count Bezukhov's petition to the Emperor",
+      "aliases": [
+        "给皇帝的请愿书"
+      ],
+      "profile": "老伯爵请愿让皮埃尔获得合法身份的信件"
+    }
+  ]
+}

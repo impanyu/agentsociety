@@ -1,0 +1,1645 @@
+{
+  "characters": [
+    {
+      "id": "jiabaoyu",
+      "name": "贾宝玉",
+      "aliases": [
+        "宝玉"
+      ],
+      "profile": "荣国府衔玉而生的公子，情榜之首，深恶仕途经济。"
+    },
+    {
+      "id": "lindaiyu",
+      "name": "林黛玉",
+      "aliases": [
+        "黛玉"
+      ],
+      "profile": "姑苏林如海之女，敏慧多才，寄居荣国府，与宝玉互为知己。"
+    },
+    {
+      "id": "xuebaochai",
+      "name": "薛宝钗",
+      "aliases": [
+        "宝钗"
+      ],
+      "profile": "皇商薛家之女，稳重博学，挂有金锁，与宝玉配称金玉良缘。"
+    },
+    {
+      "id": "jiamu",
+      "name": "贾母",
+      "aliases": [
+        "老太太"
+      ],
+      "profile": "荣国府辈分最高的老太君，极宠孙辈宝玉、黛玉。"
+    },
+    {
+      "id": "wangfuren",
+      "name": "王夫人",
+      "aliases": [],
+      "profile": "贾政之妻，贾宝玉之母，笃信佛教，心狠手辣处绝不留情。"
+    },
+    {
+      "id": "wangxifeng",
+      "name": "王熙凤",
+      "aliases": [
+        "凤姐",
+        "凤姐儿"
+      ],
+      "profile": "荣国府管家奶奶，精明强干，嘴甜心苦，弄权铁槛寺。"
+    },
+    {
+      "id": "jiazheng",
+      "name": "贾政",
+      "aliases": [],
+      "profile": "荣国府二老爷，任职工部，拘泥礼法，严教宝玉。"
+    },
+    {
+      "id": "jiashe",
+      "name": "贾赦",
+      "aliases": [],
+      "profile": "荣国府大老爷，世袭将军，好色贪财。"
+    },
+    {
+      "id": "xingfuren",
+      "name": "邢夫人",
+      "aliases": [],
+      "profile": "贾赦继室，一味顺从丈夫，吝啬愚顽。"
+    },
+    {
+      "id": "jialian",
+      "name": "贾琏",
+      "aliases": [],
+      "profile": "荣国府贾赦之子，捐官同知，风流浪荡，与凤姐夫妻貌合神离。"
+    },
+    {
+      "id": "pinger",
+      "name": "平儿",
+      "aliases": [],
+      "profile": "王熙凤心腹通房大丫头，心地善良，常替凤姐周全。"
+    },
+    {
+      "id": "liwan",
+      "name": "李纨",
+      "aliases": [],
+      "profile": "贾珠之妻，寡居守节，带领大观园诗社，宽厚柔顺。"
+    },
+    {
+      "id": "jiayuanchun",
+      "name": "贾元春",
+      "aliases": [
+        "元春",
+        "元妃"
+      ],
+      "profile": "贾政长女，入宫为妃，省亲大观园，是贾家荣耀的靠山。"
+    },
+    {
+      "id": "jiayingchun",
+      "name": "贾迎春",
+      "aliases": [
+        "迎春"
+      ],
+      "profile": "贾赦庶女，绰号二木头，懦弱怕事。"
+    },
+    {
+      "id": "jiatanchun",
+      "name": "贾探春",
+      "aliases": [
+        "探春"
+      ],
+      "profile": "贾政庶女，敏慧志高，发起海棠诗社，后远嫁海外。"
+    },
+    {
+      "id": "jiaxichun",
+      "name": "贾惜春",
+      "aliases": [
+        "惜春"
+      ],
+      "profile": "宁国府贾珍胞妹，孤介冷僻，后出家为尼。"
+    },
+    {
+      "id": "shixiangyun",
+      "name": "史湘云",
+      "aliases": [
+        "湘云"
+      ],
+      "profile": "史鼎之女，豪爽豁达，才思敏捷，常来贾府居住。"
+    },
+    {
+      "id": "jiazhen",
+      "name": "贾珍",
+      "aliases": [],
+      "profile": "宁国府袭爵人，恣意享乐，行事放荡。"
+    },
+    {
+      "id": "jiarong",
+      "name": "贾蓉",
+      "aliases": [],
+      "profile": "贾珍之子，面目俊秀，轻薄无行。"
+    },
+    {
+      "id": "qinkeqing",
+      "name": "秦可卿",
+      "aliases": [
+        "秦氏"
+      ],
+      "profile": "贾蓉之妻，貌美温柔，早逝托梦王熙凤，暗示贾府盛衰。"
+    },
+    {
+      "id": "youshi",
+      "name": "尤氏",
+      "aliases": [],
+      "profile": "贾珍继室，温厚无能，屡被凤姐压制。"
+    },
+    {
+      "id": "jiaqiang",
+      "name": "贾蔷",
+      "aliases": [],
+      "profile": "宁府旁支子弟，与贾蓉亲密，管理梨园女戏，与龄官有情。"
+    },
+    {
+      "id": "jiayun",
+      "name": "贾芸",
+      "aliases": [],
+      "profile": "贾家旁支子弟，认贾宝玉为父，求职得种树差事，与小红以帕传情。"
+    },
+    {
+      "id": "jiahuan",
+      "name": "贾环",
+      "aliases": [],
+      "profile": "贾政庶子，猥琐嫉妒，常陷害宝玉。"
+    },
+    {
+      "id": "zhaoyiniang",
+      "name": "赵姨娘",
+      "aliases": [],
+      "profile": "贾政侧室，贾环、探春之母，心存嫉恨，常行魇蛊。"
+    },
+    {
+      "id": "jialan",
+      "name": "贾兰",
+      "aliases": [],
+      "profile": "贾珠之子，母亲李纨，勤奋读书，后成大器。"
+    },
+    {
+      "id": "jiarui",
+      "name": "贾瑞",
+      "aliases": [],
+      "profile": "贾代儒之孙，垂涎凤姐美色，被设局折腾致死。"
+    },
+    {
+      "id": "jiadauru",
+      "name": "贾代儒",
+      "aliases": [],
+      "profile": "贾府家塾老师，古板严厉，晚年丧孙。"
+    },
+    {
+      "id": "xueyima",
+      "name": "薛姨妈",
+      "aliases": [],
+      "profile": "薛蟠之母，王夫人之妹，携子女投靠贾府。"
+    },
+    {
+      "id": "xuepan",
+      "name": "薛蟠",
+      "aliases": [],
+      "profile": "薛姨妈之子，皇商之后，骄纵粗豪，曾打死冯渊。"
+    },
+    {
+      "id": "xiangling",
+      "name": "香菱",
+      "aliases": [
+        "英莲",
+        "甄英莲"
+      ],
+      "profile": "甄士隐之女，幼年被拐卖，后为薛蟠侍妾，酷爱学诗。"
+    },
+    {
+      "id": "xiren",
+      "name": "袭人",
+      "aliases": [],
+      "profile": "贾宝玉贴身大丫头，温贤忠心，暗得王夫人拨为姨娘。"
+    },
+    {
+      "id": "qingwen",
+      "name": "晴雯",
+      "aliases": [],
+      "profile": "宝玉身边标致伶俐的大丫头，心高气傲，后被撵出。"
+    },
+    {
+      "id": "sheyue",
+      "name": "麝月",
+      "aliases": [],
+      "profile": "宝玉的丫鬟，稳重识大体，堪称袭人之副。"
+    },
+    {
+      "id": "qiuwen",
+      "name": "秋纹",
+      "aliases": [],
+      "profile": "宝玉房中婢女，常与碧痕等共事。"
+    },
+    {
+      "id": "zijuan",
+      "name": "紫鹃",
+      "aliases": [
+        "鹦哥"
+      ],
+      "profile": "林黛玉的贴身丫鬟，原为贾母之婢鹦哥，忠心侍主。"
+    },
+    {
+      "id": "xueyan",
+      "name": "雪雁",
+      "aliases": [],
+      "profile": "林黛玉从苏州带来的小丫鬟。"
+    },
+    {
+      "id": "yinger",
+      "name": "莺儿",
+      "aliases": [],
+      "profile": "薛宝钗的贴身丫鬟，善打络子。"
+    },
+    {
+      "id": "jinchuaner",
+      "name": "金钏儿",
+      "aliases": [],
+      "profile": "王夫人的大丫鬟，因与宝玉调笑被撵出，投井自尽。"
+    },
+    {
+      "id": "yuchuaner",
+      "name": "玉钏儿",
+      "aliases": [],
+      "profile": "金钏儿的妹妹，王夫人丫鬟，后为姐姐之事受宝玉款待。"
+    },
+    {
+      "id": "caixia",
+      "name": "彩霞",
+      "aliases": [],
+      "profile": "王夫人的丫鬟，与贾环亲近。"
+    },
+    {
+      "id": "caiyun",
+      "name": "彩云",
+      "aliases": [],
+      "profile": "王夫人的丫鬟，与贾环有私交。"
+    },
+    {
+      "id": "shishu",
+      "name": "侍书",
+      "aliases": [],
+      "profile": "探春的贴身丫鬟。"
+    },
+    {
+      "id": "ruhua",
+      "name": "入画",
+      "aliases": [],
+      "profile": "惜春的贴身丫鬟。"
+    },
+    {
+      "id": "siqi",
+      "name": "司棋",
+      "aliases": [],
+      "profile": "迎春的大丫头，刚烈有主见。"
+    },
+    {
+      "id": "cuilv",
+      "name": "翠缕",
+      "aliases": [],
+      "profile": "史湘云的贴身丫鬟。"
+    },
+    {
+      "id": "mingyan",
+      "name": "茗烟",
+      "aliases": [
+        "焙茗"
+      ],
+      "profile": "宝玉贴身小厮，机灵顽皮，后更名焙茗。"
+    },
+    {
+      "id": "limomo",
+      "name": "李嬷嬷",
+      "aliases": [],
+      "profile": "宝玉的乳母，年老体面，常倚老卖老。"
+    },
+    {
+      "id": "qianxue",
+      "name": "茜雪",
+      "aliases": [],
+      "profile": "宝玉的丫鬟，因枫露茶被撵出走。"
+    },
+    {
+      "id": "zhuier",
+      "name": "坠儿",
+      "aliases": [],
+      "profile": "怡红院小丫头，因偷平儿虾须镯被晴雯撵出。"
+    },
+    {
+      "id": "xiaohong",
+      "name": "小红",
+      "aliases": [
+        "红玉"
+      ],
+      "profile": "原名林红玉，怡红院丫鬟，后为凤姐效力，与贾芸结缘。"
+    },
+    {
+      "id": "jiayucun",
+      "name": "贾雨村",
+      "aliases": [],
+      "profile": "出身寒儒，攀附贾家复职升官，忘恩负义，徇情枉法。"
+    },
+    {
+      "id": "zhenshiyin",
+      "name": "甄士隐",
+      "aliases": [],
+      "profile": "姑苏乡宦，资助贾雨村，家道中落后悟道出家。"
+    },
+    {
+      "id": "fengshi",
+      "name": "封氏",
+      "aliases": [
+        "甄家娘子"
+      ],
+      "profile": "甄士隐之妻，失女后寄居娘家。"
+    },
+    {
+      "id": "huoqi",
+      "name": "霍启",
+      "aliases": [],
+      "profile": "甄家仆人，因带英莲看灯致其丢失。"
+    },
+    {
+      "id": "fengsu",
+      "name": "封肃",
+      "aliases": [],
+      "profile": "甄士隐岳父，势利冷淡。"
+    },
+    {
+      "id": "jiaoxing",
+      "name": "娇杏",
+      "aliases": [
+        "甄家丫鬟"
+      ],
+      "profile": "原甄家丫鬟，偶因一顾被贾雨村纳为妾室，后扶正。"
+    },
+    {
+      "id": "mangmangdashi",
+      "name": "茫茫大士",
+      "aliases": [
+        "癞头和尚"
+      ],
+      "profile": "一僧一道中的僧，携顽石入红尘，化癞头和尚救危。"
+    },
+    {
+      "id": "miaomiaozhenren",
+      "name": "渺渺真人",
+      "aliases": [
+        "跛足道士",
+        "跛足道人"
+      ],
+      "profile": "一僧一道中的道，与茫茫大士同行，化跛足道人度人。"
+    },
+    {
+      "id": "kongkongdaoren",
+      "name": "空空道人",
+      "aliases": [],
+      "profile": "访道求仙者，抄录《石头记》传播于世。"
+    },
+    {
+      "id": "jinghuanxiangu",
+      "name": "警幻仙姑",
+      "aliases": [],
+      "profile": "太虚幻境之主，引导宝玉遍阅金陵十二钗命运。"
+    },
+    {
+      "id": "jianmei",
+      "name": "兼美",
+      "aliases": [
+        "可卿"
+      ],
+      "profile": "警幻仙姑之妹，乳名兼美字可卿，在梦中许配宝玉。"
+    },
+    {
+      "id": "linruhai",
+      "name": "林如海",
+      "aliases": [],
+      "profile": "黛玉之父，巡盐御史，病故于扬州。"
+    },
+    {
+      "id": "jiamin",
+      "name": "贾敏",
+      "aliases": [
+        "贾夫人"
+      ],
+      "profile": "贾母之女，林如海之妻，早逝。"
+    },
+    {
+      "id": "lengzixing",
+      "name": "冷子兴",
+      "aliases": [],
+      "profile": "贾府仆役周瑞的女婿，在都中古董行，演说荣国府。"
+    },
+    {
+      "id": "zhangrugui",
+      "name": "张如圭",
+      "aliases": [],
+      "profile": "与贾雨村同案参革的官员，传递起复信息。"
+    },
+    {
+      "id": "menzi",
+      "name": "门子",
+      "aliases": [],
+      "profile": "应天府小吏，原是葫芦庙沙弥，暗示雨村曲法，后被发配。"
+    },
+    {
+      "id": "fengyuan",
+      "name": "冯渊",
+      "aliases": [],
+      "profile": "小乡绅之子，因购买英莲被薛蟠打死。"
+    },
+    {
+      "id": "wangziteng",
+      "name": "王子腾",
+      "aliases": [],
+      "profile": "王夫人之兄，历任京营节度使等要职，贾家重要奥援。"
+    },
+    {
+      "id": "qinzhong",
+      "name": "秦钟",
+      "aliases": [],
+      "profile": "秦可卿之弟，俊秀腼腆，与宝玉交好，与智能儿偷情后夭逝。"
+    },
+    {
+      "id": "qinbangye",
+      "name": "秦邦业",
+      "aliases": [],
+      "profile": "秦可卿养父，官职卑微，为秦钟入学备礼。"
+    },
+    {
+      "id": "jiadaihua",
+      "name": "贾代化",
+      "aliases": [],
+      "profile": "宁府贾演之子，贾敬之父。"
+    },
+    {
+      "id": "jiadaishan",
+      "name": "贾代善",
+      "aliases": [],
+      "profile": "荣府贾源之子，贾母已故丈夫。"
+    },
+    {
+      "id": "jiajing",
+      "name": "贾敬",
+      "aliases": [],
+      "profile": "宁国府世袭人，一心修道求仙，不理家事。"
+    },
+    {
+      "id": "jiazhu",
+      "name": "贾珠",
+      "aliases": [],
+      "profile": "贾政长子，早逝，留下寡妻李纨与幼子贾兰。"
+    },
+    {
+      "id": "lishouzhong",
+      "name": "李守中",
+      "aliases": [],
+      "profile": "李纨之父，国子监祭酒。"
+    },
+    {
+      "id": "youlaoniang",
+      "name": "尤老娘",
+      "aliases": [],
+      "profile": "尤氏后母，带二女尤二姐、尤三姐常入宁府。"
+    },
+    {
+      "id": "liulaolao",
+      "name": "刘姥姥",
+      "aliases": [],
+      "profile": "乡村老妪，借着远亲投靠贾府，以俚俗风趣博贾母欢心。"
+    },
+    {
+      "id": "baner",
+      "name": "板儿",
+      "aliases": [],
+      "profile": "刘姥姥的外孙，随其进荣国府。"
+    },
+    {
+      "id": "gouer",
+      "name": "狗儿",
+      "aliases": [],
+      "profile": "刘姥姥的女婿，生计窘困。"
+    },
+    {
+      "id": "liushi",
+      "name": "刘氏",
+      "aliases": [],
+      "profile": "狗儿之妻，刘姥姥的女儿。"
+    },
+    {
+      "id": "zhouruijiade",
+      "name": "周瑞家的",
+      "aliases": [],
+      "profile": "王夫人的陪房，常牵线内外事务。"
+    },
+    {
+      "id": "laida",
+      "name": "赖大",
+      "aliases": [],
+      "profile": "荣国府大总管，赖尚荣之父。"
+    },
+    {
+      "id": "laisheng",
+      "name": "赖升",
+      "aliases": [],
+      "profile": "宁国府大总管。"
+    },
+    {
+      "id": "laishengxifu",
+      "name": "赖升媳妇",
+      "aliases": [],
+      "profile": "宁国府女管家之一。"
+    },
+    {
+      "id": "laiwanger",
+      "name": "来旺儿",
+      "aliases": [],
+      "profile": "凤姐的得力男仆，替凤姐办机密事。"
+    },
+    {
+      "id": "laiwangxifu",
+      "name": "来旺媳妇",
+      "aliases": [],
+      "profile": "凤姐的陪房仆妇。"
+    },
+    {
+      "id": "beijingwang",
+      "name": "北静王",
+      "aliases": [],
+      "profile": "水溶，四王之一，俊雅谦和，赏识宝玉。"
+    },
+    {
+      "id": "jingxu",
+      "name": "净虚",
+      "aliases": [],
+      "profile": "馒头庵老尼，巧借凤姐之势拆散张家姻缘。"
+    },
+    {
+      "id": "zhinenger",
+      "name": "智能儿",
+      "aliases": [],
+      "profile": "馒头庵小尼姑，与秦钟私通，后下落不明。"
+    },
+    {
+      "id": "zhishan",
+      "name": "智善",
+      "aliases": [],
+      "profile": "馒头庵小尼姑。"
+    },
+    {
+      "id": "zhangyoushi",
+      "name": "张友士",
+      "aliases": [],
+      "profile": "儒医，为秦可卿诊脉断病。"
+    },
+    {
+      "id": "miaoyu",
+      "name": "妙玉",
+      "aliases": [],
+      "profile": "带发修行的官宦之女，入住大观园栊翠庵，性傲孤洁。"
+    },
+    {
+      "id": "lingguan",
+      "name": "龄官",
+      "aliases": [],
+      "profile": "梨香院女戏子，小旦，暗恋贾蔷，眉眼神似黛玉。"
+    },
+    {
+      "id": "jiaqin",
+      "name": "贾芹",
+      "aliases": [],
+      "profile": "贾府旁支子弟，谋得管理沙弥道士差事。"
+    },
+    {
+      "id": "nier",
+      "name": "倪二",
+      "aliases": [],
+      "profile": "绰号醉金刚，放重债的市井汉子，仗义资助贾芸。"
+    },
+    {
+      "id": "bushiren",
+      "name": "卜世仁",
+      "aliases": [],
+      "profile": "贾芸的舅舅，开香料铺，吝啬刻薄。"
+    },
+    {
+      "id": "bushirenniangzi",
+      "name": "卜世仁娘子",
+      "aliases": [],
+      "profile": "卜世仁之妻。"
+    },
+    {
+      "id": "yinjie",
+      "name": "银姐",
+      "aliases": [],
+      "profile": "卜世仁的女儿。"
+    },
+    {
+      "id": "madaopo",
+      "name": "马道婆",
+      "aliases": [],
+      "profile": "宝玉寄名干娘，行巫蛊之术坑害凤姐宝玉。"
+    },
+    {
+      "id": "zhangdaoshi",
+      "name": "张道士",
+      "aliases": [],
+      "profile": "清虚观的道士，曾为荣国公替身，在贾母前有体面。"
+    },
+    {
+      "id": "jiangyuhan",
+      "name": "蒋玉函",
+      "aliases": [
+        "琪官"
+      ],
+      "profile": "著名戏子，与宝玉互赠汗巾结为知己，后娶袭人。"
+    },
+    {
+      "id": "fengziying",
+      "name": "冯紫英",
+      "aliases": [],
+      "profile": "神武将军之子，常与宝玉薛蟠等聚饮。"
+    },
+    {
+      "id": "yuner",
+      "name": "云儿",
+      "aliases": [],
+      "profile": "锦香院妓女，与宝玉等人行酒令。"
+    },
+    {
+      "id": "xiabingzhong",
+      "name": "夏秉忠",
+      "aliases": [
+        "夏太监",
+        "夏忠"
+      ],
+      "profile": "宫中小太监，多次到贾府传旨。"
+    },
+    {
+      "id": "daiquan",
+      "name": "戴权",
+      "aliases": [],
+      "profile": "大明宫内监，贾珍托其为贾蓉捐职。"
+    },
+    {
+      "id": "zhongshunfuzhangshiguan",
+      "name": "忠顺府长史官",
+      "aliases": [],
+      "profile": "忠顺亲王府长史，上门索要蒋玉函引发宝玉挨打。"
+    },
+    {
+      "id": "fujiamomo",
+      "name": "傅家嬷嬷",
+      "aliases": [],
+      "profile": "傅试家的嬷嬷，来贾府请安，见宝玉呆气。"
+    },
+    {
+      "id": "wenguan",
+      "name": "文官",
+      "aliases": [],
+      "profile": "贾府梨园女戏之一。"
+    },
+    {
+      "id": "baoguan",
+      "name": "宝官",
+      "aliases": [],
+      "profile": "梨园女戏之一。"
+    },
+    {
+      "id": "yuguan",
+      "name": "玉官",
+      "aliases": [],
+      "profile": "梨园女戏之一。"
+    },
+    {
+      "id": "yaoguan",
+      "name": "药官",
+      "aliases": [],
+      "profile": "梨园女戏之一。"
+    },
+    {
+      "id": "cuimo",
+      "name": "翠墨",
+      "aliases": [],
+      "profile": "探春的丫鬟。"
+    },
+    {
+      "id": "suyun",
+      "name": "素云",
+      "aliases": [],
+      "profile": "李纨的丫鬟。"
+    },
+    {
+      "id": "biyue",
+      "name": "碧月",
+      "aliases": [],
+      "profile": "李纨的丫鬟。"
+    },
+    {
+      "id": "hupo",
+      "name": "琥珀",
+      "aliases": [],
+      "profile": "贾母的丫鬟。"
+    },
+    {
+      "id": "tongxi",
+      "name": "同喜",
+      "aliases": [],
+      "profile": "薛姨妈的丫鬟。"
+    },
+    {
+      "id": "zhener",
+      "name": "臻儿",
+      "aliases": [],
+      "profile": "香菱的丫鬟。"
+    },
+    {
+      "id": "fenger",
+      "name": "丰儿",
+      "aliases": [],
+      "profile": "凤姐的小丫头。"
+    },
+    {
+      "id": "caiming",
+      "name": "彩明",
+      "aliases": [],
+      "profile": "凤姐的书童，负责点卯。"
+    },
+    {
+      "id": "linzhixiao",
+      "name": "林之孝",
+      "aliases": [],
+      "profile": "荣国府二管家。"
+    },
+    {
+      "id": "linzhixiaojia",
+      "name": "林之孝家的",
+      "aliases": [],
+      "profile": "林之孝之妻，荣国府女管家。"
+    },
+    {
+      "id": "huazifang",
+      "name": "花自芳",
+      "aliases": [],
+      "profile": "袭人之兄。"
+    },
+    {
+      "id": "duoguan",
+      "name": "多官",
+      "aliases": [],
+      "profile": "荣国府厨子，酒鬼，妻子多姑娘貌美轻浮。"
+    },
+    {
+      "id": "duoguniang",
+      "name": "多姑娘",
+      "aliases": [],
+      "profile": "多官之妻，风骚妖娆，与贾琏偷情。"
+    },
+    {
+      "id": "ruizhu",
+      "name": "瑞珠",
+      "aliases": [],
+      "profile": "秦可卿丫鬟，触柱而亡殉主。"
+    },
+    {
+      "id": "baozhu",
+      "name": "宝珠",
+      "aliases": [],
+      "profile": "秦可卿丫鬟，愿为义女守灵。"
+    },
+    {
+      "id": "lianger",
+      "name": "靓儿",
+      "aliases": [],
+      "profile": "小丫鬟，因找扇子被宝钗斥骂。"
+    },
+    {
+      "id": "jinguafu",
+      "name": "金寡妇",
+      "aliases": [],
+      "profile": "金荣之母。"
+    },
+    {
+      "id": "huangdainainai",
+      "name": "璜大奶奶",
+      "aliases": [],
+      "profile": "贾璜之妻，欲为金荣抱不平闻秦可卿病不敢开口。"
+    },
+    {
+      "id": "waner",
+      "name": "万儿",
+      "aliases": [],
+      "profile": "宁国府丫鬟，与茗烟偷情被宝玉撞见。"
+    },
+    {
+      "id": "jiahui",
+      "name": "佳蕙",
+      "aliases": [],
+      "profile": "怡红院小丫头，与小红交好。"
+    },
+    {
+      "id": "huixiang",
+      "name": "蕙香",
+      "aliases": [
+        "四儿"
+      ],
+      "profile": "怡红院小丫头，原名芸香，被袭人改名蕙香，后宝玉改称四儿。"
+    },
+    {
+      "id": "zhaomomo",
+      "name": "赵嬷嬷",
+      "aliases": [],
+      "profile": "贾琏的奶娘。"
+    },
+    {
+      "id": "zhangcaijiade",
+      "name": "张材家的",
+      "aliases": [],
+      "profile": "荣国府仆妇。"
+    },
+    {
+      "id": "eryatou",
+      "name": "二丫头",
+      "aliases": [],
+      "profile": "村舍农家女孩，纺线给宝玉看。"
+    },
+    {
+      "id": "laoseng",
+      "name": "老僧",
+      "aliases": [],
+      "profile": "智通寺内龙钟老僧，贾雨村遇之不解玄机。"
+    },
+    {
+      "id": "hushi",
+      "name": "胡氏",
+      "aliases": [],
+      "profile": "宁国府女眷，曾随贾母清虚观打醮。"
+    },
+    {
+      "id": "jiaoda",
+      "name": "焦大",
+      "aliases": [],
+      "profile": "宁国府老仆，曾随太爷出征，醉骂宁府丑事。"
+    },
+    {
+      "id": "saohong",
+      "name": "扫红",
+      "aliases": [],
+      "profile": "宝玉的小厮。"
+    },
+    {
+      "id": "chuyao",
+      "name": "锄药",
+      "aliases": [],
+      "profile": "宝玉的小厮。"
+    },
+    {
+      "id": "moyu",
+      "name": "墨雨",
+      "aliases": [],
+      "profile": "宝玉的小厮。"
+    },
+    {
+      "id": "jinrong",
+      "name": "金荣",
+      "aliases": [],
+      "profile": "贾府家学学生，与秦钟冲突被迫赔罪。"
+    },
+    {
+      "id": "xianglian",
+      "name": "香怜",
+      "aliases": [],
+      "profile": "贾府家学生，俊秀多情，引发学堂风波。"
+    },
+    {
+      "id": "yuai",
+      "name": "玉爱",
+      "aliases": [],
+      "profile": "贾府家学生，俊秀多情，与金荣等不睦。"
+    },
+    {
+      "id": "jiajun",
+      "name": "贾菌",
+      "aliases": [],
+      "profile": "宁府近派子弟，冲动仗义，学堂打架参与者。"
+    },
+    {
+      "id": "jialan2",
+      "name": "贾蓝",
+      "aliases": [],
+      "profile": "贾家旁支子弟，学堂混战参与者。"
+    },
+    {
+      "id": "zhaoer",
+      "name": "昭儿",
+      "aliases": [],
+      "profile": "贾琏的小厮，报林如海死讯。"
+    },
+    {
+      "id": "jinge",
+      "name": "金哥",
+      "aliases": [],
+      "profile": "长安县大财主之女，因凤姐弄权退婚自尽。"
+    },
+    {
+      "id": "qiaojie",
+      "name": "巧姐",
+      "aliases": [
+        "大姐儿",
+        "大姐"
+      ],
+      "profile": "王熙凤与贾琏之女。"
+    },
+    {
+      "id": "longlaopozi",
+      "name": "聋老婆子",
+      "aliases": [],
+      "profile": "贾府老仆，耳聋传话误事。"
+    },
+    {
+      "id": "jinchuanermuqin",
+      "name": "金钏儿的母亲",
+      "aliases": [],
+      "profile": "金钏儿与玉钏儿的母亲。"
+    }
+  ],
+  "locations": [
+    {
+      "id": "dahuangshan",
+      "name": "大荒山无稽崖青埂峰",
+      "aliases": [
+        "大荒山青埂峰"
+      ],
+      "profile": "女娲补天遗留顽石之所在，天地鸿蒙旧地。"
+    },
+    {
+      "id": "taixuhuanjing",
+      "name": "太虚幻境",
+      "aliases": [],
+      "profile": "放春山遣香洞外，司人间风情月债的仙界。"
+    },
+    {
+      "id": "hulumiao",
+      "name": "葫芦庙",
+      "aliases": [
+        "姑苏城阊门十里街仁清巷葫芦庙"
+      ],
+      "profile": "姑苏城内寺庙，甄士隐家旁，贾雨村曾寄居于此。"
+    },
+    {
+      "id": "zhenshufang",
+      "name": "甄家书房",
+      "aliases": [],
+      "profile": "甄士隐日常安歇的书房。"
+    },
+    {
+      "id": "daruzhoufengsujia",
+      "name": "大如州封肃家",
+      "aliases": [],
+      "profile": "甄士隐岳父封肃在大如州的家。"
+    },
+    {
+      "id": "yangzhou",
+      "name": "扬州",
+      "aliases": [],
+      "profile": "林如海任巡盐御史之所，黛玉故里。"
+    },
+    {
+      "id": "zhitongsi",
+      "name": "智通寺",
+      "aliases": [],
+      "profile": "扬州附近荒寺，有龙钟老僧暗示慧境。"
+    },
+    {
+      "id": "cunsi",
+      "name": "村肆",
+      "aliases": [],
+      "profile": "扬州郊外小酒馆，贾雨村与冷子兴相遇论兴衰。"
+    },
+    {
+      "id": "jinling",
+      "name": "金陵",
+      "aliases": [
+        "应天府"
+      ],
+      "profile": "贾家原籍，石头城所在，应天府衙门治所。"
+    },
+    {
+      "id": "ningguofu",
+      "name": "宁国府",
+      "aliases": [],
+      "profile": "贾家长房宁国公的府邸，在京都。"
+    },
+    {
+      "id": "rongguofu",
+      "name": "荣国府",
+      "aliases": [],
+      "profile": "贾家二房荣国公的府邸，贾母及宝玉黛玉等居此。"
+    },
+    {
+      "id": "jingdu",
+      "name": "京都",
+      "aliases": [],
+      "profile": "小说中王朝的都城，宁荣二府所在。"
+    },
+    {
+      "id": "rongxitang",
+      "name": "荣禧堂",
+      "aliases": [],
+      "profile": "荣国府正堂，悬有皇帝御笔匾额。"
+    },
+    {
+      "id": "bishachu",
+      "name": "碧纱橱",
+      "aliases": [],
+      "profile": "贾母院中隔出来的暖阁，黛玉初到时曾居此。"
+    },
+    {
+      "id": "jiamuyuan",
+      "name": "贾母院",
+      "aliases": [
+        "贾母后院",
+        "贾母处",
+        "贾母上房",
+        "贾母内院",
+        "贾母住处",
+        "贾母房中"
+      ],
+      "profile": "贾母的起居院落，荣国府核心之地。"
+    },
+    {
+      "id": "wangfurenchufang",
+      "name": "王夫人处",
+      "aliases": [
+        "王夫人东耳房",
+        "王夫人上房",
+        "王夫人住处",
+        "王夫人屋"
+      ],
+      "profile": "王夫人在荣国府的起居所。"
+    },
+    {
+      "id": "jiasheyuan",
+      "name": "贾赦院",
+      "aliases": [
+        "贾赦上房"
+      ],
+      "profile": "贾赦在荣国府东院的住所。"
+    },
+    {
+      "id": "liwanfangzhong",
+      "name": "李纨房中",
+      "aliases": [],
+      "profile": "李纨在荣国府的寡居之室。"
+    },
+    {
+      "id": "yingtianfuyamen",
+      "name": "应天府衙门",
+      "aliases": [],
+      "profile": "贾雨村审断薛蟠命案的衙门。"
+    },
+    {
+      "id": "mishi",
+      "name": "密室",
+      "aliases": [],
+      "profile": "应天府衙门内，门子向雨村献护官符之处。"
+    },
+    {
+      "id": "lixiangyuan",
+      "name": "梨香院",
+      "aliases": [],
+      "profile": "荣国府东北角院落，薛家初来借居，后为女戏习艺处。"
+    },
+    {
+      "id": "huifangyuan",
+      "name": "会芳园",
+      "aliases": [],
+      "profile": "宁国府内花园，景色佳丽，常有宴请。"
+    },
+    {
+      "id": "qinshishangfang",
+      "name": "秦氏上房",
+      "aliases": [],
+      "profile": "秦可卿在宁国府的正房。"
+    },
+    {
+      "id": "qinshiwofang",
+      "name": "秦氏卧房",
+      "aliases": [
+        "秦可卿卧房"
+      ],
+      "profile": "秦可卿内室，宝玉梦游太虚幻境之所。"
+    },
+    {
+      "id": "bomingsi",
+      "name": "薄命司",
+      "aliases": [],
+      "profile": "太虚幻境中藏金陵十二钗判词的殿宇。"
+    },
+    {
+      "id": "mijin",
+      "name": "迷津",
+      "aliases": [],
+      "profile": "太虚幻境边缘深水，警幻止步之处。"
+    },
+    {
+      "id": "ningrongjie",
+      "name": "宁荣街",
+      "aliases": [],
+      "profile": "宁国府与荣国府之间的街道。"
+    },
+    {
+      "id": "zhouruijia",
+      "name": "周瑞家",
+      "aliases": [],
+      "profile": "周瑞夫妇在荣国府后街的住处。"
+    },
+    {
+      "id": "fenglianzhuzhai",
+      "name": "贾琏住宅",
+      "aliases": [
+        "凤姐院",
+        "凤姐院中",
+        "凤姐处"
+      ],
+      "profile": "贾琏与凤姐在荣国府的独门小院。"
+    },
+    {
+      "id": "baoxia",
+      "name": "抱厦",
+      "aliases": [],
+      "profile": "荣国府中连接建筑的廊厦，常用于办事。"
+    },
+    {
+      "id": "majuan",
+      "name": "马圈",
+      "aliases": [],
+      "profile": "宁国府养马之处，焦大在此醉骂。"
+    },
+    {
+      "id": "xuejia",
+      "name": "薛家",
+      "aliases": [],
+      "profile": "薛姨妈在京都的私宅，后移居荣国府。"
+    },
+    {
+      "id": "daguanlou",
+      "name": "大观楼",
+      "aliases": [],
+      "profile": "大观园正殿所在楼宇，省亲时所用。"
+    },
+    {
+      "id": "loc_1",
+      "name": "缀锦阁",
+      "aliases": [
+        "daguanlou"
+      ],
+      "profile": "大观园中阁楼，贾母曾在阁下听戏。"
+    },
+    {
+      "id": "qinfangting",
+      "name": "沁芳亭",
+      "aliases": [],
+      "profile": "大观园内临水亭子，宝玉题名。"
+    },
+    {
+      "id": "xiaoxiangguan",
+      "name": "潇湘馆",
+      "aliases": [
+        "有凤来仪",
+        "黛玉房中",
+        "黛玉房间"
+      ],
+      "profile": "大观园中竹林清幽处，林黛玉的居所。"
+    },
+    {
+      "id": "qiushuangzhai",
+      "name": "秋爽斋",
+      "aliases": [
+        "秋掩书斋",
+        "晓翠堂"
+      ],
+      "profile": "大观园中探春住所，阔朗有法，诗社起于此。"
+    },
+    {
+      "id": "hengwuyuan",
+      "name": "蘅芜苑",
+      "aliases": [
+        "蘅芜院"
+      ],
+      "profile": "大观园中薛宝钗住所，奇草仙藤，清冷淡雅。"
+    },
+    {
+      "id": "zhengdian",
+      "name": "正殿",
+      "aliases": [],
+      "profile": "大观园省亲别墅的主殿。"
+    },
+    {
+      "id": "yihongyuan",
+      "name": "怡红院",
+      "aliases": [
+        "宝玉卧室",
+        "园中宝玉房内"
+      ],
+      "profile": "大观园中贾宝玉的居所，富丽堂皇。"
+    },
+    {
+      "id": "daoxiangcun",
+      "name": "稻香村",
+      "aliases": [],
+      "profile": "大观园中李纨住所，田舍风光，别名浣葛山庄。"
+    },
+    {
+      "id": "zilingzhou",
+      "name": "紫菱洲",
+      "aliases": [
+        "缀锦楼"
+      ],
+      "profile": "大观园中迎春住所，靠近荇叶渚。"
+    },
+    {
+      "id": "liaofengxuan",
+      "name": "蓼风轩",
+      "aliases": [],
+      "profile": "大观园中惜春住所。"
+    },
+    {
+      "id": "liaotinghuaxu",
+      "name": "蓼汀花溆",
+      "aliases": [],
+      "profile": "大观园中之观景处，有长草芦花。"
+    },
+    {
+      "id": "shengqinbieshu",
+      "name": "省亲别墅",
+      "aliases": [],
+      "profile": "大观园内为元妃省亲所建的行宫别院。"
+    },
+    {
+      "id": "ouxiangxie",
+      "name": "藕香榭",
+      "aliases": [],
+      "profile": "大观园池中水阁，赏桂设宴之所，惜春亦在此居住。"
+    },
+    {
+      "id": "qinfangzha",
+      "name": "沁芳闸",
+      "aliases": [],
+      "profile": "大观园中水闸桥畔，宝玉读《西厢》之处。"
+    },
+    {
+      "id": "mouniyuan",
+      "name": "牟尼院",
+      "aliases": [],
+      "profile": "妙玉初入京时寄居的寺庙。"
+    },
+    {
+      "id": "xiangyunting",
+      "name": "螃蟹宴亭子",
+      "aliases": [],
+      "profile": "藕香榭附近设宴吃蟹之处。"
+    },
+    {
+      "id": "xingyezhu",
+      "name": "荇叶渚",
+      "aliases": [],
+      "profile": "大观园中水中小洲。"
+    },
+    {
+      "id": "huaxuluogang",
+      "name": "花溆萝港",
+      "aliases": [],
+      "profile": "大观园中曲折的水道与藤萝景致。"
+    },
+    {
+      "id": "jiayujiaxue",
+      "name": "贾府家学",
+      "aliases": [
+        "学中后院"
+      ],
+      "profile": "贾家私塾，族中子弟读书之所。"
+    },
+    {
+      "id": "jiamuqianmen",
+      "name": "贾母门前",
+      "aliases": [],
+      "profile": "荣国府贾母院门外。"
+    },
+    {
+      "id": "shufang",
+      "name": "贾政书房",
+      "aliases": [
+        "书房"
+      ],
+      "profile": "贾政的内书房，宝玉在此挨训。"
+    },
+    {
+      "id": "tiesiansi",
+      "name": "铁槛寺",
+      "aliases": [],
+      "profile": "贾家殡送寄灵的私家寺庙。"
+    },
+    {
+      "id": "shuiyuean",
+      "name": "水月庵",
+      "aliases": [
+        "馒头庵"
+      ],
+      "profile": "离铁槛寺不远的尼姑庵，净虚住持。"
+    },
+    {
+      "id": "suzhou",
+      "name": "苏州",
+      "aliases": [],
+      "profile": "林如海原籍，黛玉扶柩归葬之地。"
+    },
+    {
+      "id": "cunshe",
+      "name": "村舍",
+      "aliases": [],
+      "profile": "秦可卿送殡途中经停的村庄。"
+    },
+    {
+      "id": "fengzaogong",
+      "name": "凤藻宫",
+      "aliases": [],
+      "profile": "皇宫中元妃所住宫院。"
+    },
+    {
+      "id": "linjingdian",
+      "name": "临敬殿",
+      "aliases": [],
+      "profile": "皇宫中元妃省亲前陛见之所。"
+    },
+    {
+      "id": "qinjia",
+      "name": "秦家",
+      "aliases": [],
+      "profile": "秦可卿与秦钟在都中的家。"
+    },
+    {
+      "id": "xirentanwang",
+      "name": "袭人家",
+      "aliases": [],
+      "profile": "袭人兄花自芳之家，在都中外城。"
+    },
+    {
+      "id": "xishufang",
+      "name": "绮散斋书房",
+      "aliases": [
+        "外书房",
+        "小书房"
+      ],
+      "profile": "宝玉在府外的书房，亦为会客之所。"
+    },
+    {
+      "id": "xuetiantang",
+      "name": "西边穿堂",
+      "aliases": [],
+      "profile": "荣国府西边的过道，凤姐设局贾瑞之处。"
+    },
+    {
+      "id": "kongwuzi",
+      "name": "凤姐房后小过道空屋子",
+      "aliases": [],
+      "profile": "凤姐院后一处空房，贾瑞冻饿等凤姐之处。"
+    },
+    {
+      "id": "jiaruijia",
+      "name": "贾瑞家",
+      "aliases": [],
+      "profile": "贾代儒与贾瑞祖孙之家。"
+    },
+    {
+      "id": "tianxianglou",
+      "name": "天香楼",
+      "aliases": [],
+      "profile": "宁国府内楼阁，系秦可卿停灵之所。"
+    },
+    {
+      "id": "dengxiange",
+      "name": "登仙阁",
+      "aliases": [],
+      "profile": "宁国府存放秦可卿灵柩的楼阁。"
+    },
+    {
+      "id": "doufengxuan",
+      "name": "逗蜂轩",
+      "aliases": [],
+      "profile": "宁国府中贾珍与戴权商议捐官之处。"
+    },
+    {
+      "id": "bushirenjia",
+      "name": "卜世仁家",
+      "aliases": [],
+      "profile": "贾芸舅舅卜世仁的香料铺兼住所。"
+    },
+    {
+      "id": "jiayunjia",
+      "name": "贾芸家",
+      "aliases": [],
+      "profile": "贾芸母亲的住处。"
+    },
+    {
+      "id": "yinku",
+      "name": "银库",
+      "aliases": [],
+      "profile": "荣国府的库房，凤姐处领银子之地。"
+    },
+    {
+      "id": "ximen",
+      "name": "西门",
+      "aliases": [],
+      "profile": "荣国府西门，贾芸出入等候凤姐处。"
+    },
+    {
+      "id": "cuiyanqiao",
+      "name": "翠烟桥",
+      "aliases": [],
+      "profile": "大观园中的一座桥。"
+    },
+    {
+      "id": "fengyaoqiao",
+      "name": "蜂腰桥",
+      "aliases": [],
+      "profile": "大观园中桥，小红与贾芸遇合之地。"
+    },
+    {
+      "id": "qinfangxi",
+      "name": "沁芳溪",
+      "aliases": [],
+      "profile": "大观园中主要溪流。"
+    },
+    {
+      "id": "dicuitting",
+      "name": "滴翠亭",
+      "aliases": [],
+      "profile": "大观园池畔亭子，宝钗追蝴蝶至此。"
+    },
+    {
+      "id": "huazhong",
+      "name": "花冢",
+      "aliases": [],
+      "profile": "大观园中宝玉黛玉葬花之地。"
+    },
+    {
+      "id": "fengziyingjia",
+      "name": "冯紫英家",
+      "aliases": [],
+      "profile": "冯紫英招宝玉、薛蟠等宴饮之处。"
+    },
+    {
+      "id": "jinxiangyuan",
+      "name": "锦香院",
+      "aliases": [],
+      "profile": "京都妓院，云儿所在。"
+    },
+    {
+      "id": "qingxuguan",
+      "name": "清虚观",
+      "aliases": [],
+      "profile": "贾母携众人打平安醮的道观。"
+    },
+    {
+      "id": "qiangweijia",
+      "name": "蔷薇架",
+      "aliases": [],
+      "profile": "大观园中蔷薇花架，龄官画蔷与湘云拾麒麟处。"
+    },
+    {
+      "id": "pingmen",
+      "name": "屏门",
+      "aliases": [],
+      "profile": "荣国府厅堂前后可通的内屏门。"
+    },
+    {
+      "id": "tinglshang",
+      "name": "厅上",
+      "aliases": [],
+      "profile": "荣国府接待外客的大厅。"
+    },
+    {
+      "id": "nanmayuan",
+      "name": "南院子马棚",
+      "aliases": [],
+      "profile": "贾母院南边马棚，因刘姥姥讲故事而走火。"
+    },
+    {
+      "id": "erment",
+      "name": "荣国府二门",
+      "aliases": [],
+      "profile": "内宅与外界的分界之门。"
+    },
+    {
+      "id": "langxia",
+      "name": "廊簷下",
+      "aliases": [],
+      "profile": "荣国府二门内的廊檐，宝玉送湘云处。"
+    },
+    {
+      "id": "jiaomen",
+      "name": "角门",
+      "aliases": [],
+      "profile": "府内偏僻可通行的小门。"
+    },
+    {
+      "id": "narrator",
+      "name": "Narrator/旁白",
+      "aliases": [],
+      "profile": "Reserved catch-all owner for scene-setting/narration fragments with no clear character or location owner."
+    },
+    {
+      "id": "yihongyuanmenwai",
+      "name": "怡红院门外",
+      "aliases": [],
+      "profile": "大观园怡红院正门之外的区域，宝玉居所入口处。"
+    },
+    {
+      "id": "huanggong",
+      "name": "皇宫",
+      "aliases": [],
+      "profile": "当朝皇帝居所，内含凤藻宫、临敬殿等宫院。"
+    },
+    {
+      "id": "dongbeiyoujingfangshe",
+      "name": "东北上一所幽静房舍",
+      "aliases": [],
+      "profile": "荣国府东北角上梨香院的别称，清静幽僻之所。"
+    },
+    {
+      "id": "xuecharenshang",
+      "name": "学差任上",
+      "aliases": [],
+      "profile": "贾政外放学政时的任所，具体省份未详。"
+    },
+    {
+      "id": "xuepanshufang",
+      "name": "薛蟠书房",
+      "aliases": [],
+      "profile": "薛蟠在府中的私人书房。"
+    },
+    {
+      "id": "jiafu",
+      "name": "贾府",
+      "aliases": [
+        "宁国府",
+        "荣国府"
+      ],
+      "profile": "贾氏家族京都豪宅的统称，含宁、荣二府。"
+    }
+  ],
+  "carriers": [
+    {
+      "id": "haoliaoge",
+      "name": "《好了歌》",
+      "profile": "跛足道人所唱，点化甄士隐出世。"
+    },
+    {
+      "id": "huguangfu",
+      "name": "护官符",
+      "profile": "门子出示的本地大族名单，揭示四家一损俱损。"
+    },
+    {
+      "id": "panci",
+      "name": "金陵十二钗判词",
+      "profile": "太虚幻境薄命司中所藏，预示诸钗命运的册子。"
+    },
+    {
+      "id": "hongloumengqu",
+      "name": "《红楼梦》仙曲十二支",
+      "profile": "警幻仙姑令舞女演奏的曲词，诉说十二钗悲剧。"
+    },
+    {
+      "id": "zanghuayin",
+      "name": "《葬花吟》",
+      "profile": "林黛玉在花冢边吟出的长篇诗作，自伤身世。"
+    },
+    {
+      "id": "tipashesi",
+      "name": "题帕三绝",
+      "profile": "黛玉收到宝玉旧帕后题写的三首定情诗。"
+    },
+    {
+      "id": "juhuashi",
+      "name": "菊花诗十二题",
+      "profile": "大观园诗社以菊花为题的十二首组诗，黛玉夺魁。"
+    },
+    {
+      "id": "pangxieyong",
+      "name": "螃蟹咏",
+      "profile": "宝玉、黛玉、宝钗各作咏螃蟹诗，宝钗借题讽世。"
+    },
+    {
+      "id": "daguanyuantiyong",
+      "name": "大观园题咏",
+      "profile": "元妃省亲时命众人题写的匾额与诗。"
+    }
+  ]
+}

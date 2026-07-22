@@ -1,0 +1,543 @@
+scenario: war_and_peace
+language: en
+agents:
+- id: anna_pavlovna_scherer
+  kind: character
+  brain: llm
+  profile: 女官，圣彼得堡社交圈的主持者
+  status:
+    location: anna_pavlovna_drawing_room
+  goals: []
+  name: Anna Pavlovna Scherer
+- id: vasili_kuragin
+  kind: character
+  brain: llm
+  profile: 库拉金家族家长，工于心计的公爵
+  status:
+    location: bezukhov_house
+  goals: []
+  name: Prince Vasili Kuragin
+- id: anatole_kuragin
+  kind: character
+  brain: llm
+  profile: 瓦西里公爵之子，浪荡公子
+  status:
+    location: anatole_house
+  goals: []
+  name: Anatole Kuragin
+- id: hippolyte_kuragin
+  kind: character
+  brain: llm
+  profile: 瓦西里公爵之子，社交界的丑角
+  status:
+    location: brunn
+  goals: []
+  name: Hippolyte Kuragin
+- id: helene_kuragin
+  kind: character
+  brain: llm
+  profile: 瓦西里公爵之女，以美貌著称
+  status:
+    location: anna_pavlovna_drawing_room
+  goals: []
+  name: Hélène Kuragin
+- id: pierre_bezukhov
+  kind: character
+  brain: llm
+  profile: 别祖霍夫伯爵的私生子，继承爵位和巨额财产
+  status:
+    location: bezukhov_house
+  goals: []
+  name: Pierre Bezukhov
+- id: andrew_bolkonsky
+  kind: character
+  brain: llm
+  profile: 博尔孔斯基老公爵之子，追求荣光的年轻军官
+  status:
+    location: schoen_grabern
+  goals: []
+  name: Prince Andrew Bolkonsky
+- id: lise_bolkonskaya
+  kind: character
+  brain: llm
+  profile: 安德烈公爵的妻子，怀孕的年轻妇人
+  status:
+    location: bald_hills
+  goals: []
+  name: Lisa Bolkonskaya
+- id: mary_bolkonskaya
+  kind: character
+  brain: llm
+  profile: 博尔孔斯基老亲王之女，虔诚善良
+  status:
+    location: bald_hills
+  goals: []
+  name: Princess Mary Bolkonskaya
+- id: old_prince_bolkonsky
+  kind: character
+  brain: llm
+  profile: 退隐的将军，性格严苛的家长
+  status:
+    location: bald_hills
+  goals: []
+  name: Prince Nicholas Bolkonsky
+- id: bourienne
+  kind: character
+  brain: llm
+  profile: 玛丽亚公爵小姐的法国女伴
+  status:
+    location: bald_hills
+  goals: []
+  name: Mademoiselle Bourienne
+- id: michael_ivanovich
+  kind: character
+  brain: llm
+  profile: 博尔孔斯基家的建筑师
+  status:
+    location: bald_hills
+  goals: []
+  name: Michael Ivanovich
+- id: kutuzov
+  kind: character
+  brain: llm
+  profile: 俄军总司令
+  status:
+    location: braunau
+  goals: []
+  name: Mikhail Kutuzov
+- id: bagration
+  kind: character
+  brain: llm
+  profile: 俄军前锋指挥官
+  status:
+    location: schoen_grabern
+  goals: []
+  name: Prince Bagration
+- id: denisov
+  kind: character
+  brain: llm
+  profile: 骠骑连长，罗斯托夫的朋友
+  status:
+    location: enns_bridge
+  goals: []
+  name: Vasily Denisov
+- id: nicholas_rostov
+  kind: character
+  brain: llm
+  profile: 罗斯托夫伯爵的长子，骠骑兵军官
+  status:
+    location: schoen_grabern
+  goals: []
+  name: Nicholas Rostov
+- id: ilya_rostov
+  kind: character
+  brain: llm
+  profile: 罗斯托夫家族家长，好客慷慨
+  status:
+    location: rostov_house
+  goals: []
+  name: Count Ilya Rostov
+- id: natalia_rostova
+  kind: character
+  brain: llm
+  profile: 罗斯托夫伯爵的妻子，娜塔莎的母亲
+  status:
+    location: rostov_house
+  goals: []
+  name: Countess Natalia Rostova
+- id: natasha_rostova
+  kind: character
+  brain: llm
+  profile: 罗斯托夫家的小女儿，活泼好动
+  status:
+    location: rostov_house
+  goals: []
+  name: Natasha Rostova
+- id: sonya
+  kind: character
+  brain: llm
+  profile: 罗斯托夫家的养女，尼古拉的恋人
+  status:
+    location: rostov_house
+  goals: []
+  name: Sonya
+- id: petya_rostov
+  kind: character
+  brain: llm
+  profile: 罗斯托夫伯爵的小儿子
+  status:
+    location: rostov_house
+  goals: []
+  name: Petya Rostov
+- id: boris_drubetskoy
+  kind: character
+  brain: llm
+  profile: 安娜·米哈伊洛夫娜之子，野心勃勃的军官
+  status:
+    location: rostov_house
+  goals: []
+  name: Boris Drubetskoy
+- id: anna_mikhaylovna
+  kind: character
+  brain: llm
+  profile: 贫困的公主，为儿子前程奔走
+  status:
+    location: rostov_house
+  goals: []
+  name: Princess Anna Mikhaylovna Drubetskaya
+- id: julie_karagina
+  kind: character
+  brain: llm
+  profile: 玛丽亚公爵小姐的朋友，社交名媛
+  status:
+    location: moscow
+  goals: []
+  name: Julie Karagina
+- id: marya_dmitrievna
+  kind: character
+  brain: llm
+  profile: 社交圈中以直率著称的贵妇
+  status:
+    location: rostov_house
+  goals: []
+  name: Marya Dmitrievna Akhrosimova
+- id: dolokhov
+  kind: character
+  brain: llm
+  profile: 骠骑兵军官，兼有英勇与放荡的性格
+  status:
+    location: schoen_grabern
+  goals: []
+  name: Fyodor Dolokhov
+- id: zherkov
+  kind: character
+  brain: llm
+  profile: 骠骑兵军官，轻浮
+  status:
+    location: schoen_grabern
+  goals: []
+  name: Zherkov
+- id: nesvitski
+  kind: character
+  brain: llm
+  profile: 俄军参谋军官
+  status:
+    location: enns_bridge
+  goals: []
+  name: Prince Nesvitski
+- id: tushin
+  kind: character
+  brain: llm
+  profile: 炮兵连长，朴实而英勇
+  status:
+    location: schoen_grabern
+  goals: []
+  name: Captain Tushin
+- id: bilibin
+  kind: character
+  brain: llm
+  profile: 俄国外交官，机智多谋
+  status:
+    location: brunn
+  goals: []
+  name: Bilibin
+- id: francis
+  kind: character
+  brain: llm
+  profile: 奥地利皇帝
+  status:
+    location: brunn
+  goals: []
+  name: Emperor Francis I
+- id: mortemart
+  kind: character
+  brain: llm
+  profile: 法国流亡贵族，善讲故事
+  status:
+    location: anna_pavlovna_drawing_room
+  goals: []
+  name: Vicomte de Mortemart
+- id: abbe_morio
+  kind: character
+  brain: llm
+  profile: 修道院长，参与社交争论
+  status:
+    location: anna_pavlovna_drawing_room
+  goals: []
+  name: Abbé Morio
+- id: berg
+  kind: character
+  brain: llm
+  profile: 近卫军军官，讲求实际
+  status:
+    location: rostov_house
+  goals: []
+  name: Berg
+- id: shinshin
+  kind: character
+  brain: llm
+  profile: 罗斯托夫伯爵的亲戚，健谈
+  status:
+    location: rostov_house
+  goals: []
+  name: Shinshin
+- id: marya_karagina
+  kind: character
+  brain: llm
+  profile: 朱莉的母亲
+  status:
+    location: rostov_house
+  goals: []
+  name: Marya Lvovna Karagina
+- id: count_bezukhov
+  kind: character
+  brain: llm
+  profile: 皮埃尔的父亲，富有的濒死老伯爵
+  status:
+    location: bezukhov_house
+  goals: []
+  name: Count Kirill Bezukhov
+  archived: true
+- id: catiche
+  kind: character
+  brain: llm
+  profile: 别祖霍夫伯爵的侄女，遗产争夺者
+  status:
+    location: bezukhov_house
+  goals: []
+  name: Princess Catherine Semënovna
+- id: sophie
+  kind: character
+  brain: llm
+  profile: 别祖霍夫伯爵的侄女之一
+  status:
+    location: bezukhov_house
+  goals: []
+  name: Princess Sophie
+- id: lorrain
+  kind: character
+  brain: llm
+  profile: 别祖霍夫伯爵的法国医生
+  status:
+    location: bezukhov_house
+  goals: []
+  name: Doctor Lorrain
+- id: colonel_schubert
+  kind: character
+  brain: llm
+  profile: 罗斯托夫所在团的团长
+  status:
+    location: schoen_grabern
+  goals: []
+  name: Colonel Schubert
+- id: timokhin
+  kind: character
+  brain: llm
+  profile: 步兵连长，英勇的伊兹梅尔老兵
+  status:
+    location: schoen_grabern
+  goals: []
+  name: Timokhin
+- id: kirsten
+  kind: character
+  brain: llm
+  profile: 老资格的军官
+  status:
+    location: enns_bridge
+  goals: []
+  name: Staff Captain Kirsten
+- id: telyanin
+  kind: character
+  brain: llm
+  profile: 偷窃丹尼索夫钱包的中尉
+  status:
+    location: rostov_house
+  goals: []
+  name: Telyanin
+- id: lavrushka
+  kind: character
+  brain: llm
+  profile: 丹尼索夫的勤务兵
+  status:
+    location: rostov_house
+  goals: []
+  name: Lavrushka
+- id: stevens
+  kind: character
+  brain: llm
+  profile: 英国海军军官，参与打赌
+  status:
+    location: anatole_house
+  goals: []
+  name: Stevens
+- id: kozlovski
+  kind: character
+  brain: llm
+  profile: 库图佐夫的副官
+  status:
+    location: rostov_house
+  goals: []
+  name: Kozlovski
+- id: petersburg
+  kind: environment
+  brain: rule
+  profile: 俄罗斯帝国首都
+  name: St. Petersburg
+- id: moscow
+  kind: environment
+  brain: rule
+  profile: 俄罗斯古都
+  name: Moscow
+- id: bald_hills
+  kind: environment
+  brain: rule
+  profile: 博尔孔斯基家族的庄园
+  name: Bald Hills
+- id: anna_pavlovna_drawing_room
+  kind: environment
+  brain: rule
+  profile: 圣彼得堡社交晚会的场所
+  name: Anna Pavlovna's drawing room
+- id: rostov_house
+  kind: environment
+  brain: rule
+  profile: 莫斯科的罗斯托夫宅邸
+  name: Rostovs' house
+- id: bezukhov_house
+  kind: environment
+  brain: rule
+  profile: 别祖霍夫伯爵在莫斯科的宅邸
+  name: Count Bezukhov's house
+- id: anatole_house
+  kind: environment
+  brain: rule
+  profile: 阿纳托利在彼得堡的住所
+  name: Anatole Kuragin's house
+- id: braunau
+  kind: environment
+  brain: rule
+  profile: 奥地利的俄军驻地
+  name: Braunau
+- id: enns_bridge
+  kind: environment
+  brain: rule
+  profile: 恩斯河上的桥梁，俄军撤退的通道
+  name: Enns Bridge
+- id: schoen_grabern
+  kind: environment
+  brain: rule
+  profile: 俄法交战村庄
+  name: Schön Grabern
+- id: grunth
+  kind: environment
+  brain: rule
+  profile: 巴格拉季翁的阵地所在
+  name: Grunth
+- id: brunn
+  kind: environment
+  brain: rule
+  profile: 奥地利城市，外交场所
+  name: Brünn
+- id: vienna
+  kind: environment
+  brain: rule
+  profile: 奥地利首都
+  name: Vienna
+- id: danube
+  kind: environment
+  brain: rule
+  profile: 河流，战区
+  name: Danube River
+- id: ulm
+  kind: environment
+  brain: rule
+  profile: 奥地利要塞，马克投降地
+  name: Ulm
+- id: hollabrunn
+  kind: environment
+  brain: rule
+  profile: 巴格拉季翁阻击地
+  name: Hollabrünn
+- id: zaim
+  kind: environment
+  brain: rule
+  profile: 俄军撤退目标
+  name: Znaim
+- id: salzeneck
+  kind: environment
+  brain: rule
+  profile: 俄军驻扎的村庄
+  name: Salzeneck
+- id: thabor_bridge
+  kind: environment
+  brain: rule
+  profile: 维也纳附近，法军夺取的桥梁
+  name: Thabor Bridge
+- id: schonbrunn
+  kind: environment
+  brain: rule
+  profile: 奥地利皇宫
+  name: Schönbrunn
+- id: narrator
+  kind: environment
+  brain: rule
+  profile: Reserved catch-all owner for scene-setting/narration fragments with no
+    clear character or location owner.
+  name: Narrator/旁白
+- id: road_to_brunn
+  kind: environment
+  brain: rule
+  profile: 通往布吕恩的道路
+  name: Road to Brünn
+- id: road_brunn_to_krems
+  kind: environment
+  brain: rule
+  profile: 从布吕恩到克雷姆斯的途中
+  name: Road from Brünn to Krems
+- id: julie_letter
+  kind: info_carrier
+  brain: retrieval
+  profile: 朱莉讲述莫斯科社交新闻的信件
+  status: {}
+  corpus: corpora/julie_letter.txt
+  name: Julie Karagina's letter to Princess Mary
+- id: mary_reply
+  kind: info_carrier
+  brain: retrieval
+  profile: 玛丽亚表达宗教沉思和乡下见闻的回信
+  status: {}
+  corpus: corpora/mary_reply.txt
+  name: Princess Mary's reply to Julie
+- id: bezukhov_will
+  kind: info_carrier
+  brain: retrieval
+  profile: 老伯爵留给皮埃尔的遗嘱
+  status: {}
+  corpus: corpora/bezukhov_will.txt
+  name: Count Bezukhov's will
+- id: bolkonsky_letter
+  kind: info_carrier
+  brain: retrieval
+  profile: 老博尔孔斯基公爵为安德烈写给库图佐夫的荐书
+  status: {}
+  corpus: corpora/bolkonsky_letter.txt
+  name: Old Prince Bolkonsky's letter of recommendation
+- id: bezukhov_petition
+  kind: info_carrier
+  brain: retrieval
+  profile: 老伯爵请愿让皮埃尔获得合法身份的信件
+  status: {}
+  corpus: corpora/bezukhov_petition.txt
+  name: Count Bezukhov's petition to the Emperor
+map:
+  default_distance: 20
+  edges: []
+kickoff:
+- to:
+  - vasili_kuragin
+  - anna_pavlovna_scherer
+  - anatole_kuragin
+  - hippolyte_kuragin
+  kind: system
+  content: 别祖霍夫伯爵的葬礼刚刚结束，皮埃尔·别祖霍夫正式成为庞大遗产的唯一继承人。瓦西里·库拉金公爵在别祖霍夫宅邸的书房里连夜写了三封急信：一封送往安娜·帕夫洛夫娜的客厅，请她立刻在沙龙中布置撮合皮埃尔与海伦的温柔陷阱；一封命仆人交给阿纳托利，令他马上停止荒唐的决斗与酗酒，穿戴齐整等候父亲下一步指令；第三封则用外交邮袋火速寄往布伦，严厉催促伊波利特放弃手头闲职，即刻返回彼得堡充当家族的眼线与说客。一场围绕巨额财富的家族密谋悄然启动。
+ltm_file: war_and_peace.yaml.ltm.json

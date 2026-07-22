@@ -1,0 +1,3360 @@
+{
+  "characters": [
+    {
+      "id": "putin",
+      "name": "Vladimir Putin",
+      "aliases": [
+        "Putin"
+      ],
+      "profile": "俄罗斯总统"
+    },
+    {
+      "id": "zelenskyy",
+      "name": "Volodymyr Zelenskyy",
+      "aliases": [
+        "Zelenskyy",
+        "President Zelenskyy"
+      ],
+      "profile": "乌克兰总统"
+    },
+    {
+      "id": "lavrov",
+      "name": "Sergei Lavrov",
+      "aliases": [
+        "Lavrov",
+        "Sergey Lavrov"
+      ],
+      "profile": "俄罗斯外交部长"
+    },
+    {
+      "id": "shoigu",
+      "name": "Sergei Shoigu",
+      "aliases": [],
+      "profile": "俄罗斯国防部长"
+    },
+    {
+      "id": "peskov",
+      "name": "Dmitry Peskov",
+      "aliases": [],
+      "profile": "俄罗斯总统新闻秘书"
+    },
+    {
+      "id": "pushilin",
+      "name": "Denis Pushilin",
+      "aliases": [],
+      "profile": "顿涅茨克人民共和国领导人"
+    },
+    {
+      "id": "stremousov",
+      "name": "Kirill Stremousov",
+      "aliases": [],
+      "profile": "赫尔松州亲俄当局官员"
+    },
+    {
+      "id": "gladkov",
+      "name": "Vyacheslav Gladkov",
+      "aliases": [
+        "Governor of Belgorod Oblast"
+      ],
+      "profile": "俄罗斯别尔哥罗德州州长"
+    },
+    {
+      "id": "sobyanin",
+      "name": "Sergei Sobyanin",
+      "aliases": [
+        "Mayor of Moscow"
+      ],
+      "profile": "莫斯科市长"
+    },
+    {
+      "id": "haidai",
+      "name": "Serhiy Haidai",
+      "aliases": [
+        "Serhiy Haydai"
+      ],
+      "profile": "乌克兰卢甘斯克州州长"
+    },
+    {
+      "id": "malyar",
+      "name": "Hanna Malyar",
+      "aliases": [
+        "Hanna Maliar"
+      ],
+      "profile": "乌克兰国防部副部长"
+    },
+    {
+      "id": "zaluzhnyi",
+      "name": "Valerii Zaluzhnyi",
+      "aliases": [
+        "Valery Zaluzhnyi"
+      ],
+      "profile": "乌克兰武装部队总司令"
+    },
+    {
+      "id": "syrskyi",
+      "name": "Oleksandr Syrskyi",
+      "aliases": [],
+      "profile": "乌克兰陆军司令，后任乌克兰武装部队总司令"
+    },
+    {
+      "id": "reznikov",
+      "name": "Oleksii Reznikov",
+      "aliases": [],
+      "profile": "乌克兰国防部长"
+    },
+    {
+      "id": "klitschko",
+      "name": "Vitali Klitschko",
+      "aliases": [],
+      "profile": "基辅市长"
+    },
+    {
+      "id": "podolyak",
+      "name": "Mykhailo Podolyak",
+      "aliases": [],
+      "profile": "乌克兰总统顾问"
+    },
+    {
+      "id": "yermak",
+      "name": "Andriy Yermak",
+      "aliases": [],
+      "profile": "乌克兰总统办公室主任"
+    },
+    {
+      "id": "vereshchuk",
+      "name": "Iryna Vereshchuk",
+      "aliases": [],
+      "profile": "乌克兰副总理"
+    },
+    {
+      "id": "venediktova",
+      "name": "Iryna Venediktova",
+      "aliases": [],
+      "profile": "乌克兰总检察长"
+    },
+    {
+      "id": "kuleba",
+      "name": "Dmytro Kuleba",
+      "aliases": [],
+      "profile": "乌克兰外交部长"
+    },
+    {
+      "id": "kyrylenko",
+      "name": "Pavlo Kyrylenko",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州州长"
+    },
+    {
+      "id": "markushin",
+      "name": "Oleksandr Markushin",
+      "aliases": [],
+      "profile": "乌克兰伊尔平市长"
+    },
+    {
+      "id": "prilipko",
+      "name": "Yuri Prilipko",
+      "aliases": [],
+      "profile": "乌克兰霍斯托梅尔市长"
+    },
+    {
+      "id": "kozytskyy",
+      "name": "Maksym Kozytskyy",
+      "aliases": [],
+      "profile": "乌克兰利沃夫州州长"
+    },
+    {
+      "id": "zhyvytskyi",
+      "name": "Dmytro Zhyvytskyi",
+      "aliases": [],
+      "profile": "乌克兰苏梅州州长"
+    },
+    {
+      "id": "paliy",
+      "name": "Andrey Paliy",
+      "aliases": [],
+      "profile": "俄罗斯黑海舰队副司令，阵亡"
+    },
+    {
+      "id": "erdogan",
+      "name": "Recep Tayyip Erdoğan",
+      "aliases": [
+        "Recep Tayyip Erdogan"
+      ],
+      "profile": "土耳其总统"
+    },
+    {
+      "id": "lunin",
+      "name": "Dmytro Lunin",
+      "aliases": [],
+      "profile": "乌克兰波尔塔瓦州州长"
+    },
+    {
+      "id": "pope_francis",
+      "name": "Pope Francis",
+      "aliases": [],
+      "profile": "罗马教皇"
+    },
+    {
+      "id": "dvornikov",
+      "name": "Aleksandr Dvornikov",
+      "aliases": [],
+      "profile": "俄罗斯军队指挥官"
+    },
+    {
+      "id": "reznich",
+      "name": "Valentyn Reznichenko",
+      "aliases": [],
+      "profile": "乌克兰第聂伯罗彼得罗夫斯克州州长"
+    },
+    {
+      "id": "andryushchenko",
+      "name": "Petro Andryushchenko",
+      "aliases": [],
+      "profile": "马里乌波尔市长顾问"
+    },
+    {
+      "id": "prokopenko",
+      "name": "Denys Prokopenko",
+      "aliases": [],
+      "profile": "亚速营指挥官"
+    },
+    {
+      "id": "minnekayev",
+      "name": "Rustam Minnekayev",
+      "aliases": [],
+      "profile": "俄罗斯中央军区副司令"
+    },
+    {
+      "id": "guterres",
+      "name": "António Guterres",
+      "aliases": [],
+      "profile": "联合国秘书长"
+    },
+    {
+      "id": "starovoyt",
+      "name": "Roman Starovoyt",
+      "aliases": [],
+      "profile": "俄罗斯库尔斯克州州长"
+    },
+    {
+      "id": "berrier",
+      "name": "Scott Berrier",
+      "aliases": [],
+      "profile": "美国国防情报局局长"
+    },
+    {
+      "id": "lyakh",
+      "name": "Vadym Lyakh",
+      "aliases": [],
+      "profile": "乌克兰斯拉夫扬斯克市长"
+    },
+    {
+      "id": "austin",
+      "name": "Lloyd Austin",
+      "aliases": [],
+      "profile": "美国国防部长"
+    },
+    {
+      "id": "geoana",
+      "name": "Mircea Geoana",
+      "aliases": [],
+      "profile": "北约副秘书长"
+    },
+    {
+      "id": "johnson",
+      "name": "Boris Johnson",
+      "aliases": [],
+      "profile": "英国首相"
+    },
+    {
+      "id": "nakasone",
+      "name": "Paul Nakasone",
+      "aliases": [],
+      "profile": "美国网络司令部司令兼国家安全局局长"
+    },
+    {
+      "id": "bogomaz",
+      "name": "Alexander Bogomaz",
+      "aliases": [],
+      "profile": "俄罗斯布良斯克州州长"
+    },
+    {
+      "id": "berdnikov",
+      "name": "Roman Berdnikov",
+      "aliases": [],
+      "profile": "俄罗斯军队将领"
+    },
+    {
+      "id": "kutuzov",
+      "name": "Roman Kutuzov",
+      "aliases": [],
+      "profile": "俄罗斯军队少将"
+    },
+    {
+      "id": "mizintsev",
+      "name": "Mikhail Mizintsev",
+      "aliases": [],
+      "profile": "俄罗斯军队将领，被称为“马里乌波尔屠夫”"
+    },
+    {
+      "id": "radakin",
+      "name": "Tony Radakin",
+      "aliases": [],
+      "profile": "英国国防参谋长"
+    },
+    {
+      "id": "borrell",
+      "name": "Josep Borrell",
+      "aliases": [],
+      "profile": "欧盟外交与安全政策高级代表"
+    },
+    {
+      "id": "miroshnik",
+      "name": "Rodion Miroshnik",
+      "aliases": [],
+      "profile": "卢甘斯克人民共和国驻俄罗斯大使"
+    },
+    {
+      "id": "hill",
+      "name": "Andrew Hill",
+      "aliases": [],
+      "profile": "在乌克兰被俘的英国志愿兵"
+    },
+    {
+      "id": "healy",
+      "name": "Dylan Healy",
+      "aliases": [],
+      "profile": "在乌克兰被俘的英国志愿兵"
+    },
+    {
+      "id": "pinner",
+      "name": "Shaun Pinner",
+      "aliases": [],
+      "profile": "在乌克兰被俘的英国志愿兵"
+    },
+    {
+      "id": "aslin",
+      "name": "Aiden Aslin",
+      "aliases": [],
+      "profile": "在乌克兰被俘的英国志愿兵"
+    },
+    {
+      "id": "konashenkov",
+      "name": "Igor Konashenkov",
+      "aliases": [],
+      "profile": "俄罗斯国防部发言人"
+    },
+    {
+      "id": "kelin",
+      "name": "Andrey Kelin",
+      "aliases": [],
+      "profile": "俄罗斯驻英国大使"
+    },
+    {
+      "id": "kotenko",
+      "name": "Oleh Kotenko",
+      "aliases": [],
+      "profile": "乌克兰失踪人员专员"
+    },
+    {
+      "id": "wallace",
+      "name": "Ben Wallace",
+      "aliases": [],
+      "profile": "英国国防大臣"
+    },
+    {
+      "id": "moore",
+      "name": "Richard Moore",
+      "aliases": [],
+      "profile": "英国军情六处局长"
+    },
+    {
+      "id": "bastrykin",
+      "name": "Alexander Bastrykin",
+      "aliases": [],
+      "profile": "俄罗斯侦查委员会主席"
+    },
+    {
+      "id": "grossi",
+      "name": "Rafael Grossi",
+      "aliases": [],
+      "profile": "国际原子能机构总干事"
+    },
+    {
+      "id": "gura",
+      "name": "Vitaly Gura",
+      "aliases": [],
+      "profile": "赫尔松州亲俄官员"
+    },
+    {
+      "id": "hultqvist",
+      "name": "Peter Hultqvist",
+      "aliases": [],
+      "profile": "瑞典国防大臣"
+    },
+    {
+      "id": "sreda",
+      "name": "Sergei Sreda",
+      "aliases": [],
+      "profile": "亲俄官员"
+    },
+    {
+      "id": "dugina",
+      "name": "Darya Dugina",
+      "aliases": [],
+      "profile": "俄罗斯政治评论员，亚历山大·杜金之女"
+    },
+    {
+      "id": "dugin",
+      "name": "Alexander Dugin",
+      "aliases": [],
+      "profile": "俄罗斯政治哲学家"
+    },
+    {
+      "id": "trudeau",
+      "name": "Justin Trudeau",
+      "aliases": [],
+      "profile": "加拿大总理"
+    },
+    {
+      "id": "aleben",
+      "name": "Dominic Aleben",
+      "aliases": [],
+      "profile": "英国官员"
+    },
+    {
+      "id": "maganov",
+      "name": "Ravil Maganov",
+      "aliases": [],
+      "profile": "俄罗斯卢克石油公司董事长"
+    },
+    {
+      "id": "bardin",
+      "name": "Artem Bardin",
+      "aliases": [],
+      "profile": "亲俄官员，遭袭身亡"
+    },
+    {
+      "id": "scholz",
+      "name": "Olaf Scholz",
+      "aliases": [],
+      "profile": "德国总理"
+    },
+    {
+      "id": "catherine_wales",
+      "name": "Catherine, Princess of Wales",
+      "aliases": [],
+      "profile": "英国威尔士王妃"
+    },
+    {
+      "id": "zelenska",
+      "name": "Olena Zelenska",
+      "aliases": [],
+      "profile": "乌克兰第一夫人"
+    },
+    {
+      "id": "biden",
+      "name": "Joe Biden",
+      "aliases": [],
+      "profile": "美国总统"
+    },
+    {
+      "id": "stoltenberg",
+      "name": "Jens Stoltenberg",
+      "aliases": [],
+      "profile": "北约秘书长"
+    },
+    {
+      "id": "surovikin",
+      "name": "Sergey Surovikin",
+      "aliases": [],
+      "profile": "俄罗斯军队将领，曾任对乌特别军事行动总指挥"
+    },
+    {
+      "id": "trytek",
+      "name": "Piotr Trytek",
+      "aliases": [],
+      "profile": "波兰军官"
+    },
+    {
+      "id": "von_der_leyen",
+      "name": "Ursula von der Leyen",
+      "aliases": [],
+      "profile": "欧盟委员会主席"
+    },
+    {
+      "id": "magowan",
+      "name": "Robert Magowan",
+      "aliases": [],
+      "profile": "英国皇家海军陆战队司令"
+    },
+    {
+      "id": "pelosi",
+      "name": "Nancy Pelosi",
+      "aliases": [],
+      "profile": "美国众议院议长"
+    },
+    {
+      "id": "kirby_john",
+      "name": "John Kirby",
+      "aliases": [],
+      "profile": "美国国家安全委员会战略沟通协调员"
+    },
+    {
+      "id": "odonnell",
+      "name": "Sage O'Donnell",
+      "aliases": [],
+      "profile": "在乌克兰阵亡的美国志愿兵"
+    },
+    {
+      "id": "antov",
+      "name": "Pavel Antov",
+      "aliases": [],
+      "profile": "俄罗斯富豪，离奇死亡"
+    },
+    {
+      "id": "patriarch_kirill",
+      "name": "Patriarch Kirill",
+      "aliases": [],
+      "profile": "俄罗斯东正教大牧首"
+    },
+    {
+      "id": "honcharenko",
+      "name": "Oleksandr Honcharenko",
+      "aliases": [],
+      "profile": "乌克兰克拉马托尔斯克市长"
+    },
+    {
+      "id": "gerasimov",
+      "name": "Valery Gerasimov",
+      "aliases": [],
+      "profile": "俄罗斯武装力量总参谋长"
+    },
+    {
+      "id": "papperger",
+      "name": "Armin Papperger",
+      "aliases": [],
+      "profile": "德国莱茵金属公司首席执行官"
+    },
+    {
+      "id": "lambrecht",
+      "name": "Christine Lambrecht",
+      "aliases": [],
+      "profile": "德国国防部长"
+    },
+    {
+      "id": "vucic",
+      "name": "Aleksandar Vucic",
+      "aliases": [],
+      "profile": "塞尔维亚总统"
+    },
+    {
+      "id": "marles",
+      "name": "Richard Marles",
+      "aliases": [],
+      "profile": "澳大利亚国防部长"
+    },
+    {
+      "id": "baerbock",
+      "name": "Annalena Baerbock",
+      "aliases": [],
+      "profile": "德国外交部长"
+    },
+    {
+      "id": "morawiecki",
+      "name": "Mateusz Morawiecki",
+      "aliases": [],
+      "profile": "波兰总理"
+    },
+    {
+      "id": "pistorius",
+      "name": "Boris Pistorius",
+      "aliases": [],
+      "profile": "德国国防部长"
+    },
+    {
+      "id": "omelchenko",
+      "name": "Vadym Omelchenko",
+      "aliases": [],
+      "profile": "乌克兰驻法国大使"
+    },
+    {
+      "id": "sunak",
+      "name": "Rishi Sunak",
+      "aliases": [],
+      "profile": "英国首相"
+    },
+    {
+      "id": "mangushev",
+      "name": "Igor Mangushev",
+      "aliases": [],
+      "profile": "俄罗斯雇佣兵首领"
+    },
+    {
+      "id": "medvedev",
+      "name": "Dmitry Medvedev",
+      "aliases": [],
+      "profile": "俄罗斯联邦安全会议副主席"
+    },
+    {
+      "id": "bach",
+      "name": "Thomas Bach",
+      "aliases": [],
+      "profile": "国际奥委会主席"
+    },
+    {
+      "id": "zolotar",
+      "name": "Iryna Zolotar",
+      "aliases": [],
+      "profile": "乌克兰记者"
+    },
+    {
+      "id": "gershkovich",
+      "name": "Evan Gershkovich",
+      "aliases": [],
+      "profile": "美国《华尔街日报》记者"
+    },
+    {
+      "id": "pavlo",
+      "name": "Metropolitan Pavlo",
+      "aliases": [],
+      "profile": "乌克兰东正教会都主教"
+    },
+    {
+      "id": "tatarsky",
+      "name": "Vladlen Tatarsky",
+      "aliases": [],
+      "profile": "俄罗斯军事博主"
+    },
+    {
+      "id": "przydacz",
+      "name": "Marcin Przydacz",
+      "aliases": [],
+      "profile": "波兰总统外交顾问"
+    },
+    {
+      "id": "robles",
+      "name": "Margarita Robles",
+      "aliases": [],
+      "profile": "西班牙国防大臣"
+    },
+    {
+      "id": "fu_cong",
+      "name": "Fu Cong",
+      "aliases": [],
+      "profile": "中国驻欧盟使团团长"
+    },
+    {
+      "id": "witwit",
+      "name": "Abbas Abuthar Witwit",
+      "aliases": [],
+      "profile": "加入瓦格纳集团的伊拉克籍雇佣兵"
+    },
+    {
+      "id": "ivin",
+      "name": "Ihor Ivin",
+      "aliases": [],
+      "profile": "乌克兰法官"
+    },
+    {
+      "id": "lvova_belova",
+      "name": "Maria Lvova-Belova",
+      "aliases": [],
+      "profile": "俄罗斯儿童权利专员"
+    },
+    {
+      "id": "poulsen",
+      "name": "Troels Lund Poulsen",
+      "aliases": [],
+      "profile": "丹麦国防大臣"
+    },
+    {
+      "id": "kara_murza",
+      "name": "Vladimir Kara-Murza",
+      "aliases": [],
+      "profile": "俄罗斯反对派政治家"
+    },
+    {
+      "id": "yoon",
+      "name": "Yoon Suk-yeol",
+      "aliases": [],
+      "profile": "韩国总统"
+    },
+    {
+      "id": "roizman",
+      "name": "Yevgeny Roizman",
+      "aliases": [],
+      "profile": "俄罗斯反对派政治家"
+    },
+    {
+      "id": "aksyonov",
+      "name": "Sergei Aksyonov",
+      "aliases": [],
+      "profile": "俄罗斯任命的克里米亚领导人"
+    },
+    {
+      "id": "prokudin",
+      "name": "Oleksandr Prokudin",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州州长"
+    },
+    {
+      "id": "prigozhin",
+      "name": "Yevgeny Prigozhin",
+      "aliases": [],
+      "profile": "瓦格纳集团创始人"
+    },
+    {
+      "id": "prilepin",
+      "name": "Zakhar Prilepin",
+      "aliases": [],
+      "profile": "俄罗斯作家"
+    },
+    {
+      "id": "zakharova",
+      "name": "Maria Zakharova",
+      "aliases": [],
+      "profile": "俄罗斯外交部发言人"
+    },
+    {
+      "id": "razvozhayev",
+      "name": "Mikhail Razvozhayev",
+      "aliases": [],
+      "profile": "俄罗斯任命的塞瓦斯托波尔市长"
+    },
+    {
+      "id": "syniehubov",
+      "name": "Oleh Syniehubov",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州州长"
+    },
+    {
+      "id": "fedorov",
+      "name": "Ivan Fedorov",
+      "aliases": [],
+      "profile": "乌克兰梅利托波尔市长"
+    },
+    {
+      "id": "tvorchi",
+      "name": "Tvorchi",
+      "aliases": [],
+      "profile": "乌克兰说唱组合"
+    },
+    {
+      "id": "macron",
+      "name": "Emmanuel Macron",
+      "aliases": [],
+      "profile": "法国总统"
+    },
+    {
+      "id": "kuzminov",
+      "name": "Maxim Kuzminov",
+      "aliases": [],
+      "profile": "叛逃的俄罗斯直升机飞行员"
+    },
+    {
+      "id": "malov",
+      "name": "Vladimir Malov",
+      "aliases": [],
+      "profile": "乌克兰官员"
+    },
+    {
+      "id": "niinisto",
+      "name": "Sauli Niinistö",
+      "aliases": [],
+      "profile": "芬兰总统"
+    },
+    {
+      "id": "orpo",
+      "name": "Petteri Orpo",
+      "aliases": [],
+      "profile": "芬兰总理"
+    },
+    {
+      "id": "tantsyura",
+      "name": "Ihor Tantsyura",
+      "aliases": [],
+      "profile": "乌克兰领土防御部队司令"
+    },
+    {
+      "id": "barhylevych",
+      "name": "Anatoliy Barhylevych",
+      "aliases": [],
+      "profile": "乌克兰武装部队总参谋长"
+    },
+    {
+      "id": "klymenko",
+      "name": "Ihor Klymenko",
+      "aliases": [],
+      "profile": "乌克兰内政部长"
+    },
+    {
+      "id": "chastyakov",
+      "name": "Hennadiy Chastyakov",
+      "aliases": [],
+      "profile": "乌克兰总统助理"
+    },
+    {
+      "id": "filiponenko",
+      "name": "Mikhail Filiponenko",
+      "aliases": [],
+      "profile": "卢甘斯克人民共和国官员"
+    },
+    {
+      "id": "ollongren",
+      "name": "Kajsa Ollongren",
+      "aliases": [],
+      "profile": "荷兰国防大臣"
+    },
+    {
+      "id": "zavadsky",
+      "name": "Vladimir Zavadsky",
+      "aliases": [],
+      "profile": "俄罗斯军队上校"
+    },
+    {
+      "id": "kyva",
+      "name": "Illia Kyva",
+      "aliases": [],
+      "profile": "乌克兰前议员"
+    },
+    {
+      "id": "popov_oleg",
+      "name": "Oleg Popov",
+      "aliases": [],
+      "profile": "俄罗斯军队上校"
+    },
+    {
+      "id": "orban",
+      "name": "Viktor Orbán",
+      "aliases": [],
+      "profile": "匈牙利总理"
+    },
+    {
+      "id": "khan",
+      "name": "Sadiq Khan",
+      "aliases": [],
+      "profile": "伦敦市长"
+    },
+    {
+      "id": "kryvtsov",
+      "name": "Maksym Kryvtsov",
+      "aliases": [],
+      "profile": "乌克兰诗人，阵亡"
+    },
+    {
+      "id": "symonenko",
+      "name": "Petro Symonenko",
+      "aliases": [],
+      "profile": "乌克兰共产党领导人"
+    },
+    {
+      "id": "tusk",
+      "name": "Donald Tusk",
+      "aliases": [],
+      "profile": "波兰总理"
+    },
+    {
+      "id": "budanov",
+      "name": "Kyrylo Budanov",
+      "aliases": [],
+      "profile": "乌克兰国防部情报总局局长"
+    },
+    {
+      "id": "sukharevskyi",
+      "name": "Vadym Sukharevskyi",
+      "aliases": [],
+      "profile": "乌克兰军队无人机系统部队司令"
+    },
+    {
+      "id": "lebedenko",
+      "name": "Andrii Lebedenko",
+      "aliases": [],
+      "profile": "乌克兰军队指挥官"
+    },
+    {
+      "id": "pavliuk",
+      "name": "Oleksandr Pavliuk",
+      "aliases": [],
+      "profile": "乌克兰军队指挥官"
+    },
+    {
+      "id": "plakhuta",
+      "name": "Ihor Plakhuta",
+      "aliases": [],
+      "profile": "乌克兰军队高级官员"
+    },
+    {
+      "id": "skybiuk",
+      "name": "Ihor Skybiuk",
+      "aliases": [],
+      "profile": "乌克兰军队高级官员"
+    },
+    {
+      "id": "tarnavskyi",
+      "name": "Oleksandr Tarnavskyi",
+      "aliases": [],
+      "profile": "乌克兰塔夫里亚作战集团指挥官"
+    },
+    {
+      "id": "oleshchuk",
+      "name": "Mykola Oleshchuk",
+      "aliases": [],
+      "profile": "乌克兰空军司令"
+    },
+    {
+      "id": "navalny",
+      "name": "Alexei Navalny",
+      "aliases": [],
+      "profile": "俄罗斯反对派领袖"
+    },
+    {
+      "id": "poteleshchenko",
+      "name": "Aleksey Poteleshchenko",
+      "aliases": [],
+      "profile": "乌克兰官员，遭袭身亡"
+    },
+    {
+      "id": "mitsotakis",
+      "name": "Kyriakos Mitsotakis",
+      "aliases": [],
+      "profile": "希腊总理"
+    },
+    {
+      "id": "yevmenov",
+      "name": "Nikolai Yevmenov",
+      "aliases": [],
+      "profile": "俄罗斯海军司令"
+    },
+    {
+      "id": "moiseyev",
+      "name": "Aleksandr Alekseyevich Moiseyev",
+      "aliases": [],
+      "profile": "俄罗斯海军代司令"
+    },
+    {
+      "id": "roepke",
+      "name": "Julian Roepke",
+      "aliases": [],
+      "profile": "德国记者"
+    },
+    {
+      "id": "yakimenko",
+      "name": "Anton Yakimenko",
+      "aliases": [],
+      "profile": "乌克兰官员"
+    }
+  ],
+  "locations": [
+    {
+      "id": "kyiv",
+      "name": "Kyiv",
+      "aliases": [
+        "Kyiv city"
+      ],
+      "profile": "乌克兰首都"
+    },
+    {
+      "id": "kharkiv",
+      "name": "Kharkiv",
+      "aliases": [
+        "Kharkiv city"
+      ],
+      "profile": "乌克兰哈尔科夫州首府"
+    },
+    {
+      "id": "mariupol",
+      "name": "Mariupol",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "odesa",
+      "name": "Odesa",
+      "aliases": [],
+      "profile": "乌克兰黑海沿岸港口城市"
+    },
+    {
+      "id": "mykolaiv",
+      "name": "Mykolaiv",
+      "aliases": [
+        "Mykolayiv"
+      ],
+      "profile": "乌克兰南部城市"
+    },
+    {
+      "id": "kherson",
+      "name": "Kherson",
+      "aliases": [],
+      "profile": "乌克兰南部城市"
+    },
+    {
+      "id": "lviv",
+      "name": "Lviv",
+      "aliases": [],
+      "profile": "乌克兰西部城市"
+    },
+    {
+      "id": "dnipro",
+      "name": "Dnipro",
+      "aliases": [
+        "Dnipropetrovsk"
+      ],
+      "profile": "乌克兰中部城市"
+    },
+    {
+      "id": "zaporizhzhia",
+      "name": "Zaporizhzhia",
+      "aliases": [],
+      "profile": "乌克兰东南部城市"
+    },
+    {
+      "id": "donetsk",
+      "name": "Donetsk",
+      "aliases": [],
+      "profile": "乌克兰东部城市，顿涅茨克州首府"
+    },
+    {
+      "id": "luhansk",
+      "name": "Luhansk",
+      "aliases": [],
+      "profile": "乌克兰东部城市，卢甘斯克州首府"
+    },
+    {
+      "id": "sevastopol",
+      "name": "Sevastopol",
+      "aliases": [],
+      "profile": "克里米亚港口城市"
+    },
+    {
+      "id": "saint_petersburg",
+      "name": "Saint Petersburg",
+      "aliases": [
+        "St. Petersburg"
+      ],
+      "profile": "俄罗斯城市"
+    },
+    {
+      "id": "moscow",
+      "name": "Moscow",
+      "aliases": [],
+      "profile": "俄罗斯首都"
+    },
+    {
+      "id": "belgorod",
+      "name": "Belgorod",
+      "aliases": [],
+      "profile": "俄罗斯别尔哥罗德州首府"
+    },
+    {
+      "id": "kursk",
+      "name": "Kursk",
+      "aliases": [
+        "Kursk city"
+      ],
+      "profile": "俄罗斯库尔斯克州首府"
+    },
+    {
+      "id": "bryansk",
+      "name": "Bryansk",
+      "aliases": [],
+      "profile": "俄罗斯布良斯克州首府"
+    },
+    {
+      "id": "poland",
+      "name": "Poland",
+      "aliases": [],
+      "profile": "国家"
+    },
+    {
+      "id": "united_states",
+      "name": "United States",
+      "aliases": [],
+      "profile": "国家"
+    },
+    {
+      "id": "germany",
+      "name": "Germany",
+      "aliases": [],
+      "profile": "国家"
+    },
+    {
+      "id": "turkey",
+      "name": "Turkey",
+      "aliases": [],
+      "profile": "国家"
+    },
+    {
+      "id": "canada",
+      "name": "Canada",
+      "aliases": [],
+      "profile": "国家"
+    },
+    {
+      "id": "united_kingdom",
+      "name": "United Kingdom",
+      "aliases": [
+        "UK"
+      ],
+      "profile": "国家"
+    },
+    {
+      "id": "france",
+      "name": "France",
+      "aliases": [],
+      "profile": "国家"
+    },
+    {
+      "id": "ukraine",
+      "name": "Ukraine",
+      "aliases": [],
+      "profile": "国家"
+    },
+    {
+      "id": "russia",
+      "name": "Russia",
+      "aliases": [],
+      "profile": "国家"
+    },
+    {
+      "id": "belarus",
+      "name": "Belarus",
+      "aliases": [],
+      "profile": "国家"
+    },
+    {
+      "id": "crimea",
+      "name": "Crimea",
+      "aliases": [],
+      "profile": "克里米亚半岛"
+    },
+    {
+      "id": "donbas",
+      "name": "Donbas",
+      "aliases": [
+        "Donbass"
+      ],
+      "profile": "顿巴斯地区"
+    },
+    {
+      "id": "black_sea",
+      "name": "Black Sea",
+      "aliases": [],
+      "profile": "黑海"
+    },
+    {
+      "id": "sea_of_azov",
+      "name": "Sea of Azov",
+      "aliases": [
+        "Azov Sea"
+      ],
+      "profile": "亚速海"
+    },
+    {
+      "id": "caspian_sea",
+      "name": "Caspian Sea",
+      "aliases": [],
+      "profile": "里海"
+    },
+    {
+      "id": "dnieper_river",
+      "name": "Dnieper River",
+      "aliases": [
+        "Dnipro River",
+        "Dnipro river"
+      ],
+      "profile": "第聂伯河"
+    },
+    {
+      "id": "hostomel_airport",
+      "name": "Hostomel Airport",
+      "aliases": [],
+      "profile": "乌克兰霍斯托梅尔机场"
+    },
+    {
+      "id": "vasylkiv",
+      "name": "Vasylkiv",
+      "aliases": [],
+      "profile": "乌克兰基辅州城市"
+    },
+    {
+      "id": "sumy_oblast",
+      "name": "Sumy Oblast",
+      "aliases": [
+        "Sumy Oblasts"
+      ],
+      "profile": "乌克兰苏梅州"
+    },
+    {
+      "id": "okhtyrka",
+      "name": "Okhtyrka",
+      "aliases": [],
+      "profile": "乌克兰苏梅州城市"
+    },
+    {
+      "id": "freedom_square",
+      "name": "Freedom Square",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫市广场"
+    },
+    {
+      "id": "trostianets",
+      "name": "Trostianets",
+      "aliases": [],
+      "profile": "乌克兰苏梅州城市"
+    },
+    {
+      "id": "zaporizhzhia_npp",
+      "name": "Zaporizhzhia Nuclear Power Plant",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热核电站"
+    },
+    {
+      "id": "havryshivka_airport",
+      "name": "Havryshivka Vinnytsia International Airport",
+      "aliases": [],
+      "profile": "乌克兰文尼察国际机场"
+    },
+    {
+      "id": "zhytomyr_armour_plant",
+      "name": "Zhytomyr Armour Plant",
+      "aliases": [],
+      "profile": "乌克兰日托米尔装甲厂"
+    },
+    {
+      "id": "hostomel",
+      "name": "Hostomel",
+      "aliases": [],
+      "profile": "乌克兰基辅州城镇"
+    },
+    {
+      "id": "irpin",
+      "name": "Irpin",
+      "aliases": [],
+      "profile": "乌克兰基辅州城市"
+    },
+    {
+      "id": "ramstein_air_base",
+      "name": "Ramstein Air Base",
+      "aliases": [],
+      "profile": "德国拉姆施泰因空军基地"
+    },
+    {
+      "id": "antalya",
+      "name": "Antalya",
+      "aliases": [],
+      "profile": "土耳其城市"
+    },
+    {
+      "id": "ivano_frankivsk",
+      "name": "Ivano-Frankivsk",
+      "aliases": [],
+      "profile": "乌克兰西部城市"
+    },
+    {
+      "id": "lutsk",
+      "name": "Lutsk",
+      "aliases": [],
+      "profile": "乌克兰沃伦州首府"
+    },
+    {
+      "id": "lutsk_air_base",
+      "name": "Lutsk Air Base",
+      "aliases": [],
+      "profile": "乌克兰卢茨克空军基地"
+    },
+    {
+      "id": "vasylkiv_air_base",
+      "name": "Vasylkiv Air Base",
+      "aliases": [],
+      "profile": "乌克兰瓦西里基夫空军基地"
+    },
+    {
+      "id": "yavoriv_center",
+      "name": "Yavoriv International Center for Peacekeeping and Security",
+      "aliases": [],
+      "profile": "乌克兰亚沃里夫国际维和与安全中心"
+    },
+    {
+      "id": "kherson_oblast",
+      "name": "Kherson Oblast",
+      "aliases": [
+        "Kherson Oblasts"
+      ],
+      "profile": "乌克兰赫尔松州"
+    },
+    {
+      "id": "chernihiv",
+      "name": "Chernihiv",
+      "aliases": [],
+      "profile": "乌克兰北部城市"
+    },
+    {
+      "id": "izium",
+      "name": "Izium",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城市"
+    },
+    {
+      "id": "sumy",
+      "name": "Sumy",
+      "aliases": [],
+      "profile": "乌克兰苏梅州首府"
+    },
+    {
+      "id": "podilskyi_district",
+      "name": "Podilskyi district",
+      "aliases": [],
+      "profile": "乌克兰基辅市波迪尔区"
+    },
+    {
+      "id": "chernobyl_exclusion_zone",
+      "name": "Chernobyl exclusion zone",
+      "aliases": [],
+      "profile": "切尔诺贝利禁区"
+    },
+    {
+      "id": "berdiansk",
+      "name": "Berdiansk",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州港口城市"
+    },
+    {
+      "id": "lukyanivka",
+      "name": "Lukyanivka",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "makariv",
+      "name": "Makariv",
+      "aliases": [],
+      "profile": "乌克兰基辅州城镇"
+    },
+    {
+      "id": "bucha",
+      "name": "Bucha",
+      "aliases": [],
+      "profile": "乌克兰基辅州城市"
+    },
+    {
+      "id": "bilohorodka",
+      "name": "Bilohorodka",
+      "aliases": [],
+      "profile": "乌克兰基辅州村庄"
+    },
+    {
+      "id": "nemishaieve",
+      "name": "Nemishaieve",
+      "aliases": [],
+      "profile": "乌克兰基辅州城镇"
+    },
+    {
+      "id": "rivne",
+      "name": "Rivne",
+      "aliases": [],
+      "profile": "乌克兰西北部城市"
+    },
+    {
+      "id": "istanbul",
+      "name": "Istanbul",
+      "aliases": [],
+      "profile": "土耳其城市"
+    },
+    {
+      "id": "poltava",
+      "name": "Poltava",
+      "aliases": [],
+      "profile": "乌克兰波尔塔瓦州首府"
+    },
+    {
+      "id": "kremenchuk",
+      "name": "Kremenchuk",
+      "aliases": [],
+      "profile": "乌克兰波尔塔瓦州城市"
+    },
+    {
+      "id": "chuhuiv",
+      "name": "Chuhuiv",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城市"
+    },
+    {
+      "id": "kramatorsk",
+      "name": "Kramatorsk",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "bryansk",
+      "name": "Bryansk",
+      "aliases": [],
+      "profile": "俄罗斯布良斯克州首府"
+    },
+    {
+      "id": "brovary",
+      "name": "Brovary",
+      "aliases": [],
+      "profile": "乌克兰基辅州城市"
+    },
+    {
+      "id": "kreminna",
+      "name": "Kreminna",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城市"
+    },
+    {
+      "id": "transnistria",
+      "name": "Transnistria",
+      "aliases": [],
+      "profile": "摩尔多瓦德涅斯特河沿岸地区"
+    },
+    {
+      "id": "kremenchuk_oil_refinery",
+      "name": "Kremenchuk Oil Refinery",
+      "aliases": [],
+      "profile": "乌克兰克列缅丘格炼油厂"
+    },
+    {
+      "id": "krasnoe",
+      "name": "Krasnoe",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "zdolbuniv",
+      "name": "Zdolbuniv",
+      "aliases": [],
+      "profile": "乌克兰罗夫诺州城市"
+    },
+    {
+      "id": "zhmerynka",
+      "name": "Zhmerynka",
+      "aliases": [],
+      "profile": "乌克兰文尼察州城市"
+    },
+    {
+      "id": "berdychiv",
+      "name": "Berdychiv",
+      "aliases": [],
+      "profile": "乌克兰日托米尔州城市"
+    },
+    {
+      "id": "kovel",
+      "name": "Kovel",
+      "aliases": [],
+      "profile": "乌克兰沃伦州城市"
+    },
+    {
+      "id": "snake_island",
+      "name": "Snake Island",
+      "aliases": [],
+      "profile": "黑海蛇岛"
+    },
+    {
+      "id": "odesa_airport",
+      "name": "Odesa Airport",
+      "aliases": [],
+      "profile": "乌克兰敖德萨机场"
+    },
+    {
+      "id": "dniester_estuary",
+      "name": "Dniester Estuary",
+      "aliases": [],
+      "profile": "德涅斯特河口"
+    },
+    {
+      "id": "azovstal",
+      "name": "Azovstal Iron and Steel Works",
+      "aliases": [],
+      "profile": "乌克兰马里乌波尔亚速钢铁厂"
+    },
+    {
+      "id": "kanatove_airfield",
+      "name": "Kanatove airfield",
+      "aliases": [],
+      "profile": "乌克兰基洛沃格勒州机场"
+    },
+    {
+      "id": "kirovohrad_oblast",
+      "name": "Kirovohrad Oblast",
+      "aliases": [],
+      "profile": "乌克兰基洛沃格勒州"
+    },
+    {
+      "id": "bohodukhiv",
+      "name": "Bohodukhiv",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城市"
+    },
+    {
+      "id": "popasna",
+      "name": "Popasna",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城市"
+    },
+    {
+      "id": "siverskyi_donets_river",
+      "name": "Siverskyi Donets River",
+      "aliases": [],
+      "profile": "北顿涅茨河"
+    },
+    {
+      "id": "sievierodonetsk",
+      "name": "Sievierodonetsk",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城市"
+    },
+    {
+      "id": "sloviansk",
+      "name": "Sloviansk",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "chernihiv_oblast",
+      "name": "Chernihiv Oblast",
+      "aliases": [],
+      "profile": "乌克兰切尔尼戈夫州"
+    },
+    {
+      "id": "yevhenivka",
+      "name": "Yevhenivka",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "velyka_komyshuvakha",
+      "name": "Velyka Komyshuvakha",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州村庄"
+    },
+    {
+      "id": "lozova",
+      "name": "Lozova",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城市"
+    },
+    {
+      "id": "lyman",
+      "name": "Lyman",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "luhansk_oblast",
+      "name": "Luhansk Oblast",
+      "aliases": [
+        "Luhansk Oblasts"
+      ],
+      "profile": "乌克兰卢甘斯克州"
+    },
+    {
+      "id": "kharkiv_oblast",
+      "name": "Kharkiv Oblast",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州"
+    },
+    {
+      "id": "lysychansk_bakhmut_road",
+      "name": "Lysychansk-Bakhmut road",
+      "aliases": [],
+      "profile": "利西昌斯克-巴赫穆特公路"
+    },
+    {
+      "id": "inhulets_river",
+      "name": "Inhulets River",
+      "aliases": [],
+      "profile": "因胡莱茨河"
+    },
+    {
+      "id": "bryansk_oblast",
+      "name": "Bryansk Oblast",
+      "aliases": [
+        "Bryansk Oblasts"
+      ],
+      "profile": "俄罗斯布良斯克州"
+    },
+    {
+      "id": "vrubivka",
+      "name": "Vrubivka",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城镇"
+    },
+    {
+      "id": "ternopil_oblast",
+      "name": "Ternopil Oblast",
+      "aliases": [],
+      "profile": "乌克兰捷尔诺波尔州"
+    },
+    {
+      "id": "donetsk_oblast",
+      "name": "Donetsk Oblast",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州"
+    },
+    {
+      "id": "metiolkine",
+      "name": "Metiolkine",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城镇"
+    },
+    {
+      "id": "zolote",
+      "name": "Zolote",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城市"
+    },
+    {
+      "id": "hirske",
+      "name": "Hirske",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城市"
+    },
+    {
+      "id": "kaliningrad",
+      "name": "Kaliningrad",
+      "aliases": [],
+      "profile": "俄罗斯飞地加里宁格勒"
+    },
+    {
+      "id": "lithuania",
+      "name": "Lithuania",
+      "aliases": [],
+      "profile": "立陶宛"
+    },
+    {
+      "id": "novoshakhtinsk",
+      "name": "Novoshakhtinsk",
+      "aliases": [],
+      "profile": "俄罗斯罗斯托夫州城市"
+    },
+    {
+      "id": "lysychansk",
+      "name": "Lysychansk",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城市"
+    },
+    {
+      "id": "siversk",
+      "name": "Siversk",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "serhiivka",
+      "name": "Serhiivka",
+      "aliases": [],
+      "profile": "乌克兰敖德萨州城镇"
+    },
+    {
+      "id": "odesa_oblast",
+      "name": "Odesa Oblast",
+      "aliases": [],
+      "profile": "乌克兰敖德萨州"
+    },
+    {
+      "id": "chasiv_yar",
+      "name": "Chasiv Yar",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "vinnytsia",
+      "name": "Vinnytsia",
+      "aliases": [],
+      "profile": "乌克兰文尼察州首府"
+    },
+    {
+      "id": "novye_yurkovichi",
+      "name": "Novye Yurkovichi",
+      "aliases": [],
+      "profile": "俄罗斯布良斯克州村庄"
+    },
+    {
+      "id": "dnipropetrovsk_oblast",
+      "name": "Dnipropetrovsk Oblast",
+      "aliases": [
+        "Dnipropetrovsk Oblasts"
+      ],
+      "profile": "乌克兰第聂伯罗彼得罗夫斯克州"
+    },
+    {
+      "id": "vuhlehirska_power_station",
+      "name": "Vuhlehirska Power Station",
+      "aliases": [],
+      "profile": "乌克兰武赫莱希尔斯克发电站"
+    },
+    {
+      "id": "bakhmut",
+      "name": "Bakhmut",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "antonivka_bridge",
+      "name": "Antonivka bridge",
+      "aliases": [],
+      "profile": "乌克兰赫尔松安东诺夫卡大桥"
+    },
+    {
+      "id": "olenivka_prison",
+      "name": "Olenivka prison",
+      "aliases": [],
+      "profile": "顿涅茨克州奥列尼夫卡监狱"
+    },
+    {
+      "id": "brylivka",
+      "name": "Brylivka",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州城镇"
+    },
+    {
+      "id": "lebanon",
+      "name": "Lebanon",
+      "aliases": [],
+      "profile": "黎巴嫩"
+    },
+    {
+      "id": "chornomorsk",
+      "name": "Chornomorsk",
+      "aliases": [],
+      "profile": "乌克兰敖德萨州港口城市"
+    },
+    {
+      "id": "kakhovka_raion",
+      "name": "Kakhovka Raion",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州卡霍夫卡区"
+    },
+    {
+      "id": "saky_military_airbase",
+      "name": "Saky military airbase",
+      "aliases": [],
+      "profile": "克里米亚萨基军用机场"
+    },
+    {
+      "id": "novofedorivka",
+      "name": "Novofedorivka",
+      "aliases": [],
+      "profile": "克里米亚城镇"
+    },
+    {
+      "id": "slovakia",
+      "name": "Slovakia",
+      "aliases": [],
+      "profile": "斯洛伐克"
+    },
+    {
+      "id": "czech_republic",
+      "name": "Czech Republic",
+      "aliases": [],
+      "profile": "捷克"
+    },
+    {
+      "id": "kakhovka_dam",
+      "name": "Kakhovka Dam",
+      "aliases": [
+        "Kakhovka Hydroelectric Power Plant"
+      ],
+      "profile": "乌克兰卡霍夫卡水电站大坝"
+    },
+    {
+      "id": "maiske",
+      "name": "Maiske",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城镇"
+    },
+    {
+      "id": "dzhankoi_raion",
+      "name": "Dzhankoi Raion",
+      "aliases": [],
+      "profile": "克里米亚占科伊区"
+    },
+    {
+      "id": "zhytomyr",
+      "name": "Zhytomyr",
+      "aliases": [],
+      "profile": "乌克兰日托米尔州首府"
+    },
+    {
+      "id": "bolshiye_vyazyomy",
+      "name": "Bolshiye Vyazyomy",
+      "aliases": [],
+      "profile": "俄罗斯莫斯科州村庄"
+    },
+    {
+      "id": "hotel_donbas",
+      "name": "Hotel Donbas",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克顿巴斯酒店"
+    },
+    {
+      "id": "kadiivka",
+      "name": "Kadiivka",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城市"
+    },
+    {
+      "id": "eastern_ukraine",
+      "name": "eastern Ukraine",
+      "aliases": [],
+      "profile": "乌克兰东部地区"
+    },
+    {
+      "id": "nord_stream_1",
+      "name": "Nord Stream 1",
+      "aliases": [],
+      "profile": "北溪1号天然气管道"
+    },
+    {
+      "id": "kupiansk",
+      "name": "Kupiansk",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城市"
+    },
+    {
+      "id": "oskil_river",
+      "name": "Oskil river",
+      "aliases": [],
+      "profile": "奥斯基尔河"
+    },
+    {
+      "id": "kozachya_lopan",
+      "name": "Kozachya Lopan",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城镇"
+    },
+    {
+      "id": "vovchansk",
+      "name": "Vovchansk",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城市"
+    },
+    {
+      "id": "lyptsi",
+      "name": "Lyptsi",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城镇"
+    },
+    {
+      "id": "kiselyovka",
+      "name": "Kiselyovka",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "nikopol",
+      "name": "Nikopol",
+      "aliases": [],
+      "profile": "乌克兰第聂伯罗彼得罗夫斯克州城市"
+    },
+    {
+      "id": "bilohorivka",
+      "name": "Bilohorivka",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城镇"
+    },
+    {
+      "id": "south_ukraine_npp",
+      "name": "South Ukraine Nuclear Power Plant",
+      "aliases": [],
+      "profile": "乌克兰南乌克兰核电站"
+    },
+    {
+      "id": "buckingham_palace",
+      "name": "Buckingham Palace",
+      "aliases": [],
+      "profile": "英国白金汉宫"
+    },
+    {
+      "id": "finland",
+      "name": "Finland",
+      "aliases": [],
+      "profile": "芬兰"
+    },
+    {
+      "id": "nyzhe_zolone",
+      "name": "Nyzhe Zolone",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "pidlyman",
+      "name": "Pidlyman",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "nyznya_zhuravka",
+      "name": "Nyznya Zhuravka",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "borova",
+      "name": "Borova",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城镇"
+    },
+    {
+      "id": "shyikivka",
+      "name": "Shyikivka",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "crimean_bridge",
+      "name": "Crimean Bridge",
+      "aliases": [],
+      "profile": "克里米亚大桥"
+    },
+    {
+      "id": "soloti",
+      "name": "Soloti",
+      "aliases": [],
+      "profile": "俄罗斯别尔哥罗德州村庄"
+    },
+    {
+      "id": "cherkasy",
+      "name": "Cherkasy",
+      "aliases": [],
+      "profile": "乌克兰切尔卡瑟州首府"
+    },
+    {
+      "id": "kirovohrad",
+      "name": "Kirovohrad",
+      "aliases": [],
+      "profile": "乌克兰基洛沃格勒州首府"
+    },
+    {
+      "id": "snihurivka",
+      "name": "Snihurivka",
+      "aliases": [],
+      "profile": "乌克兰尼古拉耶夫州城市"
+    },
+    {
+      "id": "denezhnykove",
+      "name": "Denezhnykove",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "mykhailkva",
+      "name": "Mykhailkva",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "bucharest",
+      "name": "Bucharest",
+      "aliases": [],
+      "profile": "罗马尼亚首都"
+    },
+    {
+      "id": "starobilsk",
+      "name": "Starobilsk",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城市"
+    },
+    {
+      "id": "engels_2_airbase",
+      "name": "Engels-2 airbase",
+      "aliases": [],
+      "profile": "俄罗斯恩格斯空军基地"
+    },
+    {
+      "id": "dyagilevo_airbase",
+      "name": "Dyagilevo military airbase",
+      "aliases": [],
+      "profile": "俄罗斯佳吉列沃军用机场"
+    },
+    {
+      "id": "ryazan",
+      "name": "Ryazan",
+      "aliases": [],
+      "profile": "俄罗斯梁赞州首府"
+    },
+    {
+      "id": "kursk_oblast",
+      "name": "Kursk Oblast",
+      "aliases": [],
+      "profile": "俄罗斯库尔斯克州"
+    },
+    {
+      "id": "melitopol",
+      "name": "Melitopol",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州城市"
+    },
+    {
+      "id": "kryvyi_rih",
+      "name": "Kryvyi Rih",
+      "aliases": [],
+      "profile": "乌克兰第聂伯罗彼得罗夫斯克州城市"
+    },
+    {
+      "id": "saratov_oblast",
+      "name": "Saratov Oblast",
+      "aliases": [],
+      "profile": "俄罗斯萨拉托夫州"
+    },
+    {
+      "id": "voronezh",
+      "name": "Voronezh",
+      "aliases": [],
+      "profile": "俄罗斯沃罗涅日州首府"
+    },
+    {
+      "id": "makiivka",
+      "name": "Makiivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "shevchenkove",
+      "name": "Shevchenkove",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城镇"
+    },
+    {
+      "id": "belgorod_oblast",
+      "name": "Belgorod Oblast",
+      "aliases": [],
+      "profile": "俄罗斯别尔哥罗德州"
+    },
+    {
+      "id": "soledar",
+      "name": "Soledar",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "tonenkoye",
+      "name": "Tonenkoye village",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "zaporizhzhia_oblast",
+      "name": "Zaporizhzhia Oblast",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州"
+    },
+    {
+      "id": "orikhiv",
+      "name": "Orikhiv",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州城市"
+    },
+    {
+      "id": "huliaipole",
+      "name": "Huliaipole",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州城市"
+    },
+    {
+      "id": "novoaidar",
+      "name": "Novoaidar",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城市"
+    },
+    {
+      "id": "sakko_i_vantsetti",
+      "name": "Sakko I Vantsetti village",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "yelabuga",
+      "name": "Yelabuga",
+      "aliases": [],
+      "profile": "俄罗斯鞑靼斯坦城市"
+    },
+    {
+      "id": "omsk",
+      "name": "Omsk",
+      "aliases": [],
+      "profile": "俄罗斯鄂木斯克州首府"
+    },
+    {
+      "id": "khmelnytskyi",
+      "name": "Khmelnytskyi",
+      "aliases": [],
+      "profile": "乌克兰赫梅利尼茨基州首府"
+    },
+    {
+      "id": "norway",
+      "name": "Norway",
+      "aliases": [],
+      "profile": "挪威"
+    },
+    {
+      "id": "warsaw",
+      "name": "Warsaw",
+      "aliases": [],
+      "profile": "波兰首都华沙"
+    },
+    {
+      "id": "machulishchy",
+      "name": "Machulishchy",
+      "aliases": [],
+      "profile": "白俄罗斯空军基地"
+    },
+    {
+      "id": "dzhankoi",
+      "name": "Dzhankoi",
+      "aliases": [],
+      "profile": "克里米亚城市"
+    },
+    {
+      "id": "yekaterinburg",
+      "name": "Yekaterinburg",
+      "aliases": [],
+      "profile": "俄罗斯斯维尔德洛夫斯克州首府"
+    },
+    {
+      "id": "spain",
+      "name": "Spain",
+      "aliases": [],
+      "profile": "西班牙"
+    },
+    {
+      "id": "denmark",
+      "name": "Denmark",
+      "aliases": [],
+      "profile": "丹麦"
+    },
+    {
+      "id": "southern_england",
+      "name": "southern England",
+      "aliases": [],
+      "profile": "英格兰南部地区"
+    },
+    {
+      "id": "hungary",
+      "name": "Hungary",
+      "aliases": [],
+      "profile": "匈牙利"
+    },
+    {
+      "id": "south_korea",
+      "name": "South Korea",
+      "aliases": [],
+      "profile": "韩国"
+    },
+    {
+      "id": "suzemka",
+      "name": "Suzemka",
+      "aliases": [],
+      "profile": "俄罗斯布良斯克州城镇"
+    },
+    {
+      "id": "pavlohrad",
+      "name": "Pavlohrad",
+      "aliases": [],
+      "profile": "乌克兰第聂伯罗彼得罗夫斯克州城市"
+    },
+    {
+      "id": "nizhniy_novgorod_oblast",
+      "name": "Nizhniy Novgorod Oblast",
+      "aliases": [],
+      "profile": "俄罗斯下诺夫哥罗德州"
+    },
+    {
+      "id": "khromove",
+      "name": "Khromove",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "bila_hora",
+      "name": "Bila Hora",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城镇"
+    },
+    {
+      "id": "ternopil",
+      "name": "Ternopil",
+      "aliases": [],
+      "profile": "乌克兰捷尔诺波尔州首府"
+    },
+    {
+      "id": "liverpool",
+      "name": "Liverpool",
+      "aliases": [],
+      "profile": "英国利物浦"
+    },
+    {
+      "id": "petropavlivka",
+      "name": "Petropavlivka",
+      "aliases": [],
+      "profile": "乌克兰第聂伯罗彼得罗夫斯克州城镇"
+    },
+    {
+      "id": "paris",
+      "name": "Paris",
+      "aliases": [],
+      "profile": "法国首都"
+    },
+    {
+      "id": "solomianskyi_district",
+      "name": "Solomianskyi District",
+      "aliases": [],
+      "profile": "乌克兰基辅市索洛米扬卡区"
+    },
+    {
+      "id": "shevchenkivskyi_district",
+      "name": "Shevchenkivskyi District",
+      "aliases": [],
+      "profile": "乌克兰基辅市舍甫琴科区"
+    },
+    {
+      "id": "darnytskyi_district",
+      "name": "Darnytskyi District",
+      "aliases": [],
+      "profile": "乌克兰基辅市达尔尼察区"
+    },
+    {
+      "id": "desnianskyi_district",
+      "name": "Desnianskyi District",
+      "aliases": [],
+      "profile": "乌克兰基辅市杰斯尼扬区"
+    },
+    {
+      "id": "zviahel",
+      "name": "Zviahel",
+      "aliases": [],
+      "profile": "乌克兰日托米尔州城市"
+    },
+    {
+      "id": "zhytomyr_oblast",
+      "name": "Zhytomyr Oblast",
+      "aliases": [],
+      "profile": "乌克兰日托米尔州"
+    },
+    {
+      "id": "uman",
+      "name": "Uman",
+      "aliases": [],
+      "profile": "乌克兰切尔卡瑟州城市"
+    },
+    {
+      "id": "blahodatne",
+      "name": "Blahodatne",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "makarivka",
+      "name": "Makarivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "neskuchne",
+      "name": "Neskuchne",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "nova_kakhovka",
+      "name": "Nova Kakhovka",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州城市"
+    },
+    {
+      "id": "kropyvnytskyi",
+      "name": "Kropyvnytskyi",
+      "aliases": [],
+      "profile": "乌克兰基洛沃格勒州首府"
+    },
+    {
+      "id": "berkhivka",
+      "name": "Berkhivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "lobkove",
+      "name": "Lobkove",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州村庄"
+    },
+    {
+      "id": "levadne",
+      "name": "Levadne",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州村庄"
+    },
+    {
+      "id": "novodarivka",
+      "name": "Novodarivka",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州村庄"
+    },
+    {
+      "id": "storozheve",
+      "name": "Storozheve",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "mokri_yaly_river",
+      "name": "Mokri Yaly river",
+      "aliases": [],
+      "profile": "乌克兰河流"
+    },
+    {
+      "id": "huriv_kozachok",
+      "name": "Huriv Kozachok",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城镇"
+    },
+    {
+      "id": "kozatske",
+      "name": "Kozatske",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州城镇"
+    },
+    {
+      "id": "henichesk",
+      "name": "Henichesk",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州城市"
+    },
+    {
+      "id": "piatykhatky",
+      "name": "Piatykhatky",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州城镇"
+    },
+    {
+      "id": "valuiki",
+      "name": "Valuyki",
+      "aliases": [],
+      "profile": "俄罗斯别尔哥罗德州城市"
+    },
+    {
+      "id": "pokrovsk",
+      "name": "Pokrovsk",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "chonhar_bridge",
+      "name": "Chonhar bridge",
+      "aliases": [],
+      "profile": "琼哈尔大桥"
+    },
+    {
+      "id": "khmelnytskyi_oblast",
+      "name": "Khmelnytskyi Oblast",
+      "aliases": [],
+      "profile": "乌克兰赫梅利尼茨基州"
+    },
+    {
+      "id": "rivnopil",
+      "name": "Rivnopil",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "krasnohorivka",
+      "name": "Krasnohorivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "bilozerka",
+      "name": "Bilozerka",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州城镇"
+    },
+    {
+      "id": "mykolaivka",
+      "name": "Mykolaivka",
+      "aliases": [],
+      "profile": "乌克兰城市"
+    },
+    {
+      "id": "mala_tokmachka",
+      "name": "Mala Tokmachka",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州村庄"
+    },
+    {
+      "id": "dalnie",
+      "name": "Dalnie",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "pervomaiskyi",
+      "name": "Pervomaiskyi",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城市"
+    },
+    {
+      "id": "avdiivka",
+      "name": "Avdiivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "kerch",
+      "name": "Kerch",
+      "aliases": [],
+      "profile": "克里米亚城市"
+    },
+    {
+      "id": "vnukovo_airport",
+      "name": "Vnukovo International Airport",
+      "aliases": [
+        "Vnukovo Airport"
+      ],
+      "profile": "俄罗斯莫斯科伏努科沃国际机场"
+    },
+    {
+      "id": "izmail",
+      "name": "Izmail",
+      "aliases": [],
+      "profile": "乌克兰敖德萨州城市"
+    },
+    {
+      "id": "novorossiysk",
+      "name": "Novorossiysk",
+      "aliases": [],
+      "profile": "俄罗斯克拉斯诺达尔边疆区港口城市"
+    },
+    {
+      "id": "kozachi_laheri",
+      "name": "Kozachi Laheri",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州城镇"
+    },
+    {
+      "id": "shyroka_balka",
+      "name": "Shyroka Balka",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州村庄"
+    },
+    {
+      "id": "stanislav",
+      "name": "Stanislav",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州城镇"
+    },
+    {
+      "id": "stepne",
+      "name": "Stepne",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州村庄"
+    },
+    {
+      "id": "dubno_raion",
+      "name": "Dubno Raion",
+      "aliases": [],
+      "profile": "乌克兰罗夫诺州杜布诺区"
+    },
+    {
+      "id": "rivne_oblast",
+      "name": "Rivne Oblast",
+      "aliases": [],
+      "profile": "乌克兰罗夫诺州"
+    },
+    {
+      "id": "krasnohvardiiske_raion",
+      "name": "Krasnohvardiiske Raion",
+      "aliases": [],
+      "profile": "克里米亚赤卫军区"
+    },
+    {
+      "id": "chonhar",
+      "name": "Chonhar",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州琼哈尔镇"
+    },
+    {
+      "id": "reni",
+      "name": "Reni",
+      "aliases": [],
+      "profile": "乌克兰敖德萨州城市"
+    },
+    {
+      "id": "krasna_square",
+      "name": "Krasna Square",
+      "aliases": [],
+      "profile": "乌克兰切尔尼戈夫广场"
+    },
+    {
+      "id": "chernihiv_polytechnic",
+      "name": "Chernihiv Polytechnic National University",
+      "aliases": [],
+      "profile": "乌克兰切尔尼戈夫国立理工大学"
+    },
+    {
+      "id": "rostov_oblast",
+      "name": "Rostov Oblast",
+      "aliases": [],
+      "profile": "俄罗斯罗斯托夫州"
+    },
+    {
+      "id": "domodedovo_airport",
+      "name": "Domodedovo airports",
+      "aliases": [],
+      "profile": "莫斯科多莫杰多沃机场"
+    },
+    {
+      "id": "sheremetyevo_airport",
+      "name": "Sheremetyevo",
+      "aliases": [],
+      "profile": "莫斯科谢列梅捷沃机场"
+    },
+    {
+      "id": "zhunovsky_airport",
+      "name": "Zhunovsky airports",
+      "aliases": [],
+      "profile": "莫斯科茹科夫斯基机场"
+    },
+    {
+      "id": "krasnogorsk",
+      "name": "Krasnogorsk",
+      "aliases": [],
+      "profile": "俄罗斯莫斯科州城市"
+    },
+    {
+      "id": "olenivka",
+      "name": "Olenivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "maiak",
+      "name": "Maiak",
+      "aliases": [],
+      "profile": "乌克兰城镇"
+    },
+    {
+      "id": "obninsk",
+      "name": "Obninsk",
+      "aliases": [],
+      "profile": "俄罗斯卡卢加州城市"
+    },
+    {
+      "id": "kaluga_oblast",
+      "name": "Kaluga Oblast",
+      "aliases": [],
+      "profile": "俄罗斯卡卢加州"
+    },
+    {
+      "id": "tula_oblast",
+      "name": "Tula Oblast",
+      "aliases": [
+        "Tula Oblasts"
+      ],
+      "profile": "俄罗斯图拉州"
+    },
+    {
+      "id": "kupino",
+      "name": "Kupino",
+      "aliases": [],
+      "profile": "俄罗斯新西伯利亚州城镇"
+    },
+    {
+      "id": "urazovo",
+      "name": "Urazovo",
+      "aliases": [],
+      "profile": "俄罗斯别尔哥罗德州城镇"
+    },
+    {
+      "id": "hoholeve",
+      "name": "Hoholeve",
+      "aliases": [],
+      "profile": "乌克兰波尔塔瓦州城镇"
+    },
+    {
+      "id": "poltava_oblast",
+      "name": "Poltava Oblast",
+      "aliases": [],
+      "profile": "乌克兰波尔塔瓦州"
+    },
+    {
+      "id": "yehorivka",
+      "name": "Yehorivka",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "stepnohirsk",
+      "name": "Stepnohirsk",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州城镇"
+    },
+    {
+      "id": "novopavlivka",
+      "name": "Novopavlivka",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "pskov_airport",
+      "name": "Pskov Airport",
+      "aliases": [],
+      "profile": "俄罗斯普斯科夫机场"
+    },
+    {
+      "id": "lyubertsy",
+      "name": "Lyubertsy",
+      "aliases": [],
+      "profile": "俄罗斯莫斯科州城市"
+    },
+    {
+      "id": "tver",
+      "name": "Tver",
+      "aliases": [],
+      "profile": "俄罗斯特维尔州首府"
+    },
+    {
+      "id": "kaluga",
+      "name": "Kaluga",
+      "aliases": [],
+      "profile": "俄罗斯卡卢加州首府"
+    },
+    {
+      "id": "robertyne",
+      "name": "Robotyne",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州村庄"
+    },
+    {
+      "id": "kostiantynivka",
+      "name": "Kostiantynivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "rostov_on_don",
+      "name": "Rostov-on-Don",
+      "aliases": [],
+      "profile": "俄罗斯罗斯托夫州首府"
+    },
+    {
+      "id": "podil_neighborhood",
+      "name": "Podil neighborhood",
+      "aliases": [],
+      "profile": "乌克兰基辅波迪尔区"
+    },
+    {
+      "id": "opytne",
+      "name": "Opytne",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "uiutne",
+      "name": "Uiutne",
+      "aliases": [],
+      "profile": "克里米亚城镇"
+    },
+    {
+      "id": "yevpatoriya",
+      "name": "Yevpatoriya",
+      "aliases": [],
+      "profile": "克里米亚城市"
+    },
+    {
+      "id": "andriivka",
+      "name": "Andriivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "strilecha",
+      "name": "Strilecha",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州村庄"
+    },
+    {
+      "id": "kholodnohirskyi_district",
+      "name": "Kholodnohirskyi district",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫市冷山区"
+    },
+    {
+      "id": "vilne",
+      "name": "Vilne",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "belaya",
+      "name": "Belaya",
+      "aliases": [],
+      "profile": "俄罗斯库尔斯克州城镇"
+    },
+    {
+      "id": "kalynivka",
+      "name": "Kalynivka",
+      "aliases": [],
+      "profile": "乌克兰文尼察州城镇"
+    },
+    {
+      "id": "vinnytsia_oblast",
+      "name": "Vinnytsia Oblast",
+      "aliases": [],
+      "profile": "乌克兰文尼察州"
+    },
+    {
+      "id": "tokmak",
+      "name": "Tokmak",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州城市"
+    },
+    {
+      "id": "kupiansk_lyman_front",
+      "name": "Kupiansk-Lyman front",
+      "aliases": [],
+      "profile": "库皮扬斯克-利曼前线"
+    },
+    {
+      "id": "hroza",
+      "name": "Hroza",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州村庄"
+    },
+    {
+      "id": "bilenke",
+      "name": "Bilenke",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城镇"
+    },
+    {
+      "id": "uhroidy",
+      "name": "Uhroidy",
+      "aliases": [],
+      "profile": "乌克兰苏梅州城镇"
+    },
+    {
+      "id": "balticconnector",
+      "name": "Balticconnector",
+      "aliases": [],
+      "profile": "波罗的海连接器天然气管道"
+    },
+    {
+      "id": "estonia",
+      "name": "Estonia",
+      "aliases": [],
+      "profile": "爱沙尼亚"
+    },
+    {
+      "id": "kuteinykove",
+      "name": "Kuteinykove",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城镇"
+    },
+    {
+      "id": "druzhelyubivka",
+      "name": "Druzhelyubivka",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城镇"
+    },
+    {
+      "id": "beryslav",
+      "name": "Beryslav",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州城市"
+    },
+    {
+      "id": "stepove",
+      "name": "Stepove",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "mykolaiv_oblast",
+      "name": "Mykolaiv Oblast",
+      "aliases": [],
+      "profile": "乌克兰尼古拉耶夫州"
+    },
+    {
+      "id": "pishchanivka",
+      "name": "Pishchanivka",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "poima",
+      "name": "Poima",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "novyi_korotych",
+      "name": "Novyi Korotych",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州村庄"
+    },
+    {
+      "id": "podoly",
+      "name": "Podoly",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州村庄"
+    },
+    {
+      "id": "slavuta",
+      "name": "Slavuta",
+      "aliases": [],
+      "profile": "乌克兰赫梅利尼茨基州城市"
+    },
+    {
+      "id": "netishyn",
+      "name": "Netishyn",
+      "aliases": [],
+      "profile": "乌克兰赫梅利尼茨基州城市"
+    },
+    {
+      "id": "volnovakha",
+      "name": "Volnovakha",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "chornomorske",
+      "name": "Chornomorske",
+      "aliases": [],
+      "profile": "克里米亚城镇"
+    },
+    {
+      "id": "saky",
+      "name": "Saky",
+      "aliases": [],
+      "profile": "克里米亚城市"
+    },
+    {
+      "id": "kyiv_oblast",
+      "name": "Kyiv Oblast",
+      "aliases": [],
+      "profile": "乌克兰基辅州"
+    },
+    {
+      "id": "bahatyr",
+      "name": "Bahatyr",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "skadovsk",
+      "name": "Skadovsk",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州城市"
+    },
+    {
+      "id": "vuzka_bay",
+      "name": "Vuzka Bay",
+      "aliases": [],
+      "profile": "克里米亚海湾"
+    },
+    {
+      "id": "seltso",
+      "name": "Seltso",
+      "aliases": [],
+      "profile": "俄罗斯布良斯克州城镇"
+    },
+    {
+      "id": "tambov",
+      "name": "Tambov",
+      "aliases": [],
+      "profile": "俄罗斯坦波夫州首府"
+    },
+    {
+      "id": "oryol_oblast",
+      "name": "Oryol Oblast",
+      "aliases": [],
+      "profile": "俄罗斯奥廖尔州"
+    },
+    {
+      "id": "kumachove",
+      "name": "Kumachove",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城镇"
+    },
+    {
+      "id": "chornobaivka",
+      "name": "Chornobaivka",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州村庄"
+    },
+    {
+      "id": "volgograd_oblast",
+      "name": "Volgograd Oblast",
+      "aliases": [],
+      "profile": "俄罗斯伏尔加格勒州"
+    },
+    {
+      "id": "moscow_oblast",
+      "name": "Moscow Oblast",
+      "aliases": [
+        "Moscow Oblasts"
+      ],
+      "profile": "俄罗斯莫斯科州"
+    },
+    {
+      "id": "smolensk_oblast",
+      "name": "Smolensk Oblast",
+      "aliases": [],
+      "profile": "俄罗斯斯摩棱斯克州"
+    },
+    {
+      "id": "myrne",
+      "name": "Myrne",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "seredyna_buda",
+      "name": "Seredyna-Buda",
+      "aliases": [],
+      "profile": "乌克兰苏梅州城市"
+    },
+    {
+      "id": "novohrodivka",
+      "name": "Novohrodivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "sadove",
+      "name": "Sadove",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "svatove",
+      "name": "Svatove",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城市"
+    },
+    {
+      "id": "pavlohrad_raion",
+      "name": "Pavlohrad Raion",
+      "aliases": [],
+      "profile": "乌克兰第聂伯罗彼得罗夫斯克州巴甫洛格勒区"
+    },
+    {
+      "id": "krynky",
+      "name": "Krynky",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州村庄"
+    },
+    {
+      "id": "terebreno",
+      "name": "Terebreno",
+      "aliases": [],
+      "profile": "俄罗斯别尔哥罗德州村庄"
+    },
+    {
+      "id": "horlivka",
+      "name": "Horlivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "marinka",
+      "name": "Marinka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "feodosia",
+      "name": "Feodosia",
+      "aliases": [],
+      "profile": "克里米亚城市"
+    },
+    {
+      "id": "oryol",
+      "name": "Oryol",
+      "aliases": [],
+      "profile": "俄罗斯奥廖尔州首府"
+    },
+    {
+      "id": "grayvoronsky_district",
+      "name": "Grayvoronsky District",
+      "aliases": [],
+      "profile": "俄罗斯别尔哥罗德州格赖沃龙区"
+    },
+    {
+      "id": "myrnohrad",
+      "name": "Myrnohrad",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "pivnichne",
+      "name": "Pivnichne",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城镇"
+    },
+    {
+      "id": "gornal",
+      "name": "Gornal",
+      "aliases": [],
+      "profile": "俄罗斯库尔斯克州村庄"
+    },
+    {
+      "id": "tula",
+      "name": "Tula",
+      "aliases": [],
+      "profile": "俄罗斯图拉州首府"
+    },
+    {
+      "id": "holmivskyi",
+      "name": "Holmivskyi",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城镇"
+    },
+    {
+      "id": "new_york_ukraine",
+      "name": "New York",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州纽约村"
+    },
+    {
+      "id": "vesele",
+      "name": "Vesele",
+      "aliases": [],
+      "profile": "乌克兰村庄"
+    },
+    {
+      "id": "vasilevsky_island",
+      "name": "Vasilevsky Island",
+      "aliases": [],
+      "profile": "俄罗斯圣彼得堡瓦西里岛"
+    },
+    {
+      "id": "klintsy",
+      "name": "Klintsy",
+      "aliases": [],
+      "profile": "俄罗斯布良斯克州城市"
+    },
+    {
+      "id": "ust_luga",
+      "name": "Ust-Luga",
+      "aliases": [],
+      "profile": "俄罗斯列宁格勒州港口"
+    },
+    {
+      "id": "leningrad_oblast",
+      "name": "Leningrad Oblast",
+      "aliases": [],
+      "profile": "俄罗斯列宁格勒州"
+    },
+    {
+      "id": "yablonovo",
+      "name": "Yablonovo",
+      "aliases": [],
+      "profile": "俄罗斯别尔哥罗德州村庄"
+    },
+    {
+      "id": "tabaivka",
+      "name": "Tabaivka",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州村庄"
+    },
+    {
+      "id": "znob_novhorodske",
+      "name": "Znob-Novhorodske",
+      "aliases": [],
+      "profile": "乌克兰苏梅州城镇"
+    },
+    {
+      "id": "belbek_airport",
+      "name": "Belbek airport",
+      "aliases": [],
+      "profile": "克里米亚塞瓦斯托波尔贝尔贝克机场"
+    },
+    {
+      "id": "lake_donuzlav",
+      "name": "Lake Donuzlav",
+      "aliases": [],
+      "profile": "克里米亚多努兹拉夫湖"
+    },
+    {
+      "id": "zolochiv",
+      "name": "Zolochiv",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州城镇"
+    },
+    {
+      "id": "selydove",
+      "name": "Selydove",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "trudivske",
+      "name": "Trudivske",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城镇"
+    },
+    {
+      "id": "podo_kalynivka",
+      "name": "Podo-Kalynivka",
+      "aliases": [],
+      "profile": "乌克兰赫尔松州村庄"
+    },
+    {
+      "id": "pobieda",
+      "name": "Pobieda",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "lipetsk",
+      "name": "Lipetsk",
+      "aliases": [],
+      "profile": "俄罗斯利佩茨克州首府"
+    },
+    {
+      "id": "lastochkyne",
+      "name": "Lastochkyne",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "sieverne",
+      "name": "Sieverne",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "orlivka",
+      "name": "Orlivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "berdychi",
+      "name": "Berdychi",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "samara_oblast",
+      "name": "Samara Oblast",
+      "aliases": [],
+      "profile": "俄罗斯萨马拉州"
+    },
+    {
+      "id": "kramatorsk_raion",
+      "name": "Kramatorsk Raion",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州克拉马托尔斯克区"
+    },
+    {
+      "id": "kerch_strait",
+      "name": "Kerch Strait",
+      "aliases": [],
+      "profile": "刻赤海峡"
+    },
+    {
+      "id": "taganrog",
+      "name": "Taganrog",
+      "aliases": [],
+      "profile": "俄罗斯罗斯托夫州城市"
+    },
+    {
+      "id": "dobropillia",
+      "name": "Dobropillia",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "kulbaki",
+      "name": "Kulbaki",
+      "aliases": [],
+      "profile": "乌克兰文尼察州村庄"
+    },
+    {
+      "id": "tyotkino",
+      "name": "Tyotkino",
+      "aliases": [],
+      "profile": "俄罗斯库尔斯克州城镇"
+    },
+    {
+      "id": "syzran",
+      "name": "Syzran",
+      "aliases": [],
+      "profile": "俄罗斯萨马拉州城市"
+    },
+    {
+      "id": "slavyansk_on_kuban",
+      "name": "Slavyansk-on-Kuban",
+      "aliases": [],
+      "profile": "俄罗斯克拉斯诺达尔边疆区城市"
+    },
+    {
+      "id": "krasnodar_krai",
+      "name": "Krasnodar Krai",
+      "aliases": [],
+      "profile": "俄罗斯克拉斯诺达尔边疆区"
+    },
+    {
+      "id": "nikolskoye",
+      "name": "Nikolskoye",
+      "aliases": [],
+      "profile": "俄罗斯别尔哥罗德州村庄"
+    },
+    {
+      "id": "kozinka",
+      "name": "Kozinka",
+      "aliases": [],
+      "profile": "俄罗斯别尔哥罗德州村庄"
+    },
+    {
+      "id": "ivanivske",
+      "name": "Ivanivske",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "kuibyshev",
+      "name": "Kuibyshev",
+      "aliases": [],
+      "profile": "俄罗斯城市"
+    },
+    {
+      "id": "novocherkassk",
+      "name": "Novocherkassk",
+      "aliases": [],
+      "profile": "俄罗斯罗斯托夫州城市"
+    },
+    {
+      "id": "morozovsk",
+      "name": "Morozovsk",
+      "aliases": [],
+      "profile": "俄罗斯罗斯托夫州城市"
+    },
+    {
+      "id": "nizhnekamsk",
+      "name": "Nizhnekamsk",
+      "aliases": [],
+      "profile": "俄罗斯鞑靼斯坦城市"
+    },
+    {
+      "id": "tatarstan",
+      "name": "Tatarstan",
+      "aliases": [],
+      "profile": "俄罗斯鞑靼斯坦共和国"
+    },
+    {
+      "id": "ukrainka",
+      "name": "Ukrainka",
+      "aliases": [],
+      "profile": "乌克兰基辅州城市"
+    },
+    {
+      "id": "bohdanivka",
+      "name": "Bohdanivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "lukiantsi",
+      "name": "Lukiantsi",
+      "aliases": [],
+      "profile": "乌克兰哈尔科夫州村庄"
+    },
+    {
+      "id": "yakymivka",
+      "name": "Yakymivka",
+      "aliases": [],
+      "profile": "乌克兰扎波罗热州城镇"
+    },
+    {
+      "id": "synelnykove",
+      "name": "Synelnykove",
+      "aliases": [],
+      "profile": "乌克兰第聂伯罗彼得罗夫斯克州城市"
+    },
+    {
+      "id": "novomykhailivka",
+      "name": "Novomykhailivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "vuhledar",
+      "name": "Vuhledar",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州城市"
+    },
+    {
+      "id": "ocheretyne",
+      "name": "Ocheretyne",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "smolensk_oblast",
+      "name": "Smolensk Oblast",
+      "aliases": [],
+      "profile": "俄罗斯斯摩棱斯克州"
+    },
+    {
+      "id": "lipetsk_oblast",
+      "name": "Lipetsk Oblast",
+      "aliases": [],
+      "profile": "俄罗斯利佩茨克州"
+    },
+    {
+      "id": "voronezh_oblast",
+      "name": "Voronezh Oblast",
+      "aliases": [],
+      "profile": "俄罗斯沃罗涅日州"
+    },
+    {
+      "id": "bilopillia",
+      "name": "Bilopillia",
+      "aliases": [],
+      "profile": "乌克兰苏梅州城市"
+    },
+    {
+      "id": "novodruzhesk",
+      "name": "Novodruzhesk",
+      "aliases": [],
+      "profile": "乌克兰卢甘斯克州城市"
+    },
+    {
+      "id": "ilsky",
+      "name": "Ilsky",
+      "aliases": [],
+      "profile": "俄罗斯克拉斯诺达尔边疆区城镇"
+    },
+    {
+      "id": "kushchyovskaya_airbase",
+      "name": "Kushchyovskaya airbase",
+      "aliases": [],
+      "profile": "俄罗斯克拉斯诺达尔边疆区库晓夫斯卡亚空军基地"
+    },
+    {
+      "id": "semenivka",
+      "name": "Semenivka",
+      "aliases": [],
+      "profile": "乌克兰顿涅茨克州村庄"
+    },
+    {
+      "id": "nestryha_island",
+      "name": "Nestryha Island",
+      "aliases": [],
+      "profile": "乌克兰第聂伯河三角洲岛屿"
+    },
+    {
+      "id": "narrator",
+      "name": "Narrator/旁白",
+      "aliases": [],
+      "profile": "Reserved catch-all owner for scene-setting/narration fragments with no clear character or location owner."
+    }
+  ],
+  "carriers": []
+}
