@@ -244,7 +244,7 @@ async def test_extract_history_atomic_assembles_despite_duplicate_ascii_location
 
     def fake(prompt, system=None):
         if "[atomize]" in prompt:
-            return json.dumps(["黛玉在大观楼读书"], ensure_ascii=False)
+            return json.dumps([["黛玉在大观楼读书"]], ensure_ascii=False)
         if "[assign]" in prompt:
             return json.dumps([["daiyu"]], ensure_ascii=False)
         if "出场" in prompt:
@@ -359,7 +359,7 @@ async def test_extract_history_atomic_survives_cross_environment_alias_contamina
 
     def fake(prompt, system=None):
         if "[atomize]" in prompt:
-            return json.dumps(["黛玉在荣国府读书"], ensure_ascii=False)
+            return json.dumps([["黛玉在荣国府读书"]], ensure_ascii=False)
         if "[assign]" in prompt:
             return json.dumps([["daiyu"]], ensure_ascii=False)
         if "出场" in prompt:
