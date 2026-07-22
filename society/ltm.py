@@ -123,6 +123,7 @@ class SharedMemory:
         source: str,
         story_order: int | None = None,
         story_time: str | None = None,
+        affiliated: list[str] | None = None,
     ) -> dict:
         embedding = (await self._embed_fn([text]))[0]
 
@@ -163,8 +164,10 @@ class SharedMemory:
 
         if match_idx == -1:
             new_id = uuid.uuid4().hex
+            new_affiliated = sorted({a for a in (affiliated or []) if a != new_id})
             metadata = {
                 "owners": json.dumps(new_owners),
+                "affiliated": json.dumps(new_affiliated),
                 "created_at": _now_iso(),
                 "source": source,
                 "tick": tick,
@@ -181,13 +184,24 @@ class SharedMemory:
                 embeddings=[embedding],
                 metadatas=[metadata],
             )
-            return {"id": new_id, "text": text, "merged": False, "owners": new_owners}
+            return {
+                "id": new_id,
+                "text": text,
+                "merged": False,
+                "owners": new_owners,
+                "affiliated": new_affiliated,
+            }
 
         candidate = candidates[match_idx]
         cid = candidate["id"]
         meta = candidate["meta"]
         existing_owners = set(json.loads(meta.get("owners", "[]")))
         merged_owners = sorted(existing_owners | set(new_owners))
+
+        existing_affiliated = set(json.loads(meta.get("affiliated", "[]")))
+        merged_affiliated = sorted(
+            (existing_affiliated | set(affiliated or [])) - {cid}
+        )
 
         keep_text = candidate["text"]
         update_kwargs = {}
@@ -198,6 +212,7 @@ class SharedMemory:
 
         update_metadata = {
             "owners": json.dumps(merged_owners),
+            "affiliated": json.dumps(merged_affiliated),
             "tick": tick,
         }
         for o in new_owners:
@@ -224,7 +239,13 @@ class SharedMemory:
         update_kwargs["metadatas"] = [update_metadata]
         self._collection.update(ids=[cid], **update_kwargs)
 
-        return {"id": cid, "text": keep_text, "merged": True, "owners": merged_owners}
+        return {
+            "id": cid,
+            "text": keep_text,
+            "merged": True,
+            "owners": merged_owners,
+            "affiliated": merged_affiliated,
+        }
 
     # ------------------------------------------------------------------
     # public API
@@ -268,12 +289,18 @@ class SharedMemory:
         source: str = "sediment",
         story_order: int | None = None,
         story_time: str | None = None,
+        affiliated: list[str] | None = None,
     ) -> dict | None:
         """Deposit a PRE-ATOMIZED fragment (already one complete event) owned by
         `owners` (list[str], >=1). Skips the normalize/split gate (the caller has
         already atomized), applies ONLY the token cap, then consensus-inserts with
         the full owner set. Returns the insert result dict, or None if text is
-        empty/whitespace after stripping."""
+        empty/whitespace after stripping.
+
+        `affiliated` (list[str] or None) seeds the entry's related-memory set
+        (ids of other memory entries). On a fresh insert it's stored as-is
+        (deduped, self-id excluded once known); on a consensus merge it's
+        UNIONed with the matched entry's existing affiliated set."""
         text = text.strip()
         if not text:
             return None
@@ -288,6 +315,7 @@ class SharedMemory:
             source,
             story_order=story_order,
             story_time=story_time,
+            affiliated=affiliated,
         )
 
     async def recall(self, agent_id: str, query: str, top_k: int = 5) -> list[dict]:
@@ -330,6 +358,72 @@ class SharedMemory:
             )
         return True
 
+    # ------------------------------------------------------------------
+    # affiliated-memory graph (related-memory CRUD)
+    # ------------------------------------------------------------------
+
+    def link_group(self, ids: list[str]) -> None:
+        """Make every id in `ids` affiliated with the others (symmetric,
+        pairwise). Missing ids are skipped with no error; present ids are
+        only linked to other present ids in the group. This is what
+        sedimentation calls per event to link the memories it deposits."""
+        unique_ids = list(dict.fromkeys(ids))
+        if len(unique_ids) < 2:
+            return
+        got = self._collection.get(ids=unique_ids, include=["metadatas"])
+        present_meta = dict(zip(got["ids"], got["metadatas"]))
+        valid_ids = [i for i in unique_ids if i in present_meta]
+        if len(valid_ids) < 2:
+            return
+        for mid in valid_ids:
+            others = [i for i in valid_ids if i != mid]
+            meta = present_meta[mid]
+            existing = set(json.loads(meta.get("affiliated", "[]") or "[]"))
+            merged = sorted((existing | set(others)) - {mid})
+            self._collection.update(
+                ids=[mid], metadatas=[{"affiliated": json.dumps(merged)}]
+            )
+
+    def add_affiliations(self, memory_id: str, other_ids: list[str]) -> bool:
+        """Add other_ids to memory_id's affiliated set (excluding self).
+        Returns False if memory_id doesn't exist."""
+        got = self._collection.get(ids=[memory_id], include=["metadatas"])
+        if not got["ids"]:
+            return False
+        meta = got["metadatas"][0]
+        existing = set(json.loads(meta.get("affiliated", "[]") or "[]"))
+        merged = sorted((existing | set(other_ids)) - {memory_id})
+        self._collection.update(
+            ids=[memory_id], metadatas=[{"affiliated": json.dumps(merged)}]
+        )
+        return True
+
+    def remove_affiliations(self, memory_id: str, other_ids: list[str]) -> bool:
+        """Remove other_ids from memory_id's affiliated set. Returns False if
+        memory_id doesn't exist."""
+        got = self._collection.get(ids=[memory_id], include=["metadatas"])
+        if not got["ids"]:
+            return False
+        meta = got["metadatas"][0]
+        existing = set(json.loads(meta.get("affiliated", "[]") or "[]"))
+        remaining = sorted(existing - set(other_ids))
+        self._collection.update(
+            ids=[memory_id], metadatas=[{"affiliated": json.dumps(remaining)}]
+        )
+        return True
+
+    def get_affiliations(self, memory_id: str) -> list[str]:
+        """Return memory_id's affiliated ids, sorted. [] if none or the
+        entry doesn't exist. Note: dangling ids (referring to since-forgotten
+        entries) are not scrubbed automatically -- forget() intentionally
+        leaves other entries' affiliated sets untouched, so this may return
+        ids that no longer resolve via all_entries()/get_affiliations()."""
+        got = self._collection.get(ids=[memory_id], include=["metadatas"])
+        if not got["ids"]:
+            return []
+        meta = got["metadatas"][0]
+        return sorted(json.loads(meta.get("affiliated", "[]") or "[]"))
+
     async def revise(
         self, agent_id: str, memory_id: str, new_text: str, tick: int = 0
     ) -> list[dict]:
@@ -338,23 +432,34 @@ class SharedMemory:
         return await self.remember(agent_id, new_text, tick=tick)
 
     def all_entries(self) -> list[dict]:
-        """Return every stored entry as {"id", "text", "owners", "meta"}."""
+        """Return every stored entry as
+        {"id", "text", "owners", "affiliated", "meta"}."""
         if self._collection.count() == 0:
             return []
         got = self._collection.get(include=["documents", "metadatas"])
         entries = []
         for eid, doc, meta in zip(got["ids"], got["documents"], got["metadatas"]):
             owners = sorted(json.loads(meta.get("owners", "[]")))
-            entries.append({"id": eid, "text": doc, "owners": owners, "meta": meta})
+            affiliated = sorted(json.loads(meta.get("affiliated", "[]") or "[]"))
+            entries.append(
+                {
+                    "id": eid,
+                    "text": doc,
+                    "owners": owners,
+                    "affiliated": affiliated,
+                    "meta": meta,
+                }
+            )
         return entries
 
     def export(self) -> list[dict]:
         """Holographic export: every entry with its embedding, for checkpointing.
 
-        Returns a list of {"id", "text", "owners", "meta", "embedding"}, where
-        "meta" is {"created_at", "source", "tick"} (plus "story_order" /
-        "story_time" when the entry carries them) and "embedding" is the raw
-        vector (list[float]) fetched straight from the collection.
+        Returns a list of {"id", "text", "owners", "affiliated", "meta",
+        "embedding"}, where "meta" is {"created_at", "source", "tick"} (plus
+        "story_order" / "story_time" when the entry carries them) and
+        "embedding" is the raw vector (list[float]) fetched straight from the
+        collection.
         """
         if self._collection.count() == 0:
             return []
@@ -365,6 +470,7 @@ class SharedMemory:
             zip(got["ids"], got["documents"], got["metadatas"])
         ):
             owners = sorted(json.loads(meta.get("owners", "[]")))
+            affiliated = sorted(json.loads(meta.get("affiliated", "[]") or "[]"))
             embedding = None
             if embeddings is not None:
                 vec = embeddings[i]
@@ -384,6 +490,7 @@ class SharedMemory:
                     "id": eid,
                     "text": doc,
                     "owners": owners,
+                    "affiliated": affiliated,
                     "meta": meta_out,
                     "embedding": embedding,
                 }
@@ -413,8 +520,12 @@ class SharedMemory:
         metadatas = []
         for i, entry in enumerate(entries):
             owners = entry.get("owners", [])
+            affiliated = entry.get("affiliated", []) or []
             meta = entry.get("meta", {}) or {}
-            metadata = {"owners": json.dumps(list(owners))}
+            metadata = {
+                "owners": json.dumps(list(owners)),
+                "affiliated": json.dumps(list(affiliated)),
+            }
             for key in ("created_at", "source", "tick", "story_order", "story_time"):
                 value = meta.get(key)
                 if value is not None:

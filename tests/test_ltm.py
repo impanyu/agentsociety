@@ -197,3 +197,100 @@ async def test_forget_survives_on_multi_owner_atomic_entry():
     assert m.forget("b", memory_id) is True
     assert m.forget("c", memory_id) is True
     assert m.all_entries() == []
+
+
+# ----------------------------------------------------------------------
+# affiliated_memories: related-memory graph
+# ----------------------------------------------------------------------
+
+
+async def test_remember_atomic_stores_affiliated_and_excludes_self():
+    m = mem(None)
+    out = await m.remember_atomic(["a"], "刘备与张飞结拜")
+    fake_related_id = "some-other-id"
+    out2 = await m.remember_atomic(
+        ["b"], "关羽温酒斩华雄", affiliated=[out["id"], fake_related_id]
+    )
+    assert out2["id"] not in out2["affiliated"]  # excludes self
+    (entry,) = [e for e in m.all_entries() if e["id"] == out2["id"]]
+    assert set(entry["affiliated"]) == {out["id"], fake_related_id}
+
+    exported = m.export()
+    (exp_entry,) = [e for e in exported if e["id"] == out2["id"]]
+    assert set(exp_entry["affiliated"]) == {out["id"], fake_related_id}
+
+
+async def test_remember_atomic_affiliated_defaults_to_empty():
+    m = mem(None)
+    out = await m.remember_atomic(["a"], "刘备与张飞结拜")
+    assert out["affiliated"] == []
+    (entry,) = m.all_entries()
+    assert entry["affiliated"] == []
+
+
+async def test_consensus_merge_unions_affiliated():
+    llm = FakeLLM(responses=["0"])
+    m = mem(llm)
+    out1 = await m.remember_atomic(["a"], "国王死于春天", affiliated=["x"])
+    out2 = await m.remember_atomic(["b"], "国王死于春天", affiliated=["y"])
+    assert out2["merged"] is True
+    (entry,) = m.all_entries()
+    assert set(entry["affiliated"]) == {"x", "y"}
+    assert entry["id"] not in entry["affiliated"]  # never affiliates to self
+    assert out1["id"] == out2["id"] == entry["id"]
+
+
+async def test_link_group_symmetric_pairwise():
+    m = mem(None)
+    a = (await m.remember_atomic(["u"], "甲事件"))["id"]
+    b = (await m.remember_atomic(["u"], "乙事件"))["id"]
+    c = (await m.remember_atomic(["u"], "丙事件"))["id"]
+    m.link_group([a, b, c])
+    by_id = {e["id"]: e for e in m.all_entries()}
+    assert set(by_id[a]["affiliated"]) == {b, c}
+    assert set(by_id[b]["affiliated"]) == {a, c}
+    assert set(by_id[c]["affiliated"]) == {a, b}
+    for eid in (a, b, c):
+        assert eid not in by_id[eid]["affiliated"]
+
+
+async def test_link_group_skips_missing_ids():
+    m = mem(None)
+    a = (await m.remember_atomic(["u"], "甲事件"))["id"]
+    b = (await m.remember_atomic(["u"], "乙事件"))["id"]
+    m.link_group([a, b, "does-not-exist"])
+    by_id = {e["id"]: e for e in m.all_entries()}
+    assert set(by_id[a]["affiliated"]) == {b}
+    assert set(by_id[b]["affiliated"]) == {a}
+
+
+async def test_add_remove_get_affiliations():
+    m = mem(None)
+    a = (await m.remember_atomic(["u"], "甲事件"))["id"]
+    b = (await m.remember_atomic(["u"], "乙事件"))["id"]
+    c = (await m.remember_atomic(["u"], "丙事件"))["id"]
+
+    assert m.add_affiliations(a, [b, c, a]) is True  # self excluded
+    assert m.get_affiliations(a) == sorted([b, c])
+
+    assert m.remove_affiliations(a, [b]) is True
+    assert m.get_affiliations(a) == [c]
+
+    assert m.add_affiliations("missing-id", [b]) is False
+    assert m.remove_affiliations("missing-id", [b]) is False
+    assert m.get_affiliations("missing-id") == []
+
+
+async def test_export_restore_roundtrips_affiliated():
+    m = mem(None)
+    a = (await m.remember_atomic(["u"], "甲事件"))["id"]
+    b = (await m.remember_atomic(["u"], "乙事件"))["id"]
+    m.link_group([a, b])
+
+    exported = m.export()
+    m2 = mem(None)
+    await m2.restore(exported)
+
+    by_id = {e["id"]: e for e in m2.all_entries()}
+    assert set(by_id[a]["affiliated"]) == {b}
+    assert set(by_id[b]["affiliated"]) == {a}
