@@ -380,6 +380,34 @@ def _registry_augment_prompt(unresolved: list[str], registry: dict) -> str:
     )
 
 
+def _carrier_extract_prompt(source_text: str, carrier: dict, language: str, hints: str) -> str:
+    """Prompt for the Task F4 per-carrier document-content extraction call:
+    given the WHOLE source text plus one info_carrier's name/profile, asks
+    for the carrier's CONTENT as a JSON array of sentence strings -- VERBATIM
+    wherever the source actually quotes the document, otherwise a faithful
+    reconstruction from the carrier's role/profile."""
+    name = carrier.get("name") or carrier.get("id")
+    profile = carrier.get("profile") or ""
+    return (
+        "[carrier-extract] Below is the full source text of a story, followed by the "
+        f"name and profile of one INFORMATION CARRIER (a letter/edict/proclamation/diary/"
+        f"poem/etc.) that appears in it: \"{name}\" (profile: {profile or 'n/a'}). Extract "
+        "this carrier's own CONTENT -- the text it actually contains, or would plausibly "
+        "contain -- as a JSON array of sentence strings, in reading order. Wherever the "
+        "source text actually QUOTES this document, reproduce those sentences VERBATIM; "
+        "wherever it doesn't quote the document directly, faithfully RECONSTRUCT plausible "
+        "content instead, based on the carrier's role/profile and the surrounding context. "
+        f"Write in the same language as the source text (language code: {language}). Each "
+        "sentence must be fully SELF-CONTAINED (name the people/places involved explicitly "
+        "-- no bare pronouns) and roughly one sentence, at most ~64 tokens. If this carrier "
+        "has no discoverable or reconstructible content at all, return an empty JSON array.\n"
+        "Output ONLY a JSON array of strings, e.g. [\"sentence 1\", \"sentence 2\"]. Do not "
+        "output any explanation or extra text.\n\n"
+        f"Hints: {hints or ''}\n\n"
+        f"Carrier name: {name}\nCarrier profile: {profile}\n\nSource text:\n{source_text}"
+    )
+
+
 def _kickoff_prompt(state_summary: str, alive_ids: list[str], hints: str) -> str:
     if hints:
         instruction = f"用户提供的后传前提:{hints}。请据此设计【起始】事件。"
@@ -1466,6 +1494,134 @@ async def _run_sediment_pass_atomic(
 
 
 # ----------------------------------------------------------------------
+# Pass 2 -- info-carrier document chaining (Task F4, purely additive to the
+# LTM: unifies documents into the entry model alongside the event memories
+# deposited above, without touching scenario assembly/corpus wiring).
+# ----------------------------------------------------------------------
+
+
+async def _sediment_carriers(
+    llm,
+    shared: SharedMemory,
+    registry: dict,
+    source_text: str,
+    language: str,
+    hints: str,
+    warnings: list[str],
+    *,
+    story_order_base: int,
+) -> None:
+    """Turns each `registry["carriers"]` entry into a CHAIN of sentence
+    memory-entries, run AFTER the Pass-2 event sediment has deposited into
+    `shared` and BEFORE `shared.export()` (see `extract_history`) so the
+    chains are included in the holographic ltm export. Purely additive: this
+    never touches `registry`, `_assemble_history_scenario`'s info_carrier
+    agent build, or `_write_corpora` -- the corpus/RetrievalBrain wiring for
+    info_carrier agents stays exactly as it was; only step 4 (the sim-side
+    switch to reading these chains) will retire it, and that's a later task.
+
+    For EACH carrier {id, name, profile}:
+
+      1. One extraction LLM call (bucket="extract", `_carrier_extract_prompt`)
+         asks for the carrier's CONTENT as a JSON array of sentence strings
+         given the whole `source_text` plus the carrier's name/profile --
+         verbatim wherever the source quotes the document, otherwise a
+         faithful reconstruction from its profile. These per-carrier calls
+         are independent reads, so they're gathered concurrently
+         (`asyncio.gather(..., return_exceptions=True)`); a `CancelledError`
+         from any of them is re-raised (an external timeout/cancel scope must
+         still see it) while any other exception degrades just that carrier
+         to a skip+warning without aborting the rest -- same pattern as the
+         event-sediment gathers above. An empty array, a non-array response,
+         or a JSON-parse failure also degrades to a skip+warning (no crash).
+
+      2. Once every carrier's extraction has resolved, deposits happen
+         SEQUENTIALLY (consensus insert + chaining are stateful, exactly why
+         the event-deposit loop above is sequential too): each sentence is
+         deposited via `shared.remember_atomic([carrier_id], sentence,
+         source="document", readable=True, story_order=<monotonic>)` in
+         array order, skipping any that come back None (empty after
+         stripping). `story_order` is a single counter shared across every
+         carrier's sentences, starting at `story_order_base` (callers pass
+         something that sorts AFTER every event memory's story_order, e.g.
+         `(num_chunks + 1) * 1000`) and incrementing by 1 per DEPOSITED
+         sentence, in registry-carrier order then within-carrier sentence
+         order -- so a document's own sentences always sort contiguously
+         and in reading order relative to each other, and every carrier's
+         chain sorts after the whole event timeline.
+
+      3. Chain: for each pair of consecutively-deposited ids (ids[i],
+         ids[i+1]) within ONE carrier, `shared.add_affiliations(ids[i],
+         [ids[i+1]])` -- a DIRECTIONAL next-link (i -> i+1 only; i+1's
+         affiliated set is NOT also given ids[i], unlike `link_group`'s
+         symmetric pairwise linking used for event fragments). The LAST
+         sentence of a carrier's chain has no next. Different carriers'
+         chains are entirely independent of each other -- nothing links
+         carrier A's entries to carrier B's.
+    """
+    carriers = [c for c in (registry.get("carriers") or []) if c.get("id")]
+    if not carriers:
+        return
+
+    async def _extract(carrier: dict) -> str:
+        prompt = _carrier_extract_prompt(source_text, carrier, language, hints)
+        return await llm.chat(prompt, bucket="extract")
+
+    raw_results = await asyncio.gather(*(_extract(c) for c in carriers), return_exceptions=True)
+
+    story_order = story_order_base
+    for carrier, raw_or_exc in zip(carriers, raw_results):
+        cid = carrier["id"]
+
+        # Never swallow cancellation: let it propagate so an external
+        # timeout/cancel scope isn't silently degraded into a per-carrier
+        # skip (same rationale as the event-sediment gathers above).
+        if isinstance(raw_or_exc, asyncio.CancelledError):
+            raise raw_or_exc
+        if isinstance(raw_or_exc, Exception):
+            warnings.append(
+                f"history carrier sediment: extraction failed for carrier {cid!r}: "
+                f"{raw_or_exc}; skipped"
+            )
+            continue
+
+        try:
+            sentences = _extract_json_block(raw_or_exc)
+            if not isinstance(sentences, list):
+                raise ValueError("carrier extract pass did not return a JSON array")
+        except (ValueError, json.JSONDecodeError) as exc:
+            warnings.append(
+                f"history carrier sediment: carrier {cid!r} extraction failed to produce "
+                f"valid JSON: {exc}; skipped"
+            )
+            continue
+
+        sentences = [str(s).strip() for s in sentences if str(s).strip()]
+        if not sentences:
+            warnings.append(
+                f"history carrier sediment: carrier {cid!r} produced no usable sentences; "
+                "skipped"
+            )
+            continue
+
+        ids: list[str] = []
+        for sentence in sentences:
+            res = await shared.remember_atomic(
+                [cid],
+                sentence,
+                source="document",
+                readable=True,
+                story_order=story_order,
+            )
+            story_order += 1
+            if res is not None:
+                ids.append(res["id"])
+
+        for i in range(len(ids) - 1):
+            shared.add_affiliations(ids[i], [ids[i + 1]])
+
+
+# ----------------------------------------------------------------------
 # Assembly
 # ----------------------------------------------------------------------
 
@@ -2072,6 +2228,24 @@ async def extract_history(
 
     corpora_dir = os.path.join(out_dir, "corpora")
     _write_corpora(carriers, corpora_dir)
+
+    # Task F4: sediment each info_carrier's own content as a chained
+    # (i -> i+1) run of readable document entries, ADDITIVE to the LTM --
+    # AFTER the Pass-2 event sediment above has deposited into `shared` and
+    # BEFORE the holographic export below so the chains are included in it.
+    # Does not touch `registry`, the info_carrier agent build above, or
+    # `_write_corpora` -- corpus/RetrievalBrain wiring is untouched (a later
+    # task switches the sim side to read these chains instead).
+    await _sediment_carriers(
+        llm,
+        shared,
+        registry,
+        text,
+        language,
+        hints,
+        warnings,
+        story_order_base=(len(history_chunks) + 1) * 1000,
+    )
 
     exported = shared.export()
     ltm_path = out_yaml + ".ltm.json"
